@@ -55,7 +55,7 @@ void rook::def_possible_movements(){
         }
 
         //contabilização de movimentos possíveis para baixo
-        int y=*(spot+1);
+        y=*(spot+1);
         for(int i=0; i<7; i++){
                 if(y==7){
                     break;
@@ -169,14 +169,14 @@ void rook::def_possible_movements(){
         y=*(spot+1);
         for(int j=0; j<=go_topB; j++){
             _possibles_movements[*spot][y]=1;
-            j--;
+            y--;
         }
 
         //possíveis movimentos para baixo
         y=*(spot+1);
         for(int j=0; j<=go_downB; j++){
             _possibles_movements[*spot][y]=1;
-            j++;
+            y++;
         }
     }
 }
