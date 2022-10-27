@@ -1,4 +1,5 @@
-#include "C:\Users\emagn_ga9soas\OneDrive\Área de Trabalho\TP PDS2\include\pieces\pawn.hpp"
+#include "include/pawn.hpp"
+
 
 using namespace std;
 
@@ -7,7 +8,7 @@ Pawn::Pawn(string color, int*spot){
     _first_time = true;
 }
 
-//No caso do peão define os movimentos possiveis como duas casas a frente caso seja seu primeiro movimento ou uma casa a frente caso não seja
+//No caso do peï¿½o define os movimentos possiveis como duas casas a frente caso seja seu primeiro movimento ou uma casa a frente caso nï¿½o seja
 void Pawn::def_possible_movements(){
     int *spot = this->get_spot();
     if(this->get_color() == "white" && _first_time == true){
