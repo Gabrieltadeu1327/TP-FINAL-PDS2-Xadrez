@@ -11,19 +11,17 @@ class Piece {
         string _image;
         string _color;
         int _spot[2];
-
-    protected:
-        int _possibles_movements[8][8];
     
     public:
 
+        int _possibles_movements[8][8];
         Piece(string color, int*spot);
         Piece();
         virtual void def_possible_movements();
         string get_color();
         int* get_spot(); 
         void set_spot(int x, int y);
-        int* get_possibles();
+        // int** get_possibles();
         
 
 };

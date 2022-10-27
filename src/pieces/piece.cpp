@@ -29,6 +29,6 @@ void Piece::set_spot(int x, int y){
     _spot[1] = y;
 }
 
-int * Piece::get_possibles(){
-    return *_possibles_movements;
-}
+// int ** Piece::get_possibles(){
+//     return _possibles_movements;
+// }
