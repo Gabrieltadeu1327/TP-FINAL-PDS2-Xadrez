@@ -9,6 +9,13 @@ King::King(string color, int*spot){
 void King::def_possible_movements(){
     int *spot = this->get_spot();
 
+    // Rezeta a Matriz de movimentos possiveis
+    for (int i=0; i<9; i++){
+        for(int j=0; j<9; j++){
+            _possibles_movements[i][j]=0;
+        }
+    };
+
     if(this->get_color() == "white"){
         //Possibilidades Cima;
         for(int ed = *spot, cb = *(spot+1), count = 0; ed > -1 && count < 2; ed--, count++){
@@ -86,5 +93,10 @@ void King::def_possible_movements(){
         //Possibilidades Diagonal pra Esquerda e pra Cima;
         for(int ed = *spot, cb = *(spot+1), count = 0; ed > -1 && cb > -1 && count < 2; ed--, cb--, count++){
         _possibles_movements[ed][cb] = 1;
-        }
+        } 
     }
+    
+    //Zera a casa da posição atual das peças:
+    _possibles_movements[*spot][*(spot+1)]= 0; 
+
+}

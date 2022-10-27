@@ -8,6 +8,14 @@ Bishop::Bishop(string color, int*spot){
 
 void Bishop::def_possible_movements(){
     int *spot = this->get_spot();
+
+  // Rezeta a Matriz de movimentos possiveis
+    for (int i=0; i<9; i++){
+        for(int j=0; j<9; j++){
+            _possibles_movements[i][j]=0;
+        }
+    };
+
     if(this->get_color() == "white"){
         //Possibilidades Diagonal pra DIREITA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb < 8; ed++, cb++)
@@ -43,4 +51,8 @@ void Bishop::def_possible_movements(){
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb > -1; ed--, cb--)
         _possibles_movements[ed][cb] = 1;
     }
+    
+    //Zera a casa da posição atual das peças:
+    _possibles_movements[*spot][*(spot+1)]= 0; 
+
 }
