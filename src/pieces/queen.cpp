@@ -4,10 +4,10 @@ using namespace std;
 
 Queen::Queen(string color, int*spot){
     Piece(color, spot);
+    _name= "Queen";
 }
 
-void Queen::def_possible_movements(){
-    int *spot = this->get_spot();
+void Queen::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<9; i++){

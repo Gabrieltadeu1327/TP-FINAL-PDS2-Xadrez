@@ -9,19 +9,17 @@ class Piece {
 
     private:
         string _image;
+        const string _name;
         string _color;
-        int _spot[2];
     
     public:
 
         int _possibles_movements[8][8];
-        Piece(string color, int*spot);
+        Piece(string color);
         Piece();
-        virtual void def_possible_movements();
+        virtual void def_possible_movements(int* spot);
         string get_color();
-        int* get_spot(); 
-        void set_spot(int x, int y);
-        // int** get_possibles();
+        string get_name();
         
 
 };

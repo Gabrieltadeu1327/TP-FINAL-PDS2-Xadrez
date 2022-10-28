@@ -15,11 +15,22 @@ using namespace std;
 class Board{
 
     private:
-        Piece board[8][8];
-        Player pb;
-        Player pp;
+        Piece* board[8][8];
+
+//Matrizes de ataque
+        int white_atc_mat[8][8];
+        int black_atc_mat[8][8];
+
     public:
         Board();
+
+        Piece* get_piece(int* spot);
+
+        int** def_valid_moviments(Piece* p); 
+
+       // void refresh_bord();
+
+        
 
 };
 

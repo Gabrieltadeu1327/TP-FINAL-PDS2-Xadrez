@@ -4,10 +4,10 @@ using namespace std;
 
 King::King(string color, int*spot){
     Piece(color, spot);
+    _name= "King";
 }
 
-void King::def_possible_movements(){
-    int *spot = this->get_spot();
+void King::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<9; i++){

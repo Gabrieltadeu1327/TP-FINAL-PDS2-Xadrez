@@ -4,10 +4,10 @@ using namespace std;
 
 Knight::Knight(string color, int*spot){
     Piece(color, spot);
+    _name= "Knight";
 }
 
-void Knight::def_possible_movements(){
-    int *spot = this->get_spot();
+void Knight::def_possible_movements(int* spot){
     
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<9; i++){

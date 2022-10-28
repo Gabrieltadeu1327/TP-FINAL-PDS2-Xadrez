@@ -9,8 +9,8 @@ class Rook: public Piece {
 
     public:
 
-        Rook(string color, int*spot);
-        void def_possible_movements() override;
+        Rook(string color);
+        void def_possible_movements(int* spot) override;
         
 
 };

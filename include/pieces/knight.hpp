@@ -9,8 +9,8 @@ class Knight: public Piece {
 
     public:
 
-        Knight(string color, int*spot);
-        void def_possible_movements() override;
+        Knight(string color);
+        void def_possible_movements(int*spot) override;
         
         
 

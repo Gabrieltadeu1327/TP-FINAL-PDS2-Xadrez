@@ -9,11 +9,11 @@ using namespace std;
 Pawn::Pawn(string color, int*spot){
     Piece(color, spot);
     _first_time = true;
+    _name= "Pawn";
 }
 
 //No caso do pe�o define os movimentos possiveis como duas casas a frente caso seja seu primeiro movimento ou uma casa a frente caso n�o seja
-void Pawn::def_possible_movements(){
-    int *spot = this->get_spot();
+void Pawn::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<9; i++){

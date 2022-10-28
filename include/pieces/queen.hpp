@@ -9,8 +9,8 @@ class Queen: public Piece {
 
     public:
 
-        Queen(string color, int*spot);
-        void def_possible_movements() override;
+        Queen(string color);
+        void def_possible_movements(int*spot) override;
 
 };
 

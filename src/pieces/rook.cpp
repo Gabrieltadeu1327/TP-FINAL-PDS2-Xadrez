@@ -4,11 +4,11 @@ using namespace std;
 
 Rook::Rook(string color, int *spot){
     Piece(color, spot);
+    _name= "Rook";
 }
 
 // No caso da torre ela pode fazer movimentos apenas na horizontal e vertical, quantas casas quiser, sem pular nenhuma peça
-void Rook::def_possible_movements(){
-    int *spot = this->get_spot();
+void Rook::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<9; i++){

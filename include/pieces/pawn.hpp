@@ -10,8 +10,8 @@ class Pawn: public Piece {
     bool _first_time;
 
     public:
-        Pawn(string color, int*spot);
-        void def_possible_movements() override;
+        Pawn(string color);
+        void def_possible_movements(int*spot) override;
         void promotion();
 };
 

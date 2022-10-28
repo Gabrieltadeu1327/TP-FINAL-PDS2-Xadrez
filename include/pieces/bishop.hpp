@@ -9,8 +9,8 @@ class Bishop: public Piece {
 
     public:
 
-        Bishop(string color, int*spot);
-        void def_possible_movements() override;
+        Bishop(string color);
+        void def_possible_movements(int* spot) override;
         
         
 

@@ -10,9 +10,10 @@ class King: public Piece {
         bool xeque;
 
     public:
-        King(string color, int*spot);
-        void def_possible_movements() override;
-        bool is_xeque() const;
+        King(string color);
+        void def_possible_movements(int* spot) override;
+        bool is_xeque();
+        void set_xeque(bool cheque);
 
         
 };
