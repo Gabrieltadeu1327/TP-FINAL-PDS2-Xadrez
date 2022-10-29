@@ -51,7 +51,7 @@ mat= p->_possibles_movements;
         
         return mat;
     }
-
+// Rei não possui caminhos com falhas mas n pode se colocar em xeque
     if(p->get_name()== "King"){
 
         refresh_atc_matriz();
@@ -66,7 +66,7 @@ mat= p->_possibles_movements;
                         }
                 }else{
                         if(mat[i][j]== 1 && 
-                        mat[i][j]==black_atc_mat[i][j]){
+                        mat[i][j] <= black_atc_mat[i][j]){
                    
                         mat[i][j]=0;
                         } 
@@ -74,7 +74,7 @@ mat= p->_possibles_movements;
             }  
         }
 
-
+// Remoção das falhas nos caminhos 
     }else{
 
 
@@ -86,6 +86,53 @@ mat= p->_possibles_movements;
     }
 
 }
+
+void Board::refresh_atc_matriz(string cor){
+
+    if(cor == "White"){
+        for(int i= 0; i< 8; i++){
+        for(int j= 0; j< 8; j++){
+         
+         white_atc_mat[i][j]=0;
+        }  
+        }
+        
+        for(int i= 0; i< 8; i++){
+        for(int j= 0; j< 8; j++){
+            if((board[i][j])->get_color()== "White"){
+                    for(int z= 0; z< 8; z++){
+                    for(int y= 0; y< 8; y++){
+                         white_atc_mat[z][y] += (def_valid_moviments(board[i][j]))[z][y];
+                    }  
+                    }
+            }    
+        }  
+        }
+    
+    }else{
+        
+        for(int i= 0; i< 8; i++){
+        for(int j= 0; j< 8; j++){
+         
+         black_atc_mat[i][j]=0;
+        }  
+    };
+        for(int i= 0; i< 8; i++){
+        for(int j= 0; j< 8; j++){
+            if((board[i][j])->get_color()== "Black"){
+                    for(int z= 0; z< 8; z++){
+                    for(int y= 0; y< 8; y++){
+                         black_atc_mat[z][y] += (def_valid_moviments(board[i][j]))[z][y];
+                    }  
+                    }
+            }    
+        }  
+        }    
+
+
+    }
+   
+};
 
 
 

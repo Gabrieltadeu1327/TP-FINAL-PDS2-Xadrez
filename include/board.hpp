@@ -28,12 +28,12 @@ class Board{
 
         int** def_valid_moviments(Piece* p); 
 
-        void set_piece(Piece* p, int* spot);
+        void set_piece(int* atual_spot, int* spot);
 
         string** board_figures();
         
-        void refresh_atc_matriz(bool b);
-        
+        void refresh_atc_matriz(string cor);
+
         // void roque();
         // void promotion(Piece* p);
         // void el_passant();
