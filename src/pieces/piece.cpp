@@ -25,6 +25,10 @@ string Piece::get_name(){
     return _name;
 }
 
+string Piece::get_image(){
+    return _image;
+}
+
 
 // int ** Piece::get_possibles(){
 //     return _possibles_movements;

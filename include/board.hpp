@@ -30,9 +30,11 @@ class Board{
 
         void set_piece(Piece* p, int* n_spot);
 
-        void roque();
-        void promotion(Piece* p);
-        void el_passant();
+        string** board_figures();
+        
+        // void roque();
+        // void promotion(Piece* p);
+        // void el_passant();
 
 };
 

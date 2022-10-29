@@ -20,6 +20,7 @@ class Piece {
         virtual void def_possible_movements(int* spot);
         string get_color();
         string get_name();
+        string get_image();
         
 
 };
