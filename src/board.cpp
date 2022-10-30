@@ -60,7 +60,7 @@ mat= p->_possibles_movements;
             for(int j= 0; j< 8; j++){
                 if(p->get_color == "White"){
                         if(mat[i][j]== 1 && 
-                        mat[i][j]==white_atc_mat[i][j]){
+                        mat[i][j] <=white_atc_mat[i][j]){
                         
                         mat[i][j]=0;
                         }
