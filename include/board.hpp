@@ -26,11 +26,17 @@ class Board{
 
         Piece* get_piece(int* spot);
 
-        int** def_valid_moviments(Piece* p); 
+        int** def_valid_moviments(int* spot); 
 
-       // void refresh_bord();
+        void set_piece(int* atual_spot, int* spot);
 
+        string** board_figures();
         
+        void refresh_atc_matriz(string cor);
+
+        // void roque();
+        // void promotion(Piece* p);
+        // void el_passant();
 
 };
 
