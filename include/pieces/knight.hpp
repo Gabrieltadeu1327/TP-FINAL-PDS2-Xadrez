@@ -1,7 +1,7 @@
 #ifndef KNIGHT_HPP
 #define KNIGHT_HPP
 
-#include "piece.hpp"
+#include "include/pieces/piece.hpp"
 
 using namespace std;
 

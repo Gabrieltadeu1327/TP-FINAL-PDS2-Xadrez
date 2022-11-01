@@ -1,7 +1,7 @@
 #ifndef QUEEN_HPP
 #define QUEEN_HPP
 
-#include "piece.hpp"
+#include "include/pieces/piece.hpp"
 
 using namespace std;
 
