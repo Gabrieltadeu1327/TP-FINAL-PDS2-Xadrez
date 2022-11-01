@@ -2,9 +2,10 @@
 
 using namespace std;
 
-King::King(string color, int*spot){
-    Piece(color, spot);
+King::King(string color){
+    Piece(color);
     _name= "King";
+     //  _image = "./"
 }
 
 void King::def_possible_movements(int* spot){
@@ -99,4 +100,8 @@ void King::def_possible_movements(int* spot){
     //Zera a casa da posição atual das peças:
     _possibles_movements[*spot][*(spot+1)]= 0; 
 
+}
+
+void King::not_my_first_time(){
+    _first_time = false;
 }

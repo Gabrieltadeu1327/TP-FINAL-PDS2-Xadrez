@@ -2,9 +2,10 @@
 
 using namespace std;
 
-Knight::Knight(string color, int*spot){
-    Piece(color, spot);
+Knight::Knight(string color){
+    Piece(color);
     _name= "Knight";
+     //  _image = "./" 
 }
 
 void Knight::def_possible_movements(int* spot){

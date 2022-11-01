@@ -7,9 +7,9 @@ using namespace std;
 
 class Piece {
 
-    private:
+    protected:
         string _image;
-        const string _name;
+        string _name;
         string _color;
     
     public:
@@ -21,6 +21,7 @@ class Piece {
         string get_color();
         string get_name();
         string get_image();
+        virtual void not_my_first_time();
         
 
 };

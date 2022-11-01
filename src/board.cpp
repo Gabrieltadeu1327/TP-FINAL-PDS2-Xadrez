@@ -1,4 +1,11 @@
 #include "include/board.hpp"
+#include "include/pieces/king.hpp"
+
+Board::Board(){
+    board[0][1] = new King("white");
+
+}
+
 
 //retorna a peça de um endereço
 Piece* Board::get_piece(int *spot){
@@ -9,6 +16,11 @@ Piece* Board::get_piece(int *spot){
 // Muda a posição de uma peça
 void Board::set_piece(int* atual_spot, int* f_spot){
     
+    if((get_piece(atual_spot))->get_name() == "Pawn"){
+        (get_piece(atual_spot))->not_my_first_time();
+
+    }
+
     board[f_spot*][(f_spot +1)] = get_piece(atual_spot);
     board[atual_spot*][(atual_spot+1)*] = nullptr;
     
@@ -32,12 +44,12 @@ string** Board::board_figures(){
 //Restrinje os movimentos validos
 int** Board::def_valid_moviments( int* spot){
 
-Piece* p = get_piece(spot);
+    Piece* p = get_piece(spot);
 
 
-int mat[8][8];
+    int mat[8][8];
 
-mat= p->_possibles_movements;
+    mat= p->_possibles_movements;
 
 //eliminando casos de mesma cor   
     for(int i= 0; i< 8; i++){

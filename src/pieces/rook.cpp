@@ -2,8 +2,8 @@
 
 using namespace std;
 
-Rook::Rook(string color, int *spot){
-    Piece(color, spot);
+Rook::Rook(string color){
+    Piece(color);
     _name= "Rook";
 }
 

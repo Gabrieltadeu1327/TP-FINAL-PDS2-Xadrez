@@ -1,15 +1,13 @@
 
-#include "C:\Users\emagn_ga9soas\OneDrive\�rea de Trabalho\TP PDS2\include\pieces\pawn.hpp"
-
-#include "include/pawn.hpp"
+#include "include/pieces/pawn.hpp"
 
 
 using namespace std;
 
-Pawn::Pawn(string color, int*spot){
-    Piece(color, spot);
-    _first_time = true;
+Pawn::Pawn(string cor){
+    Piece(cor);
     _name= "Pawn";
+     //  _image = "./" 
 }
 
 //No caso do pe�o define os movimentos possiveis como duas casas a frente caso seja seu primeiro movimento ou uma casa a frente caso n�o seja
@@ -42,4 +40,9 @@ void Pawn::def_possible_movements(int* spot){
     //Zera a casa da posição atual das peças:
     _possibles_movements[*spot][*(spot+1)]= 0; 
 
+}
+
+
+void Pawn::not_my_first_time(){
+    _first_time = false;
 }

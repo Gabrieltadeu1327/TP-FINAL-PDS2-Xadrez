@@ -7,12 +7,15 @@ using namespace std;
 
 class Pawn: public Piece {
     private:
-    bool _first_time;
+    bool _first_time = true;
 
     public:
         Pawn(string color);
         void def_possible_movements(int*spot) override;
         void promotion();
+        void not_my_first_time() override;
+
 };
+
 
 #endif

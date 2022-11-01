@@ -4,7 +4,8 @@ using namespace std;
 
 Bishop::Bishop(string color){
     Piece(color);
-    _name= "Bishop";
+    _name = "Bishop";
+  //  _image = "./"   
 }
 
 void Bishop::def_possible_movements(int* spot){

@@ -29,7 +29,7 @@ string Piece::get_image(){
     return _image;
 }
 
-
+void Piece::not_my_first_time(){};
 // int ** Piece::get_possibles(){
 //     return _possibles_movements;
 // }

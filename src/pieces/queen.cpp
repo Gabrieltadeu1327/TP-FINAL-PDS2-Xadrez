@@ -2,8 +2,8 @@
 
 using namespace std;
 
-Queen::Queen(string color, int*spot){
-    Piece(color, spot);
+Queen::Queen(string color){
+    Piece(color);
     _name= "Queen";
 }
 
