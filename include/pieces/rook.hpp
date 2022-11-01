@@ -1,7 +1,7 @@
 #ifndef ROOK_HPP
 #define ROOK_HPP
 
-#include "piece.hpp"
+#include "include/pieces/piece.hpp"
 
 using namespace std;
 

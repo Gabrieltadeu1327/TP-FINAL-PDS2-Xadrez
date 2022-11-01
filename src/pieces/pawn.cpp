@@ -1,7 +1,5 @@
 
-#include "C:\Users\emagn_ga9soas\OneDrive\�rea de Trabalho\TP PDS2\include\pieces\pawn.hpp"
-
-#include "include/pawn.hpp"
+#include "include/pieces/pawn.hpp"
 
 
 using namespace std;

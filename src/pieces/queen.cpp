@@ -1,4 +1,4 @@
-#include "include\pieces\queen.hpp"
+#include "include/pieces/queen.hpp"
 
 using namespace std;
 
