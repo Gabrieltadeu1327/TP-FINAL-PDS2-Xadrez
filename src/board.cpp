@@ -46,7 +46,7 @@ int** Board::def_valid_moviments( int* spot){
 
     int** mat;
 
-        mat= p->_possibles_movements;
+        mat= (int**)(p->_possibles_movements);
 
     //eliminando casos de mesma cor   
     for(int i= 0; i< 8; i++){
