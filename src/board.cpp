@@ -1,16 +1,14 @@
 #include "include/board.hpp"
-#include "include/pieces/king.hpp"
 
 Board::Board(){
     board[0][1] = new King("white");
 
 }
 
-
 //retorna a peça de um endereço
-Piece* Board::get_piece(int *spot){
+Piece* Board::get_piece(int* spot){
 
-    return board[spot*][(spot +1)*];
+    return board[*spot][*(spot +1)];
 
 }
 // Muda a posição de uma peça
@@ -21,15 +19,15 @@ void Board::set_piece(int* atual_spot, int* f_spot){
 
     }
 
-    board[f_spot*][(f_spot +1)] = get_piece(atual_spot);
-    board[atual_spot*][(atual_spot+1)*] = nullptr;
+    board[*f_spot][*(f_spot +1)] = get_piece(atual_spot);
+    board[*atual_spot][*(atual_spot+1)] = nullptr;
     
 }
 
 //envia a matriz de imagems 
 string** Board::board_figures(){
 
-    string s_matriz[8][8];
+    string** s_matriz;
 
     for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
@@ -46,12 +44,11 @@ int** Board::def_valid_moviments( int* spot){
 
     Piece* p = get_piece(spot);
 
+    int** mat;
 
-    int mat[8][8];
+        mat= p->_possibles_movements;
 
-    mat= p->_possibles_movements;
-
-//eliminando casos de mesma cor   
+    //eliminando casos de mesma cor   
     for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
             if(mat[i][j]==1){
@@ -62,21 +59,25 @@ int** Board::def_valid_moviments( int* spot){
         }  
     }
 
-// Como cavalo n move para os lados, ele está ok
+    // Como cavalo n move para os lados, ele está ok
     if(p->get_name()== "Knight"){
         
         return mat;
     }
-// Rei não possui caminhos com falhas mas n pode se colocar em xeque
+    // Rei não possui caminhos com falhas mas n pode se colocar em xeque
     
     if(p->get_name()== "King"){
-
-        refresh_atc_matriz();
+        
+        if(p->get_color() == "Black"){
+            refresh_atc_matriz("White");
+        }else{
+             refresh_atc_matriz("Black");
+        }
         
         for(int i= 0; i< 8; i++){
             for(int j= 0; j< 8; j++){
                 
-                if(p->get_color == "Black"){
+                if(p->get_color() == "Black"){
                         if(mat[i][j]== 1 && 
                         white_atc_mat[i][j] != 0){
                         
@@ -92,7 +93,9 @@ int** Board::def_valid_moviments( int* spot){
             }  
         }
 
-// Remoção das falhas nos caminhos 
+    return mat;
+
+    // Remoção das falhas nos caminhos 
     }else{
  
         int sum;
@@ -106,8 +109,8 @@ int** Board::def_valid_moviments( int* spot){
                     continue;
                 }
 
-                for( int i=spot*; i>0 && i<8; i+= ci){
-                    for( int j= (spot +1)*; j>0 && j<8; j+= cj){
+                for( int i=*spot; i>0 && i<8; i+= ci){
+                    for( int j= *(spot +1); j>0 && j<8; j+= cj){
                        
                        mat[i][j] *=sum;
                             if((board[i][j])->get_color() != p->get_color() || 
@@ -119,15 +122,14 @@ int** Board::def_valid_moviments( int* spot){
 
             }
        }
-
-   
-    }
-
+    return mat;
+    }  
 }
 
 void Board::refresh_atc_matriz(string cor){
 
-int new_mat[8][8];
+int** piece_mov; 
+int spot[2];
 
     if(cor == "White"){
         for(int i= 0; i< 8; i++){
@@ -139,13 +141,16 @@ int new_mat[8][8];
         
         for(int i= 0; i< 8; i++){
           for(int j= 0; j< 8; j++){
+            spot[0]= i;
+            spot[1]= j; 
+            
             if((board[i][j])->get_color()== "White"){
-                    
-                    new_mat = def_valid_moviments(board[i][j]);
+                   
+                    piece_mov = def_valid_moviments(spot);
 
                     for(int z= 0; z< 8; z++){
                     for(int y= 0; y< 8; y++){
-                         white_atc_mat[z][y] += new_mat[z][y];
+                         white_atc_mat[z][y] += piece_mov[z][y];
                     }  
                     }
             }    
@@ -162,13 +167,20 @@ int new_mat[8][8];
     };
         for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
+            spot[0]= i;
+            spot[1]= j; 
+            
             if((board[i][j])->get_color()== "Black"){
+                   
+                    piece_mov = def_valid_moviments(spot);
+
                     for(int z= 0; z< 8; z++){
                     for(int y= 0; y< 8; y++){
-                         black_atc_mat[z][y] += (def_valid_moviments(board[i][j]))[z][y];
+                         black_atc_mat[z][y] += piece_mov[z][y];
                     }  
                     }
-            }    
+            }
+        
         }  
         }    
 

@@ -1,15 +1,15 @@
-#include "include/pawn.hpp"
+#include "include/pieces/pawn.hpp"
 #include <iostream>
-#include<string>
+#include <string>
 
 using namespace std;
 
 int main(){
-	std::string s = "white";
+	std::string s = "White";
 
 	int spot[2] = {6, 0};
-	Pawn p(s, spot);
-	p.def_possible_movements();
+	Pawn p(" cor");
+	p.def_possible_movements(spot);
 
 
 	for(int i=0; i<8; i++){

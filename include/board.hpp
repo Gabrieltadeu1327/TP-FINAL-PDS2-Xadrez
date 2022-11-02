@@ -4,10 +4,10 @@
 #include "piece.hpp"
 #include "bishop.hpp"
 #include "pawn.hpp"
-#include "horse.hpp"
+#include "knight.hpp"
 #include "king.hpp"
 #include "queen.hpp"
-#include "tower.hpp"
+#include "rook.hpp"
 #include "player.hpp"
 
 using namespace std;
