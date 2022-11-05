@@ -29,7 +29,9 @@ string Piece::get_image(){
     return _image;
 }
 
-void Piece::not_my_first_time(){};
-// int ** Piece::get_possibles(){
-//     return _possibles_movements;
-// }
+void Piece::not_my_first_time(){;
+  _first_time=false;
+}
+bool Piece::get_first_time(){
+    return _first_time;
+}

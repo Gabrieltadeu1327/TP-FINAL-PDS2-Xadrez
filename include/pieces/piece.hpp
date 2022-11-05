@@ -11,6 +11,7 @@ class Piece {
         string _image;
         string _name;
         string _color;
+        bool _first_time= false;
     
     public:
 
@@ -21,7 +22,8 @@ class Piece {
         string get_color();
         string get_name();
         string get_image();
-        virtual void not_my_first_time();
+        void not_my_first_time();
+        bool get_first_time();
         
 
 };

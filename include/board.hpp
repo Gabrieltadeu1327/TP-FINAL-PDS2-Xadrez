@@ -22,6 +22,8 @@ class Board{
         int black_atc_mat[8][8];
 
     public:
+        std::string images[8][8];
+        
         Board();
 
         Piece* get_piece(int* spot);
@@ -30,7 +32,7 @@ class Board{
 
         void set_piece(int* atual_spot, int* spot);
 
-        string** board_figures();
+        void refresh_images();
         
         void refresh_atc_matriz(string cor);
 

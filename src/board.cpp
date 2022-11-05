@@ -1,7 +1,32 @@
 #include "include/board.hpp"
 
 Board::Board(){
-    board[0][1] = new King("white");
+    board[0][0] = new Rook("Black");
+    board[0][1] = new Knight("Black");
+    board[0][2] = new Bishop("Black");
+    board[0][3] = new Queen("Black");
+    board[0][4] = new King("Black");
+    board[0][5] = new Bishop("Black");
+    board[0][6] = new Knight("Black");
+    board[0][7] = new Rook("Black");
+
+    for(int i=0; i< 8; i++){
+         board[1][i] = new Pawn("Black");
+    }
+
+    board[7][0] = new Rook("White");
+    board[7][1] = new Knight("White");
+    board[7][2] = new Bishop("White");
+    board[7][3] = new Queen("White");
+    board[7][4] = new King("White");
+    board[7][5] = new Bishop("White");
+    board[7][6] = new Knight("White");
+    board[7][7] = new Rook("White");
+    
+    for(int i=0; i< 8; i++){
+         board[6][i] = new Pawn("White");
+    }
+
 
 }
 
@@ -13,11 +38,8 @@ Piece* Board::get_piece(int* spot){
 }
 // Muda a posição de uma peça
 void Board::set_piece(int* atual_spot, int* f_spot){
-    
-    if((get_piece(atual_spot))->get_name() == "Pawn"){
+        
         (get_piece(atual_spot))->not_my_first_time();
-
-    }
 
     board[*f_spot][*(f_spot +1)] = get_piece(atual_spot);
     board[*atual_spot][*(atual_spot+1)] = nullptr;
@@ -25,18 +47,15 @@ void Board::set_piece(int* atual_spot, int* f_spot){
 }
 
 //envia a matriz de imagems 
-string** Board::board_figures(){
-
-    string** s_matriz;
-
+void Board::refresh_images(){
+   
     for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
             if(board[i][j] != nullptr){
-                s_matriz[i][j]= (board[i][j])->get_image();  
+                images[i][j]= (board[i][j])->get_image();  
             }    
         }  
     }
-    return s_matriz;
 }
 
 //Restrinje os movimentos validos
@@ -164,7 +183,8 @@ int spot[2];
          
          black_atc_mat[i][j]=0;
         }  
-    };
+        };
+        
         for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
             spot[0]= i;

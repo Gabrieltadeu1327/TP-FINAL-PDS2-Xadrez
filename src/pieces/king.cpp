@@ -11,12 +11,30 @@ King::King(string color){
 void King::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
-    for (int i=0; i<9; i++){
-        for(int j=0; j<9; j++){
+    for (int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
             _possibles_movements[i][j]=0;
         }
     };
 
+
+    for (int i=(*spot)-1; i< (*spot)+1; i++){
+        for(int j= *(spot+1)-1 ; j< *(spot+1)+1; j++){
+            
+            if(i>=0 && i<8 &&
+               j>= 0 && j<8){
+                    _possibles_movements[i][j]=0;
+               }        
+        }
+    };
+    
+    //Zera a casa da posição atual das peças:
+    _possibles_movements[*spot][*(spot+1)]= 0; 
+
+    if 
+
+
+/*
     if(this->get_color() == "white"){
         //Possibilidades Cima;
         for(int ed = *spot, cb = *(spot+1), count = 0; ed > -1 && count < 2; ed--, count++){
@@ -96,12 +114,8 @@ void King::def_possible_movements(int* spot){
         _possibles_movements[ed][cb] = 1;
         } 
     }
-    
-    //Zera a casa da posição atual das peças:
-    _possibles_movements[*spot][*(spot+1)]= 0; 
+ */   
+   
 
-}
 
-void King::not_my_first_time(){
-    _first_time = false;
 }

@@ -23,7 +23,6 @@ void Pawn::def_possible_movements(int* spot){
     if(this->get_color() == "white" && _first_time == true){
         _possibles_movements[*spot][*(spot+1) - 1] = 1;
         _possibles_movements[*spot][*(spot+1) - 2] = 1;
-        _first_time = false;
     }
     if(this->get_color() == "white" && _first_time == false){
         _possibles_movements[*spot][*(spot+1) - 1] = 1;
@@ -31,18 +30,15 @@ void Pawn::def_possible_movements(int* spot){
     if(this->get_color() == "black" && _first_time == true){
         _possibles_movements[*spot][*(spot+1) + 1] = 1;
         _possibles_movements[*spot][*(spot+1) + 2] = 1;
-        _first_time = false;
     }
     if(this->get_color() == "black" && _first_time == false){
         _possibles_movements[*spot][*(spot+1) + 1] = 1;
     }
+
+
 
     //Zera a casa da posição atual das peças:
     _possibles_movements[*spot][*(spot+1)]= 0; 
 
 }
 
-
-void Pawn::not_my_first_time(){
-    _first_time = false;
-}
