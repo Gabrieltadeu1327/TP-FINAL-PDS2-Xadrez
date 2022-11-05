@@ -31,7 +31,10 @@ void King::def_possible_movements(int* spot){
     //Zera a casa da posição atual das peças:
     _possibles_movements[*spot][*(spot+1)]= 0; 
 
-    if 
+    if(_first_time){
+        _possibles_movements[*spot][3]=1;
+        _possibles_movements[*spot][6]=1;
+    }
 
 
 /*

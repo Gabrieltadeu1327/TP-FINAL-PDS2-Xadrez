@@ -78,7 +78,8 @@ int** Board::def_valid_moviments( int* spot){
         }  
     }
 
-    // Como cavalo n move para os lados, ele está ok
+    // Como cavalo n move para os lados, ele está ok 
+    
     if(p->get_name()== "Knight"){
         
         return mat;
@@ -111,6 +112,13 @@ int** Board::def_valid_moviments( int* spot){
                 }           
             }  
         }
+
+    // Implementação roque
+    if(p->get_first_time()== true){
+        
+
+
+    }
 
     return mat;
 
