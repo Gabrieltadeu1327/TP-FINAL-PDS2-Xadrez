@@ -87,77 +87,66 @@ int** Board::def_valid_moviments( int* spot){
         }  
     }
 
+
     // Como cavalo n move para os lados, ele está ok 
-    
     if(p->get_name()== "Knight"){
-        
-        return mat;
-    }
-    // Rei não possui caminhos com falhas mas n pode se colocar em xeque
     
+    }else 
+
+    // Rei não possui caminhos com falhas mas n pode se colocar em xeque  
     if(p->get_name()== "King"){ 
 
         // Implementação roque
         if(p->get_first_time()== true){
         
-        if(p->get_color() == "White" ){
-            
-            if(board[7][7] !=nullptr){
-                if(board[7][7]->get_name()=="Rook" &&
-                   board[7][7]->get_first_time()==true &&
-                   board[7][6]==nullptr &&
-                   board[7][5]==nullptr &&
-                   black_atc_mat[7][6] == 0){
+            if(p->get_color() == "White" ){
+                
+                if(board[7][7] !=nullptr){
+                    if(board[7][7]->get_name()=="Rook" &&
+                    board[7][7]->get_first_time()==true &&
+                    board[7][6]==nullptr &&
+                    board[7][5]==nullptr ){
 
-                    mat[7][6]==1;
+                        mat[7][6]==1;
+                    }
                 }
-            }
 
-            if(board[7][0] !=nullptr){
-                if(board[7][0]->get_name()=="Rook" &&
-                   board[7][0]->get_first_time()==true &&
-                   board[7][1]==nullptr &&
-                   board[7][2]==nullptr &&
-                   board[7][3]==nullptr &&
-                   black_atc_mat[7][2] == 0){
+                if(board[7][0] !=nullptr){
+                    if(board[7][0]->get_name()=="Rook" &&
+                    board[7][0]->get_first_time()==true &&
+                    board[7][1]==nullptr &&
+                    board[7][2]==nullptr &&
+                    board[7][3]==nullptr ){
 
-                    mat[7][2]==1;
+                        mat[7][2]==1;
+                    }
                 }
-            }
 
-        }else if(p->get_color() == "Black"){
+            }else if(p->get_color() == "Black"){
 
-            if(board[0][0] !=nullptr){
-                if(board[0][0]->get_name()=="Rook" &&
-                   board[0][0]->get_first_time()==true &&
-                   board[0][1]==nullptr &&
-                   board[0][2]==nullptr &&
-                   board[0][3]==nullptr &&
-                   white_atc_mat[7][6] == 0){
+                if(board[0][0] !=nullptr){
+                    if(board[0][0]->get_name()=="Rook" &&
+                    board[0][0]->get_first_time()==true &&
+                    board[0][1]==nullptr &&
+                    board[0][2]==nullptr &&
+                    board[0][3]==nullptr ){
 
-                    mat[0][2]==1;
+                        mat[0][2]==1;
+                    }
                 }
-            }
 
-            if(board[0][7] !=nullptr){
-                if(board[0][7]->get_name()=="Rook" &&
-                   board[0][7]->get_first_time()==true &&
-                   board[0][6]==nullptr &&
-                   board[0][5]==nullptr &&
-                   black_atc_mat[0][6] == 0){
+                if(board[0][7] !=nullptr){
+                    if(board[0][7]->get_name()=="Rook" &&
+                    board[0][7]->get_first_time()==true &&
+                    board[0][6]==nullptr &&
+                    board[0][5]==nullptr ){
 
-                    mat[0][6]==1;
+                        mat[0][6]==1;
+                    }
                 }
             }
         }
-
-        //Garante que o rei nao vai ficar em cheque ao se movimentar    
-        if(p->get_color() == "Black"){
-            refresh_atc_matriz("White");
-        }else{
-             refresh_atc_matriz("Black");
-        }
-        
+        //Garante que o rei nao vai ficar em cheque ao se movimentar        
         for(int i= 0; i< 8; i++){
             for(int j= 0; j< 8; j++){
                 
@@ -170,20 +159,14 @@ int** Board::def_valid_moviments( int* spot){
                 }else{
                         if(mat[i][j]== 1 && 
                         black_atc_mat[i][j] != 0){
-                   
+                
                         mat[i][j]=0;
                         } 
                 }           
             }  
-        }
-        
-        
-        
-    }
+        }    
 
-    return mat;
-
-    // Remoção das falhas nos caminhos 
+    // Remoção das falhas nos caminhos (peão, rainha, Bispo e torre) 
     }else{
  
         int sum;
@@ -210,8 +193,9 @@ int** Board::def_valid_moviments( int* spot){
 
             }
        }
-    return mat;
     }  
+
+    return mat;
 }
 
 void Board::refresh_atc_matriz(string cor){

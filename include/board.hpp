@@ -1,6 +1,7 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#include <string>
 #include "piece.hpp"
 #include "bishop.hpp"
 #include "pawn.hpp"

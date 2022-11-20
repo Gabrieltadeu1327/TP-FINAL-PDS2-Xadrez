@@ -35,10 +35,11 @@ void Pawn::def_possible_movements(int* spot){
         _possibles_movements[*spot][*(spot+1) + 1] = 1;
     }
 
-
-
     //Zera a casa da posição atual das peças:
     _possibles_movements[*spot][*(spot+1)]= 0; 
+
+
+
 
 }
 
