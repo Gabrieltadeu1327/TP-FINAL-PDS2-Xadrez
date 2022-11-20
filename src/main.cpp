@@ -1,6 +1,7 @@
 #include "include/pieces/pawn.hpp"
 #include <iostream>
 #include <string>
+#include <thread>
 //#include "alegro.h"  COMO FAREMOS O INCLUDE DA BIBLIOTECA?
 
 //COORDENADAS COMEÇAM COM (0,0) NO CANTO SUPERIOR ESQUERDO
@@ -34,7 +35,6 @@ PIXEL DO PONTO SUPERIOR ESQUERDO DE CADA CASA
 */
 
 
-using namespace std;
 
 //FUNÇÕES DO ALLEGRO
 void init();
@@ -42,6 +42,11 @@ void deinit();
 
 
 int main(){
+
+    std::thread
+
+
+
 
 
 
