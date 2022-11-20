@@ -64,8 +64,7 @@ int** Board::def_valid_moviments( int* spot){
     Piece* p = get_piece(spot);
 
     int** mat;
-
-        mat= (int**)(p->_possibles_movements);
+    mat= (int**)(p->_possibles_movements);
 
     //eliminando casos de mesma cor   
     for(int i= 0; i< 8; i++){
@@ -87,7 +86,8 @@ int** Board::def_valid_moviments( int* spot){
     // Rei não possui caminhos com falhas mas n pode se colocar em xeque
     
     if(p->get_name()== "King"){
-        
+
+    //Garante que o rei nao vai ficar em cheque ao se movimentar    
         if(p->get_color() == "Black"){
             refresh_atc_matriz("White");
         }else{

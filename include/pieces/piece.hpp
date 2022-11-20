@@ -11,7 +11,7 @@ class Piece {
         string _image;
         string _name;
         string _color;
-        bool _first_time= false;
+        bool _first_time = true;
     
     public:
 
