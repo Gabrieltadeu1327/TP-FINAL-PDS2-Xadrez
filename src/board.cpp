@@ -115,9 +115,34 @@ int** Board::def_valid_moviments( int* spot){
 
     // Implementação roque
     if(p->get_first_time()== true){
-        
-
-
+        if(board[7][7]->get_name()=="Rook"){
+            if(board[7][7]->get_first_time()==true){
+                if((board[7][6]==nullptr)&&(board[7][5]==nullptr)){
+                    mat[7][6]==1;
+                }
+            }
+        }
+        if(board[7][0]->get_name()=="Rook"){
+            if(board[7][0]->get_first_time()==true){
+                if((board[7][1]==nullptr)&&(board[7][2]==nullptr)&&(board[7][3]==nullptr)){
+                    mat[7][2]==1;
+                }
+            }
+        }
+        if(board[0][0]->get_name()=="Rook"){
+            if(board[0][0]->get_first_time()==true){
+                if((board[0][1]==nullptr)&&(board[0][2]==nullptr)&&(board[0][3]==nullptr)){
+                    mat[0][2]==1;
+                }
+            }
+        }
+        if(board[0][7]->get_name()=="Rook"){
+            if(board[0][7]->get_first_time()==true){
+                if((board[0][6]==nullptr)&&(board[0][5]==nullptr)){
+                    mat[0][6]==1;
+                }
+            }
+        }
     }
 
     return mat;
@@ -216,8 +241,3 @@ int spot[2];
     }
    
 };
-
-
-
-
-
