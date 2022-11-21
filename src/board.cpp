@@ -1,3 +1,4 @@
+
 #include "include/board.hpp"
 #include <cmath>
 
@@ -226,22 +227,12 @@ int** Board::def_valid_moviments( int* spot){
                     for( int j= *(spot +1); j>0 && j<8; j+= cj){
                     
                        mat[i][j] *=sum;
-<<<<<<< HEAD
                         if(board[i][j] != nullptr){
                             if((board[i][j])->get_color() != p->get_color() || 
                                 mat[i][j]==0){
                                 sum=0;
                             }
                         }
-                            
-=======
-                           if(board[i][j] != nullptr){
-                                if((board[i][j])->get_color() != p->get_color() || 
-                                    mat[i][j]==0){
-                                    sum=0;
-                                }
-                           }    
->>>>>>> 3627a9dceb3b1bd7efc49f7c7beacd0748fbe917
                     }
                 }
 
