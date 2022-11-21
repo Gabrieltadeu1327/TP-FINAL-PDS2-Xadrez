@@ -20,19 +20,45 @@ void Pawn::def_possible_movements(int* spot){
         }
     };
 
-    if(this->get_color() == "white" && _first_time == true){
+    if(this->get_color() == "Black" && _first_time == true){
         _possibles_movements[*spot][*(spot+1) - 1] = 1;
         _possibles_movements[*spot][*(spot+1) - 2] = 1;
+        if(*spot <7){
+            _possibles_movements[*spot+1][*(spot+1) - 1] = 1;
+        }
+        if(*spot >0){
+            _possibles_movements[*spot -1][*(spot+1) - 1] = 1;
+        }
+
     }
-    if(this->get_color() == "white" && _first_time == false){
+    if(this->get_color() == "Black" && _first_time == false){
         _possibles_movements[*spot][*(spot+1) - 1] = 1;
+         if(*spot <7){
+            _possibles_movements[*spot+1][*(spot+1) - 1] = 1;
+        }
+        if(*spot >0){
+            _possibles_movements[*spot -1][*(spot+1) - 1] = 1;
+        }
+
     }
-    if(this->get_color() == "black" && _first_time == true){
+    if(this->get_color() == "white" && _first_time == true){
         _possibles_movements[*spot][*(spot+1) + 1] = 1;
         _possibles_movements[*spot][*(spot+1) + 2] = 1;
+         if(*spot <7){
+            _possibles_movements[*spot+1][*(spot+1) + 1] = 1;
+        }
+        if(*spot >0){
+            _possibles_movements[*spot -1][*(spot+1) + 1] = 1;
+        }
     }
-    if(this->get_color() == "black" && _first_time == false){
+    if(this->get_color() == "White" && _first_time == false){
         _possibles_movements[*spot][*(spot+1) + 1] = 1;
+        if(*spot <7){
+            _possibles_movements[*spot+1][*(spot+1) + 1] = 1;
+        }
+        if(*spot >0){
+            _possibles_movements[*spot -1][*(spot+1) + 1] = 1;
+        }
     }
 
     //Zera a casa da posição atual das peças:

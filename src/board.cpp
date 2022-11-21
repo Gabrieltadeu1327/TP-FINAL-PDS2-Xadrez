@@ -79,9 +79,9 @@ int** Board::def_valid_moviments( int* spot){
     //eliminando casos de mesma cor   
     for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
-            if(mat[i][j]==1){
+            if(mat[i][j]==1 && board[i][j] != nullptr){
                if(board[i][j]->get_color() == p->get_color()){
-                mat[i][j] =0;
+                mat[i][j] =0; 
                }  
             }    
         }  
@@ -166,7 +166,46 @@ int** Board::def_valid_moviments( int* spot){
             }  
         }    
 
-    // Remoção das falhas nos caminhos (peão, rainha, Bispo e torre) 
+    }else 
+    //Pião possui padrao de movimento dependente e movimentos especiais
+    if(p->get_name() == "Pawn"){
+        if(p->get_color()== "Black"){
+            //movimento frontal
+            if(board[*spot+1][*(spot+1)] != nullptr){
+                mat[*spot+1][*(spot+1)] == 0;
+                //Remoção de corte no caminho
+                mat[*spot+2][*(spot+1)] == 0;
+            }
+            //Veririfacção movimento diagonal
+            if(*spot !=7){
+                if(board[*spot+1][*(spot+1)+1] != nullptr){
+                mat[*spot+1][*(spot+1)] == 1;
+                }
+            }if(*spot !=0){
+                if(board[*spot+1][*(spot+1)-1] != nullptr){
+                mat[*spot+1][*(spot-1)] == 1;
+                }
+            }
+        }else{
+            //movimento frontal
+            if(board[*spot-1][*(spot+1)] != nullptr){
+                mat[*spot-1][*(spot+1)] == 0;
+                //Remoção de corte no caminho
+                mat[*spot+2][*(spot+1)] == 0;
+            }
+            //Veririfacção movimento diagonal
+            if(*spot !=7){
+                if(board[*spot-1][*(spot+1)+1] != nullptr){
+                mat[*spot-1][*(spot+1)] == 1;
+                }
+            }if(*spot !=0){
+                if(board[*spot-1][*(spot+1)-1] != nullptr){
+                mat[*spot-1][*(spot-1)] == 1;
+                }
+            }
+        }
+
+    // Remoção das falhas nos caminhos ( rainha, Bispo, torre) 
     }else{
  
         int sum;
