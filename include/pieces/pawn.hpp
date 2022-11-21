@@ -10,7 +10,7 @@ class Pawn: public Piece {
 
     public:
         Pawn(string color);
-        void def_possible_movements(int*spot) override;
+        void def_possible_movements(int*spot, Piece* board) override;
         void promotion();
 
 };

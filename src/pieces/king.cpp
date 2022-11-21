@@ -8,7 +8,7 @@ King::King(string color){
      //  _image = "./"
 }
 
-void King::def_possible_movements(int* spot){
+void King::def_possible_movements(int* spot, Piece* board){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<8; i++){
@@ -17,18 +17,18 @@ void King::def_possible_movements(int* spot){
         }
     };
 
-
+    //movimentos do Rei
     for (int i=(*spot)-1; i< (*spot)+1; i++){
         for(int j= *(spot+1)-1 ; j< *(spot+1)+1; j++){
             
             if(i>=0 && i<8 &&
                j>= 0 && j<8){
-                    _possibles_movements[i][j]=0;
+                    _possibles_movements[i][j]=1;
                }        
         }
     };
     
-    //Zera a casa da posição atual das peças:
+    //Zera a casa da posição atual do Rei:
     _possibles_movements[*spot][*(spot+1)]= 0; 
 
 

@@ -8,7 +8,7 @@ Bishop::Bishop(string color){
   //  _image = "./"   
 }
 
-void Bishop::def_possible_movements(int* spot){
+void Bishop::def_possible_movements(int* spot, Piece* board){
 
   // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<9; i++){

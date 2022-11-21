@@ -11,7 +11,7 @@ class King: public Piece {
 
     public:
         King(string color);
-        void def_possible_movements(int* spot) override;
+        void def_possible_movements(int* spot, Piece* board) override;
         bool is_xeque();
         void set_xeque(bool cheque);
 

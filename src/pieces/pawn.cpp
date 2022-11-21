@@ -11,7 +11,7 @@ Pawn::Pawn(string cor){
 }
 
 //No caso do pe�o define os movimentos possiveis como duas casas a frente caso seja seu primeiro movimento ou uma casa a frente caso n�o seja
-void Pawn::def_possible_movements(int* spot){
+void Pawn::def_possible_movements(int* spot, Piece* board){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<9; i++){

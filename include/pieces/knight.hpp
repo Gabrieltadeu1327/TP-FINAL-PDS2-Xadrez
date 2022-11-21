@@ -10,7 +10,7 @@ class Knight: public Piece {
     public:
 
         Knight(string color);
-        void def_possible_movements(int*spot) override;
+        void def_possible_movements(int*spot, Piece* board) override;
         
         
 

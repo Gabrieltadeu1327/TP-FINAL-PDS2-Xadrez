@@ -7,7 +7,7 @@ Piece::Piece(string color){
     _color = color;
 
 }
-void Piece::def_possible_movements(int* spot){}
+void Piece::def_possible_movements(int* spot, Piece* board){}
 
 string Piece::get_color(){
     return _color;

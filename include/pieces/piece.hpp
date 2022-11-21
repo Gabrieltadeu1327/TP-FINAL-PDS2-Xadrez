@@ -2,6 +2,7 @@
 #define PIECE_HPP
 
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class Piece {
         int _possibles_movements[8][8];
         Piece(string color);
         Piece();
-        virtual void def_possible_movements(int* spot);
+        virtual void def_possible_movements(int* spot, Piece* board);
         string get_color();
         string get_name();
         string get_image();
