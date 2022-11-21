@@ -1,4 +1,5 @@
 #include "include/board.hpp"
+#include <cmath>
 
 Board::Board(){
    
@@ -49,7 +50,7 @@ Piece* Board::get_piece(int* spot){
 // Muda a posição de uma peça
 void Board::set_piece(int* atual_spot, int* f_spot){
         
-        (get_piece(atual_spot))->not_my_first_time();
+    (get_piece(atual_spot))->not_my_first_time();
 
     board[*f_spot][*(f_spot +1)] = get_piece(atual_spot);
     board[*atual_spot][*(atual_spot+1)] = nullptr;
@@ -225,6 +226,7 @@ int** Board::def_valid_moviments( int* spot){
                     for( int j= *(spot +1); j>0 && j<8; j+= cj){
                     
                        mat[i][j] *=sum;
+<<<<<<< HEAD
                         if(board[i][j] != nullptr){
                             if((board[i][j])->get_color() != p->get_color() || 
                                 mat[i][j]==0){
@@ -232,12 +234,30 @@ int** Board::def_valid_moviments( int* spot){
                             }
                         }
                             
+=======
+                           if(board[i][j] != nullptr){
+                                if((board[i][j])->get_color() != p->get_color() || 
+                                    mat[i][j]==0){
+                                    sum=0;
+                                }
+                           }    
+>>>>>>> 3627a9dceb3b1bd7efc49f7c7beacd0748fbe917
                     }
                 }
 
             }
        }
     }  
+   // atribuicao -1 para casas que podem ser comidas
+    for(int i= 0; i< 8; i++){
+        for(int j= 0; j< 8; j++){
+            if(mat[i][j]==1 && board[i][j] != nullptr){
+               if(board[i][j]->get_color() != p->get_color()){
+                mat[i][j] = -1; 
+               }  
+            }    
+        }  
+    }
 
     return mat;
 }
@@ -260,16 +280,20 @@ int spot[2];
             spot[0]= i;
             spot[1]= j; 
             
-            if((board[i][j])->get_color()== "White"){
-                   
-                    piece_mov = def_valid_moviments(spot);
+            if(board[i][j] != nullptr){
+                if((board[i][j])->get_color()== "White"){
+                    
+                        piece_mov = def_valid_moviments(spot);
 
-                    for(int z= 0; z< 8; z++){
-                    for(int y= 0; y< 8; y++){
-                         white_atc_mat[z][y] += piece_mov[z][y];
-                    }  
-                    }
-            }    
+                        for(int z= 0; z< 8; z++){
+                        for(int y= 0; y< 8; y++){
+                            white_atc_mat[z][y] += std::abs( piece_mov[z][y]);
+                        } 
+                        }
+                }    
+
+            }
+                
           }  
         }
     
@@ -293,7 +317,7 @@ int spot[2];
 
                     for(int z= 0; z< 8; z++){
                     for(int y= 0; y< 8; y++){
-                         black_atc_mat[z][y] += piece_mov[z][y];
+                         black_atc_mat[z][y] += std::abs(piece_mov[z][y]);
                     }  
                     }
             }
