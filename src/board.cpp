@@ -302,7 +302,8 @@ int spot[2];
             spot[0]= i;
             spot[1]= j; 
             
-            if((board[i][j])->get_color()== "Black"){
+            if(board[i][j] != nullptr){
+                if((board[i][j])->get_color()== "Black"){
                    
                     piece_mov = def_valid_moviments(spot);
 
@@ -311,12 +312,23 @@ int spot[2];
                          black_atc_mat[z][y] += std::abs(piece_mov[z][y]);
                     }  
                     }
-            }
-        
+                }
+
+            }    
         }  
         }    
 
 
     }
    
+};
+
+
+bool Board::isnullprt(int* spot){
+
+    if(board[*spot][*(spot +1)] == nullptr){
+        return 1;
+    }else{
+        return 0;
+    }
 };
