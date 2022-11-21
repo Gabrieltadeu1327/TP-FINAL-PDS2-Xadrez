@@ -72,6 +72,9 @@ void Board::refresh_images(){
 int** Board::def_valid_moviments( int* spot){
 
     Piece* p = get_piece(spot);
+    if(p == nullptr){
+        return NULL;
+    }
 
     int** mat;
     mat= (int**)(p->_possibles_movements);
@@ -86,7 +89,6 @@ int** Board::def_valid_moviments( int* spot){
             }    
         }  
     }
-
 
     // Como cavalo n move para os lados, ele está ok 
     if(p->get_name()== "Knight"){
@@ -221,12 +223,15 @@ int** Board::def_valid_moviments( int* spot){
 
                 for( int i=*spot; i>0 && i<8; i+= ci){
                     for( int j= *(spot +1); j>0 && j<8; j+= cj){
-                       
+                    
                        mat[i][j] *=sum;
+                        if(board[i][j] != nullptr){
                             if((board[i][j])->get_color() != p->get_color() || 
                                 mat[i][j]==0){
                                 sum=0;
                             }
+                        }
+                            
                     }
                 }
 
