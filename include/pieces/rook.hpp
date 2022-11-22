@@ -5,6 +5,12 @@
 
 using namespace std;
 
+/*@file rook.hpp
+*@brief subclasse com a lógica do rook
+*@details Responsável por construir a subclasse rook
+e chamar a função def_possible_movements.
+*/
+
 class Rook: public Piece {
 
     public:

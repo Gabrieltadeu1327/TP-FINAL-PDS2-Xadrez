@@ -5,6 +5,16 @@
 
 using namespace std;
 
+/*@file piece.hpp
+*@brief superclasse com a lógica de piece
+*@details nessa superclasse ocorre a criação das váriaveis de 
+cada peça(imagem, nome, cor, primeiro turno).
+Criamos a matriz de possíveis movimentos, a ser utilizada por
+cada subclasse de peça. Além de criar as funções que geram a peça
+e captam sua imagem, nome, cor e turno. Cria também a função 
+virtual def_possible_movements que é reescrita pelas subclasses (polimorfismo).
+*/
+
 class Piece {
 
     protected:

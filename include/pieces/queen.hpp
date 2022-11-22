@@ -5,6 +5,12 @@
 
 using namespace std;
 
+/*@file queen.hpp
+*@brief sublasse com a lógica da queen
+*@details Responsável por construir a subclasse queen
+e chamar a função def_possible_movements.
+*/
+
 class Queen: public Piece {
 
     public:

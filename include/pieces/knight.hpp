@@ -5,6 +5,12 @@
 
 using namespace std;
 
+/*@file knight.hpp
+*@brief subclasse com a lógica do knight
+*@details Responsável por construir a subclasse knight
+e chamar a função def_possible_movements.
+*/
+
 class Knight: public Piece {
 
     public:
@@ -12,8 +18,6 @@ class Knight: public Piece {
         Knight(string color);
         void def_possible_movements(int*spot) override;
         
-        
-
 };
 
 #endif
