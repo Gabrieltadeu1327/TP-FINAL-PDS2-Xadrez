@@ -5,7 +5,7 @@
 
 using namespace std;
 
-/*@file king.hpp
+/**
 *@brief subclasse com a lógica do king
 *@details responsável por construir a subclasse king
 e chamar a função def_possible_movements,

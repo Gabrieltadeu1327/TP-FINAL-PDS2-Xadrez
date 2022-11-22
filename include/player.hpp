@@ -5,9 +5,11 @@
 
 using namespace std;
 
-/*@file player.hpp
+/**
+*@file player.hpp
 *@brief superclasse com a lógica do player
-*@details ?*/
+*@details ?
+*/
 
 class Player{
     private:
