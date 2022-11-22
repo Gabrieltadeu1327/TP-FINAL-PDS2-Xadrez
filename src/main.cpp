@@ -51,7 +51,8 @@ const int SC_H = 540;
 
 int main(){
 
- 
+////CASCATA DE EXECUÇÕES
+
     //Abrir jogo
 
     bool start=false, start=false;
@@ -89,6 +90,8 @@ int main(){
         //destrutor partida 
     };
     
+
+ //////ALEGRO   
 	ALLEGRO_DISPLAY *display = NULL;
 
 	//inicia o allegro:
