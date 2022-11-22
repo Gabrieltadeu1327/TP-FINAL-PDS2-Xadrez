@@ -9,6 +9,48 @@ int main(){
 	std::cout<<"main";
 	ALLEGRO_DISPLAY *display = NULL;
 
+
+////CASCATA DE EXECUÇÕES
+
+    //Abrir jogo
+
+    bool start=false, start=false;
+
+    //Jogo roda em looping infinito ate o o programa ser manualmente fechado
+    for(;;){
+        
+        //Construtor partida
+        
+        while(start== false){
+            if(/*clicou no botao start*/){
+                start== true;
+            }
+        }start ==false;
+       
+        //Partida.game()
+
+        //Funcao da partida que ouve se há vencendor
+        while(winner()==NULL){
+        }
+        if(winner()== "White"){
+            //Tela vitoria Branco
+            
+        }else if(winner() == "Black"){
+            //Tela vitoria preto
+        }
+        
+        while(reset== false){
+            if(/*clicou no botao reset*/){
+                reset== true;
+            }
+        }reset ==false;
+        //Apagar tela de vitoria 
+
+        //destrutor partida 
+    };
+    
+
+
 	//inicia o allegro:
 	if(!al_init()){
 		fprintf(stderr, "failed");
