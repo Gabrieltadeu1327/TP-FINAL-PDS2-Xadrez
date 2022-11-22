@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <iostream>
 
+
+int* array_to_pixel(int* spot);
+int* pixel_to_array(int* pixel);
 const int SC_W = 960;
 const int SC_H = 540;
 
@@ -69,4 +72,37 @@ int main(){
 	al_flip_display();
 
 	return 0;
+}
+
+//Funções:
+
+
+int* array_to_pixel(int* spot){
+    int *pixel;
+    //para passar pra próxima casa (+68/69px)
+    //eixo x
+        if(*(spot) % 2 == 0) 
+            *pixel = 26 + (*(spot) * 68);
+        else
+            *pixel = 27 + (*(spot) * 68);
+    //eixo y
+        if(*(spot+1) % 2 == 0)
+            *(pixel+1) = 227 + (*(spot+1) * 68);
+        else
+            *(pixel+1) = 228 + (*(spot+1) * 68);
+
+    return *pixel;
+}
+
+int* pixel_to_array(int* pixel){
+    int *spot;
+    //eixo x
+    *pixel -= 26; //tira 26 pq as casas começam a partir do pixel 26
+    spot = (*pixel/68); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
+
+    //eixo y
+    *(pixel+1) -= 227; //tira 26 pq as casas começam a partir do pixel 26
+    *(spot+1) = (*(pixel+1)/68); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
+
+    return *spot;
 }
