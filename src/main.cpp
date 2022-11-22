@@ -1,41 +1,28 @@
-#include <allegro.h>
-#include "include\pieces\piece.hpp"
+#include <allegro5/allegro.h>
+#include <stdio.h>
 
+const int SC_W = 960;
+const int SC_H = 540;
 
-void init();
-void deinit();
+int main(){
+	ALLEGRO_DISPLAY *display = NULL;
 
-int main() {
-	init();
-
-	while (!key[KEY_ESC]) {
-		/* put your code here */
+	//inicia o allegro:
+	if(!al_init()){
+		fprintf(stderr, "failed");
+		return -1;
+	}
+	
+	//cria uma tela:
+	display = al_create_display(SC_W, SC_H);
+	if(!display){
+		fprintf(stderr, "failed");
+		return -1;
 	}
 
-	deinit();
+	//atualiza tela:
+	al_clear_to_color(al_map_rgb(150, 210, 90));
+	al_flip_display();
+
 	return 0;
-}
-END_OF_MAIN()
-
-void init() {
-	int depth, res;
-	allegro_init();
-	depth = desktop_color_depth();
-	if (depth == 0) depth = 32;
-	set_color_depth(depth);
-	res = set_gfx_mode(GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0);
-	if (res != 0) {
-		allegro_message(allegro_error);
-		exit(-1);
-	}
-
-	install_timer();
-	install_keyboard();
-	install_mouse();
-	/* add other initializations here */
-}
-
-void deinit() {
-	clear_keybuf();
-	/* add other deinitializations here */
 }
