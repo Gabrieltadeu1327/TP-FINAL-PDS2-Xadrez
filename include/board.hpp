@@ -11,11 +11,12 @@
 #include "rook.hpp"
 #include "player.hpp"
 
-/*@file board.hpp
-*@brief superclasse com a lógica de board
-*@details aqui tratamos as relações que ocorrem entre as peças.
-Cada função aqui descrita retrona para main valores que serão
-utilizados durante o processamento de cada jogada feita.
+/**
+    * @file board.hpp
+    * @brief superclasse com a lógica de board
+    * @details aqui tratamos as relações que ocorrem entre as peças.
+    Cada função aqui descrita retrona para main valores que serão
+    utilizados durante o processamento de cada jogada feita.
 */
 
 class Board{

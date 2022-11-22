@@ -6,9 +6,9 @@
 using namespace std;
 
 /**
-*@file player.hpp
-*@brief superclasse com a lógica do player
-*@details ?
+    * @file player.hpp
+    * @brief superclasse com a lógica do player
+    * @details ?
 */
 
 class Player{

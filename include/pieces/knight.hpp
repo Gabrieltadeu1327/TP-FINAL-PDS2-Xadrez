@@ -5,10 +5,11 @@
 
 using namespace std;
 
-/*@file knight.hpp
-*@brief subclasse com a lógica do knight
-*@details Responsável por construir a subclasse knight
-e chamar a função def_possible_movements.
+/**
+    * @file knight.hpp
+    * @brief subclasse com a lógica do knight
+    * @details Responsável por construir a subclasse knight
+    e chamar a função def_possible_movements.
 */
 
 class Knight: public Piece {
