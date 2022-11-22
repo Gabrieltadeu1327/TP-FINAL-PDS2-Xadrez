@@ -48,14 +48,63 @@ Piece* Board::get_piece(int* spot){
     return board[*spot][*(spot +1)];
 
 }
-// Muda a posição de uma peça
+// Muda a posição de uma peça e declara 
 void Board::set_piece(int* atual_spot, int* f_spot){
         
+    //Mudança Torre Roque
+    int* rook_spot = atual_spot;
+    int* rook_nspot = f_spot;
+    
+    if(get_piece(atual_spot)->get_name() == "King" &&
+       *(f_spot+1) - *(atual_spot+1) > 1 ){
+
+        *(rook_spot +1) = 7;
+        *(rook_nspot+1) = 5;
+        set_piece(rook_spot,rook_nspot);
+
+    }else
+    if(get_piece(atual_spot)->get_name() == "King" &&
+       *(f_spot+1) - *(atual_spot+1) < -1 ){
+
+        *(rook_spot +1) = 0;
+        *(rook_nspot+1) = 3;
+        set_piece(rook_spot,rook_nspot);
+    }
+
+    //Altera a posição da peça
     (get_piece(atual_spot))->not_my_first_time();
 
+    if(get_piece(f_spot) !=nullptr){
+        free(get_piece(f_spot));
+    }
     board[*f_spot][*(f_spot +1)] = get_piece(atual_spot);
     board[*atual_spot][*(atual_spot+1)] = nullptr;
+
+
+    //Promoção
+    if(get_piece(atual_spot)->get_name() == "Pawn" && 
+       get_piece(atual_spot)->get_color() == "White" && 
+       *f_spot == 0 ){
+        
+        if(get_piece(f_spot) !=nullptr){
+            free(get_piece(f_spot));
+        }
+        board[*f_spot][*(f_spot+1)] = new Queen("white");
+     
+    }else 
+    if(get_piece(atual_spot)->get_name() == "Pawn" && 
+       get_piece(atual_spot)->get_color() == "Black" && 
+       *f_spot == 7 ){
+     
+        if(get_piece(f_spot) !=nullptr){
+            free(get_piece(f_spot));
+        }
+        board[*f_spot][*(f_spot+1)] = new Queen("Black");
+     
+    }
     
+
+
 }
 
 //envia a matriz de imagems 
@@ -80,6 +129,7 @@ int** Board::def_valid_moviments( int* spot){
 
     int** mat;
     mat= (int**)(p->_possibles_movements);
+ 
 
     //eliminando casos de mesma cor   
     for(int i= 0; i< 8; i++){
@@ -259,6 +309,7 @@ int** piece_mov;
 int spot[2];
 
     if(cor == "White"){
+        //Zerando a matriz
         for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
          
@@ -289,7 +340,7 @@ int spot[2];
         }
     
     }else{
-        
+        //zerando a matriz
         for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
          
@@ -303,7 +354,7 @@ int spot[2];
             spot[1]= j; 
             
             if(board[i][j] != nullptr){
-                if((board[i][j])->get_color()== "Black"){
+                if((board[i][j])->get_color()== "Black" ){
                    
                     piece_mov = def_valid_moviments(spot);
 
@@ -332,3 +383,13 @@ bool Board::isnullprt(int* spot){
         return 0;
     }
 };
+
+int Board::ischeque(){
+
+    refresh_atc_matriz("White");
+    refresh_atc_matriz("Black");
+
+
+
+
+}

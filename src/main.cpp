@@ -36,7 +36,7 @@ PIXEL DO PONTO SUPERIOR ESQUERDO DE CADA CASA
 1A = (26,2 , 707,1) | 1B = (95 , 707,1) | 1C = (163,7 , 707,1) | 1D = (232,4 , 707,1) | 1E = (300,5 , 707,1) | 1F = (369,6 , 707,1) | 1G = (437,5 , 707,1) | 1H = (507 , 707,1)
 */
 
-
+/// void printar(int* spot, std::string img);
 
 //FUNÇÕES DO ALLEGRO
 void init();
@@ -44,9 +44,44 @@ void deinit();
 
 
 int main(){
+ 
+    //Abrir jogo
 
+    bool start=false, start=false;
+
+    //Jogo roda em looping infinito ate o o programa ser manualmente fechado
+    for(;;){
+        
+        //Construtor partida
+        
+        while(start== false){
+            if(/*clicou no botao start*/){
+                start== true;
+            }
+        }start ==false;
+       
+        //Partida.game()
+
+        //Funcao da partida que ouve se há vencendor
+        while(winner()==NULL){
+        }
+        if(winner()== "White"){
+            //Tela vitoria Branco
+            
+        }else if(winner() == "Black"){
+            //Tela vitoria preto
+        }
+        
+        while(reset== false){
+            if(/*clicou no botao reset*/){
+                reset== true;
+            }
+        }reset ==false;
+        //Apagar tela de vitoria 
+
+        //destrutor partida 
+    };
     
-
 
 
 

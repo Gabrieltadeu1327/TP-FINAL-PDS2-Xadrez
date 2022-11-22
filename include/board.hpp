@@ -11,7 +11,6 @@
 #include "rook.hpp"
 #include "player.hpp"
 
-using namespace std;
 
 class Board{
 
@@ -38,10 +37,8 @@ class Board{
         void refresh_atc_matriz(string cor);
 
         bool isnullprt(int* spot);
-        
-        // void roque();
-        // void promotion(Piece* p);
-        // void el_passant();
+
+        int ischeque();
 
 };
 
