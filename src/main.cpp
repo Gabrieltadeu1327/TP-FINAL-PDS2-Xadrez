@@ -11,11 +11,14 @@ int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
 const int SC_W = 960;
 const int SC_H = 540;
+const float FPS = 100;
 
+using namespace std;
 int main(){
 
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
+    ALLEGRO_TIMER *timer = NULL;
     
 	//inicia o allegro:
 	if(!al_init()){
@@ -25,35 +28,58 @@ int main(){
 	
 	//cria uma tela:
 	display = al_create_display(SC_W, SC_H);
-	if(!display){
-		fprintf(stderr, "failed");
-		return -1;
-	}
+	
+    //cria um temporizador que incrementa uma unidade a cada 1.0/FPS segundos:
+    timer = al_create_timer(1.0/FPS);
+    
+    //instala teclado e mouse:
+    al_install_mouse();
+    al_install_keyboard();
 
 	//cria fila de eventos:
 	event_queue = al_create_event_queue();
 
 	//registra na fila eventos de tela:
 	al_register_event_source(event_queue, al_get_display_event_source(display));
+    al_register_event_source(event_queue, al_get_mouse_event_source());
+    al_register_event_source(event_queue, al_get_keyboard_event_source());
+    al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	
 	int run = 1;
-	while(run){
-		std::cout<<"Rodando o jogo\n";
-		//atualiza tela e a colore:
-		al_clear_to_color(al_map_rgb(150, 210, 90));
-		al_flip_display();
 
-		ALLEGRO_EVENT ev;
-		//espera por um evento e o armazena em ev
+    //inicia o temporizador
+    al_start_timer(timer);
+	while(run){
+        ALLEGRO_EVENT ev;
+        //espera por um evento e o armazena em ev
 		al_wait_for_event(event_queue, &ev);
 
+        //se passou de t pra t+1 atualiza a tela
+        if(ev.type == ALLEGRO_EVENT_TIMER){
+            //atualiza tela e a colore:
+            al_flip_display();
+            if(al_get_timer_count(timer)%(int)(FPS) == 0){
+                printf("\nse passaram: %d segundos", (int)(al_get_timer_count(timer)/FPS));
+            }
+        }
 		//evento de fechamento de tela:
-		if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
 			run = 0;
 			break;
 		}
-
+        //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
+        else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+            printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+        }
+        //detecta codigo da tecla pressionada
+        else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
+            al_clear_to_color(al_map_rgb(rand()%256, rand()%256, rand()%256));
+            printf("\ncodigo da tecla: %d", ev.keyboard.keycode);
+        }
 	}
+
+    al_destroy_display(display);
+    al_destroy_event_queue(event_queue);
 }
 
 //Funções:
