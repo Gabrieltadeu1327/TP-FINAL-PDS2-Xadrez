@@ -1,3 +1,14 @@
+/**
+    * @file board.hpp
+    * @authors group
+    * @brief superclasse com a lógica de board
+    * @version 1.0
+    * @date 2022-11-24
+    * @details aqui tratamos as relações que ocorrem entre as peças.
+    Cada função aqui descrita retrona para main valores que serão
+    utilizados durante o processamento de cada jogada feita.
+*/
+
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
@@ -10,14 +21,6 @@
 #include "queen.hpp"
 #include "rook.hpp"
 #include "player.hpp"
-
-/**
-    * @file board.hpp
-    * @brief superclasse com a lógica de board
-    * @details aqui tratamos as relações que ocorrem entre as peças.
-    Cada função aqui descrita retrona para main valores que serão
-    utilizados durante o processamento de cada jogada feita.
-*/
 
 class Board{
 

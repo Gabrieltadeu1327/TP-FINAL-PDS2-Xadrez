@@ -1,16 +1,19 @@
+/**
+    * @file knight.hpp
+    * @authors group
+    * @brief subclasse com a lógica do knight
+    * @version 1.0
+    * @date 2022-11-24
+    * @details Responsável por construir a subclasse knight
+    e chamar a função def_possible_movements.
+*/
+
 #ifndef KNIGHT_HPP
 #define KNIGHT_HPP
 
 #include "include/pieces/piece.hpp"
 
 using namespace std;
-
-/**
-    * @file knight.hpp
-    * @brief subclasse com a lógica do knight
-    * @details Responsável por construir a subclasse knight
-    e chamar a função def_possible_movements.
-*/
 
 class Knight: public Piece {
 

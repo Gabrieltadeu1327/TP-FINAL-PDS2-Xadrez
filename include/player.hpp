@@ -1,15 +1,18 @@
+/**
+    * @file player.hpp
+    * @authors group
+    * @brief superclasse com a lógica do player
+    * @version 1.0
+    * @date 2022-11-24
+    * @details ?
+*/
+
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
 #include "piece.hpp"
 
 using namespace std;
-
-/**
-    * @file player.hpp
-    * @brief superclasse com a lógica do player
-    * @details ?
-*/
 
 class Player{
     private:
@@ -27,7 +30,6 @@ class Player{
         void set_turn();
         bool is_turn();
     
-
 };
 
 #endif

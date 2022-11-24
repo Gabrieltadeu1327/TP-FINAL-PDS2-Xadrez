@@ -1,13 +1,9 @@
-#ifndef PIECE_HPP
-#define PIECE_HPP
-
-#include <iostream>
-
-using namespace std;
-
 /**
     * @file piece.hpp
+    * @authors group
     * @brief superclasse com a lógica de piece
+    * @version 1.0
+    * @date 2022-11-24
     * @details nessa superclasse ocorre a criação das váriaveis de 
     cada peça(imagem, nome, cor, primeiro turno).
     Criamos a matriz de possíveis movimentos, a ser utilizada por
@@ -15,6 +11,13 @@ using namespace std;
     e captam sua imagem, nome, cor e turno. Cria também a função 
     virtual def_possible_movements que é reescrita pelas subclasses (polimorfismo).
 */
+
+#ifndef PIECE_HPP
+#define PIECE_HPP
+
+#include <iostream>
+
+using namespace std;
 
 class Piece {
 
@@ -35,7 +38,6 @@ class Piece {
         string get_image();
         void not_my_first_time();
         bool get_first_time();
-        
 
 };
 
