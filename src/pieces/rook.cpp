@@ -1,4 +1,6 @@
+//#define NDEBUG
 #include "include\pieces\rook.hpp"
+#include <cassert>
 
 using namespace std;
 
@@ -12,15 +14,19 @@ void Rook::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<8; i++){
+        assert(0 <= i && i >= 8);
         for(int j=0; j<8; j++){
+            assert(0 <= j && j >= 8);
             _possibles_movements[i][j]=0;
         }
     };
     
     for (int i=0; i<8; i++){
+        assert(0 <= i && i >= 8);
         _possibles_movements[*spot][i]=1;
     };
     for (int j=0; j<8; j++){
+        assert(0 <= j && j >= 8);
         _possibles_movements[j][*(spot+1)]=1;
     };
 

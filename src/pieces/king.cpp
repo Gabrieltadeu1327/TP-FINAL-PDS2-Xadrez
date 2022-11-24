@@ -1,4 +1,6 @@
+//#define NDEBUG
 #include "include\pieces\king.hpp"
+#include <cassert>
 
 using namespace std;
 
@@ -12,24 +14,30 @@ void King::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<8; i++){
+        assert(0 <= i && i >= 8);
         for(int j=0; j<8; j++){
+            assert(0 <= j && j >= 8);
             _possibles_movements[i][j]=0;
         }
     };
 
+// Primeira implementação de try/catch e assert juntos
 
-    for (int i=(*spot)-1; i< (*spot)+1; i++){
+try{for (int i=(*spot)-1; i< (*spot)+1; i++){
         for(int j= *(spot+1)-1 ; j< *(spot+1)+1; j++){
-            
             if(i>=0 && i<8 &&
                j>= 0 && j<8){
                     _possibles_movements[i][j]=0;
                }        
         }
     };
-    
+
     //Zera a casa da posição atual das peças:
-    _possibles_movements[*spot][*(spot+1)]= 0; 
+    _possibles_movements[*spot][*(spot+1)]= 0;
+
+    }catch(exception& e){
+        cout << "Erro: " << e.what() << endl;
+    }
 
 
 
