@@ -24,36 +24,44 @@ void Bishop::def_possible_movements(int* spot){
     if(this->get_color() == "white"){
         //Possibilidades Diagonal pra DIREITA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb < 8; ed++, cb++)
+            assert(ed >= 8 && cd >= 8);
         _possibles_movements[ed][cb] = 1;
 
         //Possibilidades Diagonal pra ESQUERDA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb < 8; ed--, cb++)
+            assert(ed <= -1 && cb >= 8);
         _possibles_movements[ed][cb] = 1;
 
         //Possibilidades Diagonal pra DIREITA e pra BAIXO;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb > -1; ed++, cb--)
+            assert(ed >= 8 && cb <= -1);
         _possibles_movements[ed][cb] = 1;
 
         //Possibilidades Diagonal pra ESQUERDA e pra BAIXO;
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb > -1; ed--, cb--)
+            assert(ed <= -1 && cb <= -1);
         _possibles_movements[ed][cb] = 1;
     }
 
     if(this->get_color() == "black"){
         //Possibilidades Diagonal pra DIREITA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb < 8; ed++, cb++)
+            assert(ed >= 8 && cb >= 8);
         _possibles_movements[ed][cb] = 1;
 
         //Possibilidades Diagonal pra ESQUERDA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb < 8; ed--, cb++)
+            asseet(ed <= -1 && cb >= 8);
         _possibles_movements[ed][cb] = 1;
 
         //Possibilidades Diagonal pra DIREITA e pra BAIXO;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb > -1; ed++, cb--)
+            assert(ed >= 8 && cb <= -1);
         _possibles_movements[ed][cb] = 1;
 
         //Possibilidades Diagonal pra ESQUERDA e pra BAIXO;
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb > -1; ed--, cb--)
+            assert(ed <= -1 && cb <= -1);
         _possibles_movements[ed][cb] = 1;
     }
     
