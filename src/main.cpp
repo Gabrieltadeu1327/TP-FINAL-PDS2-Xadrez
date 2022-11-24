@@ -8,8 +8,6 @@
 #include <thread>
 #include <chrono>
 
-//SALVE
-
 int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
 const int SC_W = 1000;
