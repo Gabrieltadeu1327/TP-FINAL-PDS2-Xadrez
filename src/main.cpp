@@ -11,9 +11,9 @@
 
 int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
-const int SC_W = 960;
-const int SC_H = 540;
-const float FPS = 100;
+const int SC_W = 1000;
+const int SC_H = 800;
+const float FPS = 1;
 
 using namespace std;
 int main(){
@@ -30,6 +30,9 @@ int main(){
 	
 	//cria uma tela:
 	display = al_create_display(SC_W, SC_H);
+    //tratamento de imagens:
+    ALLEGRO_BITMAP *imagem = al_load_bitmap("images/Tabuleiro.bpm");
+
 	
     //cria um temporizador que incrementa uma unidade a cada 1.0/FPS segundos:
     timer = al_create_timer(1.0/FPS);
@@ -58,6 +61,7 @@ int main(){
 
         //se passou de t pra t+1 atualiza a tela
         if(ev.type == ALLEGRO_EVENT_TIMER){
+            al_draw_bitmap(imagem, 30, 20, 0);
             //atualiza tela e a colore:
             al_flip_display();
             if(al_get_timer_count(timer)%(int)(FPS) == 0){
@@ -75,9 +79,11 @@ int main(){
         }
         //detecta codigo da tecla pressionada
         else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
-            al_clear_to_color(al_map_rgb(rand()%256, rand()%256, rand()%256));
+            al_clear_to_color(al_map_rgb(100, 100, 100));
+
             printf("\ncodigo da tecla: %d", ev.keyboard.keycode);
         }
+        
 	}
 
     al_destroy_display(display);
