@@ -5,6 +5,8 @@
 #include <allegro5/allegro_image.h>
 #include <stdio.h>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 
 int* array_to_pixel(int* spot);
