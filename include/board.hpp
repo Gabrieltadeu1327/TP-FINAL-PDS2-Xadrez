@@ -1,13 +1,13 @@
 /**
-    * @file board.hpp
-    * @authors group
-    * @brief superclasse com a lógica de board
-    * @version 1.0
-    * @date 2022-11-24
-    * @details aqui tratamos as relações que ocorrem entre as peças.
-    Cada função aqui descrita retrona para main valores que serão
-    utilizados durante o processamento de cada jogada feita.
-*/
+ * @file board.hpp
+ * @authors group
+ * @brief superclasse com a lógica de board
+ * @version 1.0
+ * @date 2022-11-24
+ * @details aqui tratamos as relações que ocorrem entre as peças.
+ *  Cada função aqui descrita retorna para main valores que serão
+ *  utilizados durante o processamento de cada jogada feita.
+ */ 
 
 #ifndef BOARD_HPP
 #define BOARD_HPP
@@ -21,6 +21,14 @@
 #include "queen.hpp"
 #include "rook.hpp"
 #include "player.hpp"
+
+/**
+ * @brief cria a matriz do tabuleiro, as matrizes de ataque, as funções a serem chamadas na main
+ * @details criação do tabuleiro 8x8, da matriz de ataque de peças brancas 8x8 e pretas 8x8, 
+ *  criação da função que recebe a posição da peça, da função que apresenta no tabuleiro os movimentos possíveis,
+ *  a função que move a peça de um ponto inicial para um final, as funções de atualização e verificação de nulidade de 
+ *  um ponteiro.
+ */ 
 
 class Board{
 
