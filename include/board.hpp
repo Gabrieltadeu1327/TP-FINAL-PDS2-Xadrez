@@ -43,6 +43,7 @@ class Board{
         std::string images[8][8];
         
         Board();
+        ~Board();
 
         Piece* get_piece(int* spot);
 

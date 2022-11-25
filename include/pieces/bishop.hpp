@@ -27,6 +27,7 @@ class Bishop: public Piece {
     public:
 
         Bishop(string color);
+        ~Bishop(){};
         void def_possible_movements(int* spot) override;
 
 };

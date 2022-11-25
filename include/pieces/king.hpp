@@ -31,6 +31,7 @@ class King: public Piece {
 
     public:
         King(string color);
+        ~King(){};
         void def_possible_movements(int* spot) override;
         // bool is_xeque();
         // void set_xeque(bool cheque);

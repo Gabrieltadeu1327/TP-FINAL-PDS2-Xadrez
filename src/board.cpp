@@ -1,6 +1,5 @@
 
 #include "include/board.hpp"
-#include <cmath>
 
 Board::Board(){
    
@@ -86,6 +85,8 @@ void Board::set_piece(int* atual_spot, int* f_spot){
        get_piece(atual_spot)->get_color() == "White" && 
        *f_spot == 0 ){
         
+        get_piece(atual_spot)->promotion(f_spot);
+
         if(get_piece(f_spot) !=nullptr){
             free(get_piece(f_spot));
         }
@@ -392,4 +393,9 @@ int Board::ischeque(){
 
 
 
+}
+
+Board::~Board(){
+
+    delete board;
 }

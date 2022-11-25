@@ -14,18 +14,18 @@ void Bishop::def_possible_movements(int* spot){
 
   // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<9; i++){
-        assert(0 <= i && i >= 9);
         for(int j=0; j<9; j++){
-            assert(0 <= j && j >= 9);
+            assert( i < 0 || j > 8);
             _possibles_movements[i][j]=0;
         }
     };
 
     if(this->get_color() == "white"){
         //Possibilidades Diagonal pra DIREITA e pra CIMA;
-        for(int ed = *spot, cb = *(spot+1); ed < 8 && cb < 8; ed++, cb++)
-            assert(ed >= 8 && cd >= 8);
-        _possibles_movements[ed][cb] = 1;
+        for(int ed = *spot, cb = *(spot+1); ed < 8 && cb < 8; ed++, cb++){
+            assert(ed >= 8 && cb >= 8);
+            _possibles_movements[ed][cb] = 1;
+        }
 
         //Possibilidades Diagonal pra ESQUERDA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb < 8; ed--, cb++)
