@@ -8,11 +8,16 @@
 #include <thread>
 #include <chrono>
 
+#include "/home/enzo_magno/Documents/GitHub/TP-FINAL-PDS2-Xadrez/include/pieces/pawn.hpp"
+#include "/home/enzo_magno/Documents/GitHub/TP-FINAL-PDS2-Xadrez/include/pieces/piece.hpp"
+
 int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
-const int SC_W = 1000;
-const int SC_H = 800;
+const int SC_W = 600;
+const int SC_H = 600;
 const float FPS = 1;
+
+
 
 using namespace std;
 int main(){
@@ -29,8 +34,6 @@ int main(){
 	
 	//cria uma tela:
 	display = al_create_display(SC_W, SC_H);
-    //tratamento de imagens:
-    ALLEGRO_BITMAP *imagem = al_load_bitmap("images/Tabuleiro.bpm");
 
 	
     //cria um temporizador que incrementa uma unidade a cada 1.0/FPS segundos:
@@ -39,6 +42,11 @@ int main(){
     //instala teclado e mouse:
     al_install_mouse();
     al_install_keyboard();
+
+    //inicializa imagens:
+    al_init_image_addon();
+    ALLEGRO_BITMAP *fundo = al_load_bitmap("images/Tabuleiro_resized.png");
+    ALLEGRO_BITMAP *peao_i = al_load_bitmap("images/Peão Branco.png");
 
 	//cria fila de eventos:
 	event_queue = al_create_event_queue();
@@ -60,12 +68,7 @@ int main(){
 
         //se passou de t pra t+1 atualiza a tela
         if(ev.type == ALLEGRO_EVENT_TIMER){
-            al_draw_bitmap(imagem, 30, 20, 0);
-            //atualiza tela e a colore:
-            al_flip_display();
-            if(al_get_timer_count(timer)%(int)(FPS) == 0){
-                printf("\nse passaram: %d segundos", (int)(al_get_timer_count(timer)/FPS));
-            }
+    
         }
 		//evento de fechamento de tela:
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
@@ -74,15 +77,22 @@ int main(){
 		}
         //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
         else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+
             printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
         }
         //detecta codigo da tecla pressionada
         else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
+            if(ALLEGRO_KEY_ESCAPE){
+                run = 0;
+            }
             al_clear_to_color(al_map_rgb(100, 100, 100));
 
             printf("\ncodigo da tecla: %d", ev.keyboard.keycode);
         }
-        
+        al_draw_bitmap(fundo, 0, 0, 0);  
+        al_draw_bitmap(peao_i, 1, 1, 0); 
+        al_flip_display();
+
 	}
 
     al_destroy_display(display);

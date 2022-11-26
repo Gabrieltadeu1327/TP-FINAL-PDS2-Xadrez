@@ -1,10 +1,11 @@
 
 #include "include/pieces/pawn.hpp"
-
+#include "include/pieces/piece.hpp"
+#include<string>
 
 using namespace std;
 
-Pawn::Pawn(string cor){
+Pawn::Pawn(std::string cor){
     Piece(cor);
     _name= "Pawn";
      //  _image = "./" 
