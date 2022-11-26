@@ -1,5 +1,6 @@
 
 #include "include/board.hpp"
+#include <stdexcept>
 
 Board::Board(){
    
@@ -129,7 +130,9 @@ int** Board::def_valid_moviments( int* spot){
 
     Piece* p = get_piece(spot);
     if(p == nullptr){
-        return nullptr;
+ 
+        throw std::invalid_argument("ponteiro nulo");
+        return nullptr; 
     }
 
     int** mat;
@@ -379,7 +382,7 @@ int spot[2];
    
 };
 
-int Board::ischeque(){
+int Board::ischequemate(){
 
     refresh_atc_matriz("White");
     refresh_atc_matriz("Black");
