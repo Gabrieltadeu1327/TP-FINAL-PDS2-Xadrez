@@ -8,15 +8,15 @@
 #include <thread>
 #include <chrono>
 
+#include "include/board.hpp"
+
 
 int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
 
 const int SC_W = 600;
-const int SC_H = 500;
-const float FPS = 1;
-
-
+const int SC_H = 00;
+const float FPS = 10;
 
 using namespace std;
 int main(){
@@ -60,16 +60,17 @@ int main(){
 
     //inicia o temporizador
     al_start_timer(timer);
+    int x = 10;
+    int y = 10;
 	while(run){
         ALLEGRO_EVENT ev;
         //espera por um evento e o armazena em ev
 		al_wait_for_event(event_queue, &ev);
 
-        //se passou de t pra t+1 atualiza a tela
-        if(ev.type == ALLEGRO_EVENT_TIMER){
+		//evento de fechamento de tela:
+        if(ev.type == ALLEGRO_EVENT_TIMER){  
             
         }
-		//evento de fechamento de tela:
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
 			run = 0;
 			break;
@@ -81,14 +82,28 @@ int main(){
         }
         //detecta codigo da tecla pressionada
         else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
-            if(ALLEGRO_KEY_ESCAPE){
-                run = 0;
+            switch (ev.keyboard.keycode){
+                case ALLEGRO_KEY_ESCAPE:
+                    run = 0;
+                    break;
+                case ALLEGRO_KEY_UP:
+                    y -= 30;
+                    break;
+                case ALLEGRO_KEY_DOWN:
+                    y += 30;
+                    break;
+                case ALLEGRO_KEY_LEFT:
+                    x -= 30;
+                    break;
+                case ALLEGRO_KEY_RIGHT:
+                    x += 30;
+                    break;
             }
-
-            printf("\ncodigo da tecla: %d", ev.keyboard.keycode);
+            
         }
-        al_draw_bitmap(fundo, 0, 0, 0);  
-        al_draw_bitmap(peao, 0, 0, 0);
+
+        al_draw_bitmap(fundo, 0, 0, 0);
+        al_draw_bitmap(peao, x, y, 0);
         al_flip_display();
 
 	}

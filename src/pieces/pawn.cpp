@@ -1,7 +1,8 @@
 //#define NDEBUG
 #include "include/pieces/pawn.hpp"
-#include <cassert>
 #include "include/pieces/piece.hpp"
+
+#include <cassert>
 #include<string>
 
 

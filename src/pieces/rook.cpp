@@ -1,5 +1,5 @@
 //#define NDEBUG
-#include "include\pieces\rook.hpp"
+#include "include/pieces/rook.hpp"
 #include <cassert>
 
 using namespace std;

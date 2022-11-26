@@ -1,5 +1,6 @@
 //#define NDEBUG
-#include "include\pieces\knight.hpp"
+#include "include/pieces/knight.hpp"
+
 #include <cassert>
 
 using namespace std;

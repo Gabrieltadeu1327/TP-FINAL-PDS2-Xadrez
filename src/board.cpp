@@ -102,7 +102,7 @@ void Board::set_piece(int* atual_spot, int* f_spot){
             free(get_piece(f_spot));
         }
         board[*f_spot][*(f_spot+1)] = new Queen("Black");
-     
+        
     }
     
 

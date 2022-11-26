@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "piece.hpp"
-#include "board.hpp"
+#include "include/pieces/piece.hpp"
+#include "include/board.hpp"
 #include "player.hpp"
 
 class Match{

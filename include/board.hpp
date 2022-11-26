@@ -13,14 +13,14 @@
 #define BOARD_HPP
 
 #include <string>
-#include "piece.hpp"
-#include "bishop.hpp"
-#include "pawn.hpp"
-#include "knight.hpp"
-#include "king.hpp"
-#include "queen.hpp"
-#include "rook.hpp"
-#include "player.hpp"
+#include "include/pieces/piece.hpp"
+#include "include/pieces/bishop.hpp"
+#include "include/pieces/pawn.hpp"
+#include "include/pieces/knight.hpp"
+#include "include/pieces/king.hpp"
+#include "include/pieces/queen.hpp"
+#include "include/pieces/rook.hpp"
+#include "include/player.hpp"
 
 /**
  * @brief cria a matriz do tabuleiro, as matrizes de ataque, as funções a serem chamadas na main
