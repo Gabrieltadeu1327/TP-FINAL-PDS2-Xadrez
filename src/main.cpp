@@ -8,13 +8,12 @@
 #include <thread>
 #include <chrono>
 
-#include "/home/enzo_magno/Documents/GitHub/TP-FINAL-PDS2-Xadrez/include/pieces/pawn.hpp"
-#include "/home/enzo_magno/Documents/GitHub/TP-FINAL-PDS2-Xadrez/include/pieces/piece.hpp"
 
 int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
+
 const int SC_W = 600;
-const int SC_H = 600;
+const int SC_H = 800;
 const float FPS = 1;
 
 
@@ -45,8 +44,8 @@ int main(){
 
     //inicializa imagens:
     al_init_image_addon();
-    ALLEGRO_BITMAP *fundo = al_load_bitmap("images/Tabuleiro_resized.png");
-    ALLEGRO_BITMAP *peao_i = al_load_bitmap("images/Peão Branco.png");
+    ALLEGRO_BITMAP *fundo = al_load_bitmap("images/Menu Chess.png");
+    ALLEGRO_BITMAP *peao = al_load_bitmap("images/B_Pawn.png");
 
 	//cria fila de eventos:
 	event_queue = al_create_event_queue();
@@ -68,7 +67,7 @@ int main(){
 
         //se passou de t pra t+1 atualiza a tela
         if(ev.type == ALLEGRO_EVENT_TIMER){
-    
+            
         }
 		//evento de fechamento de tela:
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
@@ -85,12 +84,11 @@ int main(){
             if(ALLEGRO_KEY_ESCAPE){
                 run = 0;
             }
-            al_clear_to_color(al_map_rgb(100, 100, 100));
 
             printf("\ncodigo da tecla: %d", ev.keyboard.keycode);
         }
         al_draw_bitmap(fundo, 0, 0, 0);  
-        al_draw_bitmap(peao_i, 1, 1, 0); 
+        al_draw_bitmap(peao, 0, 0, 0);
         al_flip_display();
 
 	}
