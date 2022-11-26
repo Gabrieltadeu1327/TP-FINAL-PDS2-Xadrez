@@ -13,9 +13,9 @@ Bishop::Bishop(string color){
 void Bishop::def_possible_movements(int* spot){
 
   // Rezeta a Matriz de movimentos possiveis
-    for (int i=0; i<9; i++){
-        for(int j=0; j<9; j++){
-            assert( i < 0 || j > 8);
+    for (int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            assert( i < 0 || i >= 8 || j < 0 || j >= 8 );
             _possibles_movements[i][j]=0;
         }
     };
