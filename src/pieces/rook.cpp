@@ -7,6 +7,12 @@ using namespace std;
 Rook::Rook(string color){
     Piece(color);
     _name= "Rook";
+
+    if(color == "White"){
+        _image = "";
+    }else if(color == "Black"){
+        _image = "";
+    };
 }
 
 // No caso da torre ela pode fazer movimentos apenas na horizontal e vertical, quantas casas quiser, sem pular nenhuma peça

@@ -7,6 +7,12 @@ using namespace std;
 Queen::Queen(string color){
     Piece(color);
     _name= "Queen";
+
+    if(color == "White"){
+        _image = "";
+    }else if(color == "Black"){
+        _image = "";
+    };
 }
 
 void Queen::def_possible_movements(int* spot){
@@ -20,6 +26,28 @@ void Queen::def_possible_movements(int* spot){
         }
     };
 
+       for(int ci= -1; ci<2; ci++){
+            for(int cj=-1; cj<2; cj++){
+            
+                if(ci ==0 && cj ==0){
+                    continue;
+                }
+                
+                for( int i=*spot; i>0 && i<8; i+= ci){
+                    for( int j= *(spot +1); j>0 && j<8; j+= cj){
+                        
+                        _possibles_movements[i][j]=1;
+                    }
+                }
+
+
+            }
+    }
+
+
+
+
+/*
     if(this->get_color() == "white"){
         //Possibilidades ESQUERDA;
         for(int ed = *spot, cb = *(spot+1); ed > -1; ed--)
@@ -85,7 +113,7 @@ void Queen::def_possible_movements(int* spot){
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb > -1; ed--, cb--)
         _possibles_movements[ed][cb] = 1;
     }
-    
+*/
     //Zera a casa da posição atual das peças:
     _possibles_movements[*spot][*(spot+1)]= 0; 
 }

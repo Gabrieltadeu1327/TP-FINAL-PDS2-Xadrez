@@ -7,7 +7,12 @@ using namespace std;
 Bishop::Bishop(string color){
     Piece(color);
     _name = "Bishop";
-  //  _image = "./"   
+    
+    if(color == "White"){
+        _image = "";
+    }else if(color == "Black"){
+        _image = "";
+    };
 }
 
 void Bishop::def_possible_movements(int* spot){

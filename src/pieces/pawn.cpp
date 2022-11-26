@@ -7,10 +7,15 @@
 
 using namespace std;
 
-Pawn::Pawn(std::string cor){
+Pawn::Pawn(std::string color){
     Piece(cor);
     _name= "Pawn";
-     //  _image = "./" 
+     
+    if(color == "White"){
+        _image = "";
+    }else if(color == "Black"){
+        _image = "";
+    };
 }
 
 //No caso do pe�o define os movimentos possiveis como duas casas a frente caso seja seu primeiro movimento ou uma casa a frente caso n�o seja

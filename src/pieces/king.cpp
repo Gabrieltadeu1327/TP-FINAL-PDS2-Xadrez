@@ -7,7 +7,12 @@ using namespace std;
 King::King(string color){
     Piece(color);
     _name= "King";
-     //  _image = "./"
+    
+    if(color == "White"){
+        _image = "";
+    }else if(color == "Black"){
+        _image = "";
+    };
 }
 
 void King::def_possible_movements(int* spot){

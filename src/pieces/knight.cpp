@@ -7,7 +7,12 @@ using namespace std;
 Knight::Knight(string color){
     Piece(color);
     _name= "Knight";
-     //  _image = "./" 
+    
+    if(color == "White"){
+        _image = "";
+    }else if(color == "Black"){
+        _image = "";
+    };
 }
 
 void Knight::def_possible_movements(int* spot){
