@@ -110,15 +110,18 @@ void Board::set_piece(int* atual_spot, int* f_spot){
 }
 
 //envia a matriz de imagems 
-void Board::refresh_images(){
-   
+std::string** Board::getimages(){
+   //Atualiza a matriz
     for(int i= 0; i< 8; i++){
         for(int j= 0; j< 8; j++){
             if(board[i][j] != nullptr){
                 images[i][j]= (board[i][j])->get_image();  
+            }else{
+                images[i][j]= nullptr;
             }    
         }  
     }
+    return (std::string**)images;
 }
 
 //Restrinje os movimentos validos
@@ -388,7 +391,15 @@ int Board::ischeque(){
 
 Board::~Board(){
 
+        for(int i=0; i<8; i++){
+            for(int j=0; j<8; j++){
+                if(board[i][j] != nullptr){
+                    delete board[i][j];
+                }
+            }
+        }
     delete board;
     delete white_atc_mat;
     delete black_atc_mat;
+    delete images;
 }

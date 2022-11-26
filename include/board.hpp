@@ -38,10 +38,10 @@ class Board{
 //Matrizes de ataque
         int white_atc_mat[8][8];
         int black_atc_mat[8][8];
+        std::string images[8][8];
 
     public:
-        std::string images[8][8];
-        
+       
         Board();
         ~Board();
 
@@ -51,7 +51,7 @@ class Board{
 
         void set_piece(int* atual_spot, int* spot);
 
-        void refresh_images();
+        std::string** getimages();
         
         void refresh_atc_matriz(string cor);
 

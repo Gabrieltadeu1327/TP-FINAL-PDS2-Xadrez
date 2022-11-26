@@ -10,25 +10,29 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include <iostream>
+#include <string>
 #include "piece.hpp"
 
 using namespace std;
 
 class Player{
     private:
-        bool turn;
-        float time;
+        std::string collor;
+        float init_time, max_time;
 
     public:
-        void move_piece(Piece p, int* spot);
         
-        void give_up();
+        Player();
+        ~Player();
         
-        void set_time();
+        void set_time(float t);
         float get_time();
         
-        void set_turn();
-        bool is_turn();
+        void setcollor(std::string c);
+        std::string getcollor();
+        
+        
     
 };
 
