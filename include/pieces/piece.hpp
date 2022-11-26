@@ -38,12 +38,14 @@ class Piece {
         int _possibles_movements[8][8];
         Piece(string color);
         Piece();
+        ~Piece(){};
         virtual void def_possible_movements(int* spot);
         string get_color();
         string get_name();
         string get_image();
         void not_my_first_time();
         bool get_first_time();
+        virtual void promotion(int *spot){};
 
 };
 

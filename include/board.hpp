@@ -43,6 +43,7 @@ class Board{
         std::string images[8][8];
         
         Board();
+        ~Board();
 
         Piece* get_piece(int* spot);
 
@@ -53,8 +54,6 @@ class Board{
         void refresh_images();
         
         void refresh_atc_matriz(string cor);
-
-        bool isnullprt(int* spot);
 
         int ischeque();
 

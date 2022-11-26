@@ -20,6 +20,7 @@ class Rook: public Piece {
     public:
 
         Rook(string color);
+        ~Rook(){};
         void def_possible_movements(int* spot) override;
 
 };

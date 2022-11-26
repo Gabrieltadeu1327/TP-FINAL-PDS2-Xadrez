@@ -29,8 +29,9 @@ class Pawn: public Piece {
 
     public:
         Pawn(string color);
+        ~Pawn(){};
         void def_possible_movements(int*spot) override;
-        void promotion();
+        void promotion(int* spot) override;
 
 };
 

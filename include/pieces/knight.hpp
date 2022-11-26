@@ -27,6 +27,7 @@ class Knight: public Piece {
     public:
 
         Knight(string color);
+        ~Knight(){};
         void def_possible_movements(int*spot) override;
         
 };

@@ -27,6 +27,7 @@ class Queen: public Piece {
     public:
 
         Queen(string color);
+        ~Queen(){};
         void def_possible_movements(int*spot) override;
 
 };
