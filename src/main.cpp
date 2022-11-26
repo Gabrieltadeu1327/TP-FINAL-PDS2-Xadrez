@@ -124,32 +124,34 @@ int main(){
 //Funções:
 
 
-int* array_to_pixel(int* spot){
+int* array_to_pixel(int* spot){ 
+   //ALTERADO PRO NOVO MENU 
     int *pixel;
     //para passar pra próxima casa (+68/69px)
     //eixo x
-        if(*(spot) % 2 == 0) 
-            *pixel = 26 + (*(spot) * 68);
-        else
-            *pixel = 27 + (*(spot) * 68);
+        // if(*(spot) % 2 == 0) 
+            *pixel = 26 + (*(spot) * 69);
+        // else
+        //     *pixel = 27 + (*(spot) * 68);
     //eixo y
-        if(*(spot+1) % 2 == 0)
-            *(pixel+1) = 227 + (*(spot+1) * 68);
-        else
-            *(pixel+1) = 228 + (*(spot+1) * 68);
+        // if(*(spot+1) % 2 == 0)
+            *(pixel+1) = 127 + (*(spot+1) * 69);
+        // else
+        //     *(pixel+1) = 228 + (*(spot+1) * 68);
 
     return pixel;
 }
 
 int* pixel_to_array(int* pixel){
+    //ALTERADO PRO NOVO MENU
     int *spot;
     //eixo x
     *pixel -= 26; //tira 26 pq as casas começam a partir do pixel 26
-    *spot = (*pixel/68); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
+    *spot = (*pixel/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
 
     //eixo y
-    *(pixel+1) -= 227; //tira 26 pq as casas começam a partir do pixel 26
-    *(spot+1) = (*(pixel+1)/68); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
+    *(pixel+1) -= 127; //tira 26 pq as casas começam a partir do pixel 26
+    *(spot+1) = (*(pixel+1)/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
 
     return spot;
 }

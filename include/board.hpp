@@ -55,7 +55,7 @@ class Board{
         
         void refresh_atc_matriz(string cor);
 
-        int ischeque();
+        int ischequemate();
 
 };
 
