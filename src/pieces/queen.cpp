@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Queen::Queen(string color){
+Queen::Queen(std::string color){
     Piece(color);
     _name= "Queen";
 
