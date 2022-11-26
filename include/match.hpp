@@ -10,7 +10,7 @@ std::string turn = "White";
 std::string winner = nullptr;
 // time white = 500s
 // time black = 500s
-Board bo = new Board();
+Board *bo = new Board();
 
 public:
     

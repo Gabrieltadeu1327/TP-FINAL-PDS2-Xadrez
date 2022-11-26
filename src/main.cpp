@@ -13,7 +13,7 @@ int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
 
 const int SC_W = 600;
-const int SC_H = 800;
+const int SC_H = 500;
 const float FPS = 1;
 
 
