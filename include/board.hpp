@@ -55,8 +55,6 @@ class Board{
         
         void refresh_atc_matriz(string cor);
 
-        bool isnullprt(int* spot);
-
         int ischeque();
 
 };

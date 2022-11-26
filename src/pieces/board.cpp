@@ -50,6 +50,7 @@ Piece* Board::get_piece(int* spot){
 // Muda a posição de uma peça e declara 
 void Board::set_piece(int* atual_spot, int* f_spot){
         
+
     //Mudança Torre Roque
     int* rook_spot = atual_spot;
     int* rook_nspot = f_spot;
@@ -125,7 +126,7 @@ int** Board::def_valid_moviments( int* spot){
 
     Piece* p = get_piece(spot);
     if(p == nullptr){
-        return NULL;
+        return nullptr;
     }
 
     int** mat;
@@ -375,16 +376,6 @@ int spot[2];
    
 };
 
-
-bool Board::isnullprt(int* spot){
-
-    if(board[*spot][*(spot +1)] == nullptr){
-        return 1;
-    }else{
-        return 0;
-    }
-};
-
 int Board::ischeque(){
 
     refresh_atc_matriz("White");
@@ -398,4 +389,6 @@ int Board::ischeque(){
 Board::~Board(){
 
     delete board;
+    delete white_atc_mat;
+    delete black_atc_mat;
 }
