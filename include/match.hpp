@@ -8,8 +8,6 @@ class Match{
 
 std::string turn = "White";
 std::string winner = nullptr;
-// time white = 500s
-// time black = 500s
 Board *bo = new Board();
 
 public:
@@ -17,8 +15,9 @@ public:
     Match();
     ~Match();
     //Recebe clicks NO TABULEIRO
-    void game(int *click);
-    std::string** images();
+    void game(int *spot);
+    std::string** images_pices();
+    std::string** images_dots();
     std::string getwinner();
     void setwinner(std::string winner);
 

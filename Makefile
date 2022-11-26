@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 CC := g++
 CFLAGS := -g -Wall -I include/
 BUILD := build/
@@ -37,3 +38,9 @@ rook:
 clean:
 
 	$(RM) -r $(BUILD)/* $(TARGET)
+=======
+
+
+
+
+>>>>>>> Stashed changes

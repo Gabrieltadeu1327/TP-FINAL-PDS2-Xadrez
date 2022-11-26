@@ -5,7 +5,7 @@
 #include <allegro5/allegro_image.h>
 #include <stdio.h>
 #include <iostream>
-#include <thread>
+#include <thread>    
 #include <chrono>
 
 #include "include/board.hpp"
@@ -104,6 +104,15 @@ int main(){
 
         al_draw_bitmap(fundo, 0, 0, 0);
         al_draw_bitmap(peao, x, y, 0);
+
+        //DAR O CLEAN DA TELA
+
+
+
+        //Printar peças e printar marcaçoes
+        al_draw_bitmap(fundo, 0, 0, 0);  
+        al_draw_bitmap(peao, 0, 0, 0);
+
         al_flip_display();
 
 	}
