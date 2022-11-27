@@ -176,6 +176,16 @@ int* array_to_pixel(int* spot){
 
 int* pixel_to_array(int* pixel){
     //ALTERADO PRO NOVO MENU
+
+    //Botão Give Up/New Match
+    if(*pixel < 527 && *pixel > 418 && *(pixel+1) < 80 && *(pixel+1) > 37){
+        //retorna NEW MATCH 
+    }
+
+    //Casos fora do tabuleiro 
+    if(*pixel < 26 && *pixel > 575) return nullptr; //eixo x
+    if(*(pixel+1) < 127 && *(pixel+1) > 675) return nullptr; //eixo y
+
     int *spot;
     //eixo x
     *pixel -= 26; //tira 26 pq as casas começam a partir do pixel 26
