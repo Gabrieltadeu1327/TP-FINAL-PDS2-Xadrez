@@ -20,7 +20,6 @@
 #include "include/pieces/king.hpp"
 #include "include/pieces/queen.hpp"
 #include "include/pieces/rook.hpp"
-#include "include/player.hpp"
 
 /**
  * @brief cria a matriz do tabuleiro, as matrizes de ataque, as funções a serem chamadas na main
@@ -38,7 +37,6 @@ class Board{
 //Matrizes de ataque
         int white_atc_mat[8][8];
         int black_atc_mat[8][8];
-        std::string images[8][8];
 
     public:
        
@@ -51,11 +49,13 @@ class Board{
 
         void set_piece(int* atual_spot, int* spot);
 
-        std::string** getimages();
+        std::string get_image(int* spot);
+        std::string get_collor(int* spot);
         
         void refresh_atc_matriz(string cor);
 
         bool ischeque(std::string color);
+
 
 };
 

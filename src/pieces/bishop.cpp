@@ -25,6 +25,7 @@ void Bishop::def_possible_movements(int* spot){
         }
     };
 
+
     for(int ci= -1; ci<2; ci++){
             for(int cj=-1; cj<2; cj++){
             
