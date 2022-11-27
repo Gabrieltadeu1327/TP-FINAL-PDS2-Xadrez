@@ -7,14 +7,20 @@ TARGET := main.out
 
 all: main
 
-main: board 
+main: match
 	g++ board.o main.cpp -lallegro -lallegro_images -lallegro_main -o build/main.out
 
+match: board player
+	g++ 
+
+player:
+	g++ -c src/player.cpp -o build/player.o
+
 board: piece pawn knight king bishop queen rook
-	g++ build/*.o src/board.cpp -o build/board.o
+	g++ -I include/ build/*.o src/board.cpp -o build/board.o
 
 piece: 
-	g++ -c src/pieces/piece.cpp -o build/piece.o
+	g++ -c -I include/ src/pieces/piece.cpp -o build/piece.o
 
 pawn:
 	g++ -c src/pieces/pawn.cpp -o build/pawn.o
@@ -38,6 +44,4 @@ rook:
 clean:
 
 	$(RM) -r $(BUILD)/* $(TARGET)
-
-''
 

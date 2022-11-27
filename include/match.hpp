@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "include/pieces/piece.hpp"
 #include "include/board.hpp"
 #include "player.hpp"
 
