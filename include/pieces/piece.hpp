@@ -45,7 +45,6 @@ class Piece {
         string get_image();
         void not_my_first_time();
         bool get_first_time();
-        virtual void promotion(int *spot){};
 
 };
 

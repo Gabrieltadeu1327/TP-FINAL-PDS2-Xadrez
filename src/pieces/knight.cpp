@@ -1,12 +1,11 @@
 //#define NDEBUG
-#include "include/pieces/knight.hpp"
+#include "../../include/pieces/knight.hpp"
 
 #include <cassert>
 
 using namespace std;
 
-Knight::Knight(string color){
-    Piece(color);
+Knight::Knight(string color):Piece(color){
     _name= "Knight";
     
     if(color == "White"){

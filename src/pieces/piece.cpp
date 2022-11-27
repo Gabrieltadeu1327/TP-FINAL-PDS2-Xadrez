@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "piece.hpp"
+#include "../../include/pieces/piece.hpp"
 
 using namespace std;
 

@@ -13,7 +13,7 @@
 #ifndef KING_HPP
 #define KING_HPP
 
-#include "include/pieces/piece.hpp"
+#include "piece.hpp"
 
 using namespace std;
 

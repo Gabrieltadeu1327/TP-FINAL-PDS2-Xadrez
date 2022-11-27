@@ -1,6 +1,6 @@
 //#define NDEBUG
-#include "include/pieces/pawn.hpp"
-#include "include/pieces/piece.hpp"
+#include "../../include/pieces/pawn.hpp"
+
 
 #include <cassert>
 #include<string>
@@ -8,8 +8,7 @@
 
 using namespace std;
 
-Pawn::Pawn(std::string color){
-    Piece(cor);
+Pawn::Pawn(std::string color):Piece(color){
     _name= "Pawn";
      
     if(color == "White"){

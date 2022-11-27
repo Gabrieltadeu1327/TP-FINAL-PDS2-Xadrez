@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
-#include "include/board.hpp"
-#include "player.hpp"
+#include "board.hpp"
 
 class Match{
 
@@ -21,8 +20,8 @@ public:
     //Recebe clicks NO TABULEIRO
     void game(int *spot);
 
-    std::string** images_pices();
-    std::string** images_dots();
+    std::string** get_imagespices();
+    std::string** get_imagesdots();
     std::string getwinner();
     void setwinner(std::string winner);
     void refreshwinner();

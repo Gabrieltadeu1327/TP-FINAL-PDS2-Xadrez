@@ -12,8 +12,7 @@
 #ifndef PAWN_HPP
 #define PAWN_HPP
 
-#include "include/pieces/piece.hpp"
-
+#include "piece.hpp"
 using namespace std;
 
 /**
@@ -31,7 +30,6 @@ class Pawn: public Piece {
         Pawn(string color);
         ~Pawn(){};
         void def_possible_movements(int*spot) override;
-        void promotion(int* spot) override;
 
 };
 

@@ -1,11 +1,10 @@
 //#define NDEBUG
-#include "include/pieces/rook.hpp"
+#include "../../include/pieces/rook.hpp"
 #include <cassert>
 
 using namespace std;
 
-Rook::Rook(string color){
-    Piece(color);
+Rook::Rook(string color):Piece(color){
     _name= "Rook";
 
     if(color == "White"){

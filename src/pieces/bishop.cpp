@@ -1,11 +1,10 @@
 //#define NDEBUG
-#include "include/pieces/bishop.hpp"
+#include "../../include/pieces/bishop.hpp"
 #include <cassert>
 
 using namespace std;
 
-Bishop::Bishop(string color){
-    Piece(color);
+Bishop::Bishop(string color):Piece(color){
     _name = "Bishop";
     
     if(color == "White"){

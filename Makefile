@@ -1,47 +1,36 @@
-
-CC := g++
-CFLAGS := -g -Wall -I include/
-BUILD := build/
-SRC := src/
-TARGET := main.out
-
 all: main
 
 main: match
-	g++ board.o main.cpp -lallegro -lallegro_images -lallegro_main -o build/main.out
+	g++ -I include/ src/main.cpp build/*.o -lallegro -lallegro_image -lallegro_main -o main 
 
-match: board player
-	g++ 
+match: board
+	g++ -g -Wall -I include/ -c src/match.cpp build/board.o -o build/match.o
 
-player:
-	g++ -c src/player.cpp -o build/player.o
+board: piece bishop king knight pawn queen rook
+	g++ -g -Wall -I include/ -c src/board.cpp build/*.o -o build/board.o
 
-board: piece pawn knight king bishop queen rook
-	g++ -I include/ build/*.o src/board.cpp -o build/board.o
-
-piece: 
-	g++ -c -I include/ src/pieces/piece.cpp -o build/piece.o
-
-pawn:
-	g++ -c src/pieces/pawn.cpp -o build/pawn.o
-
-knight:
-	g++ -c src/pieces/knight.cpp -o build/knight.o
-
-king:
-	g++ -c src/pieces/king.cpp -o build/king.o
+piece:
+	mkdir build/
+	g++ -g -Wall -I include/pieces/ -c src/pieces/piece.cpp -o build/piece.o
 
 bishop:
-	g++ -c src/pieces/bishop.cpp -o build/bishop.o
+	g++ -g -Wall -I include/pieces/ -c src/pieces/bishop.cpp build/piece.o -o build/bishop.o
 
-queen:
-	g++ -c src/pieces/queen.cpp -o build/queen.o
+king:
+	g++ -g -Wall -I include/pieces/ -c src/pieces/king.cpp build/piece.o -o build/king.o
+
+knight:
+	g++ -g -Wall -I include/pieces/ -c src/pieces/knight.cpp build/piece.o -o build/knight.o
 
 rook:
-	g++ -c src/pieces/rook.cpp -o build/rook.o
+	g++ -g -Wall -I include/pieces/ -c src/pieces/rook.cpp build/piece.o -o build/rook.o
 
+queen:
+	g++ -g -Wall -I include/pieces/ -c src/pieces/queen.cpp build/piece.o -o build/queen.o
 
-clean:
+pawn: piece
+	g++ -g -Wall -I include/pieces/ -c src/pieces/pawn.cpp build/piece.o -o build/pawn.o
 
-	$(RM) -r $(BUILD)/* $(TARGET)
-
+clear:
+	rm -rf build
+	rm -f main

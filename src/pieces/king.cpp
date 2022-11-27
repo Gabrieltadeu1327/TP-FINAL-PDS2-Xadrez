@@ -1,11 +1,10 @@
 //#define NDEBUG
-#include "include/pieces/king.hpp"
+#include "../../include/pieces/king.hpp"
 #include <cassert>
 
 using namespace std;
 
-King::King(string color){
-    Piece(color);
+King::King(string color):Piece(color){
     _name= "King";
     
     if(color == "White"){

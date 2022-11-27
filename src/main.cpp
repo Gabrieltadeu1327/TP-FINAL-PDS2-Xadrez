@@ -8,14 +8,14 @@
 #include <thread>    
 #include <chrono>
 
-#include "include/match.hpp"
+#include "../include/match.hpp"
 
 
 int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
 
 const int SC_W = 600;
-const int SC_H = 00;
+const int SC_H = 700;
 const float FPS = 10;
 
 using namespace std;
@@ -123,6 +123,7 @@ int main(){
             al_flip_display();
 
         }
+        
         if(match->getwinner() == "White"){
             //img vitoria Branco
         }else if(match->getwinner() == "Black"){
@@ -136,7 +137,7 @@ int main(){
            
             //detecta a posição do mouse
             if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                if(/*click foi no botao*/){
+                if(/*click foi no botao*/1){
                     printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
                     break;
                 } 

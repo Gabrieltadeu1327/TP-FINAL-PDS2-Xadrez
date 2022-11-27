@@ -11,8 +11,7 @@
 #ifndef ROOK_HPP
 #define ROOK_HPP
 
-#include "include/pieces/piece.hpp"
-
+#include "piece.hpp"
 using namespace std;
 
 class Rook: public Piece {

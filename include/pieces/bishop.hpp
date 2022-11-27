@@ -11,7 +11,7 @@
 #ifndef BISHOP_HPP
 #define BISHOP_HPP
 
-#include "include/pieces/piece.hpp"
+#include "piece.hpp"
 
 using namespace std;
 

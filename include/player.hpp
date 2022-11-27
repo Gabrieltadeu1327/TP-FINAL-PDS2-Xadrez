@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include <string>
-#include "include/pieces/piece.hpp"
+#include "pieces/piece.hpp"
 
 using namespace std;
 
