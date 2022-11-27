@@ -8,6 +8,9 @@ class Match{
 
 std::string turn = "White";
 std::string winner = "";
+bool selected = false;
+std::string image_dots[8][8];
+
 Board *bo = new Board();
 
 public:
@@ -20,6 +23,8 @@ public:
     std::string** images_dots();
     std::string getwinner();
     void setwinner(std::string winner);
+    void refreshwinner();
+    void p_gaveup();
 
 };
 

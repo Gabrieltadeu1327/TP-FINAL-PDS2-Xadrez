@@ -86,7 +86,11 @@ int main(){
                 
                 click[0]= ev.mouse.y;
                 click[1]= ev.mouse.x;
-                match->game(click);
+
+                match->game(pixel_to_array(click));
+                if(/*clik em giveup*/){
+                    match->p_gaveup();
+                }
 
                 printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
             }

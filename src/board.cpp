@@ -50,7 +50,6 @@ Piece* Board::get_piece(int* spot){
 }
 // Muda a posição de uma peça e declara 
 void Board::set_piece(int* atual_spot, int* f_spot){
-        
 
     //Mudança Torre Roque
     int* rook_spot = atual_spot;
@@ -381,15 +380,37 @@ int spot[2];
     }
    
 };
+// Retrona 1 se é cheque mate
+bool Board::ischeque(std::string color){
 
-int Board::ischequemate(){
+    int xeque = 0;
+    refresh_atc_matriz("color");
 
-    refresh_atc_matriz("White");
-    refresh_atc_matriz("Black");
+    if(color == "White"){
+        for(int  i= 0; i< 8; i++){
+            for(int  j= 0; j< 8; j++){
+                if(board[i][j] != nullptr){
+                    if(board[i][j]->get_name()== "King" && white_atc_mat[i][j]==1){
+                        xeque =1;
+                    }
+                }
+            }
+        }
+
+    }else if(color == "Black"){
+        for(int  i= 0; i< 8; i++){
+            for(int  j= 0; j< 8; j++){
+                if(board[i][j] != nullptr){
+                    if(board[i][j]->get_name()== "King" && black_atc_mat[i][j]==1){
+                        xeque =1;
+                    }
+                }
+            }
+        }
 
 
-
-
+    }
+    return xeque;
 }
 
 Board::~Board(){
