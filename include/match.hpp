@@ -7,7 +7,7 @@
 class Match{
 
 std::string turn = "White";
-std::string winner = nullptr;
+std::string winner = "";
 Board *bo = new Board();
 
 public:
