@@ -8,9 +8,9 @@ King::King(string color):Piece(color){
     _name= "King";
     
     if(color == "White"){
-        _image = "images/W_King.png";
+        _image = "src/images/W_King.png";
     }else if(color == "Black"){
-        _image = "images/B_King.png";
+        _image = "src/images/B_King.png";
     };
 }
 

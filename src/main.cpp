@@ -9,18 +9,25 @@
 #include <chrono>
 
 #include "../include/match.hpp"
+#include "../include/pieces/rook.hpp"
+#include "../include/pieces/piece.hpp"
+#include "../include/board.hpp"
 
 
 int* array_to_pixel(int* spot);
 int* pixel_to_array(int* pixel);
+void drawn_pieces(Match &mat);
 
 const int SC_W = 600;
 const int SC_H = 700;
 const float FPS = 10;
 
+Rook *r = new Rook("Black");
+
+
 using namespace std;
 int main(){
-
+    std::cout<<"run";
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     ALLEGRO_TIMER *timer = NULL;
@@ -44,8 +51,6 @@ int main(){
 
     //inicializa imagens:
     al_init_image_addon();
-    // ALLEGRO_BITMAP *fundo = al_load_bitmap("images/Chess_Menu.png");
-    ALLEGRO_BITMAP *peao = al_load_bitmap("src/images/W_Pawn.png");
     ALLEGRO_BITMAP *fundo = al_load_bitmap("src/images/Chess_Menu.png");
 
 	//cria fila de eventos:
@@ -60,57 +65,95 @@ int main(){
 	int run = 1;
     int click[2];
     //inicia o temporizador
+    
     al_start_timer(timer);
     int x = 10;
     int y = 10;
-	
-    while(run){
-        al_draw_bitmap(fundo, 0, 0, 0);
-        ALLEGRO_EVENT ev;
-        //espera por um evento e o armazena em ev
-        al_wait_for_event(event_queue, &ev);
 
-        //evento de fechamento de tela:
-        if(ev.type == ALLEGRO_EVENT_TIMER){  
-            
-        }
-        else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-            run = 0;
-            break;
-        }
-        //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
-        else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-            printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
-        }
-        // detecta codigo da tecla pressionada
-        else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
-            
-            switch (ev.keyboard.keycode){
-                case ALLEGRO_KEY_ESCAPE:
-                    run = 0;
-                    break;
-                case ALLEGRO_KEY_UP:
-                    y -= 30;
-                    break;
-                case ALLEGRO_KEY_DOWN:
-                    y += 30;
-                    break;
-                case ALLEGRO_KEY_LEFT:
-                    x -= 30;
-                    break;
-                case ALLEGRO_KEY_RIGHT:
-                    x += 30;
-                    break;
+    while(run){
+        
+        Match *match = new Match();
+
+        while(match->getwinner() == ""){
+            // const char *c = match->image_pices[0][5].c_str();
+            // ALLEGRO_BITMAP *image = al_load_bitmap(c);
+
+            al_draw_bitmap(fundo, 0, 0, 0);
+            drawn_pieces(*match);
+            // al_draw_bitmap(image, 0, 0, 0);
+            ALLEGRO_EVENT ev;
+
+            //espera por um evento e o armazena em ev
+            al_wait_for_event(event_queue, &ev);
+
+            //evento de fechamento de tela:
+            if(ev.type == ALLEGRO_EVENT_TIMER){  
+                
             }
-            
+            else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+                run = 0;
+                break;
+            }
+            //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
+            else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+                
+                click[0]= ev.mouse.y;
+                click[1]= ev.mouse.x;
+                match->game(click);
+
+                printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+            }
+            //detecta codigo da tecla pressionada
+            else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
+                switch (ev.keyboard.keycode){
+                    case ALLEGRO_KEY_ESCAPE:
+                        run = 0;
+                        break;
+                    case ALLEGRO_KEY_UP:
+                        y -= 30;
+                        break;
+                    case ALLEGRO_KEY_DOWN:
+                        y += 30;
+                        break;
+                    case ALLEGRO_KEY_LEFT:
+                        x -= 30;
+                        break;
+                    case ALLEGRO_KEY_RIGHT:
+                        x += 30;
+                        break;
+                }
+                
+            }
+
+            // drawn_pieces(*match);
+            al_flip_display();
+
         }
-        // TEM QUE FAZER O CLEAR DAS PEÇAs 
         
-        // al_draw_bitmap(fundo, 0, 0, 0);
+        if(match->getwinner() == "White"){
+            //img vitoria Branco
+        }else if(match->getwinner() == "Black"){
+            //img vitoria Preto
+        };
         
-        al_draw_bitmap(peao, x, y, 0);
-        
-        al_flip_display();
+        while(1){
+            ALLEGRO_EVENT ev;
+            //espera por um evento e o armazena em ev
+            al_wait_for_event(event_queue, &ev);
+           
+            //detecta a posição do mouse
+            if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+                if(/*click foi no botao*/1){
+                    printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+                    break;
+                } 
+            }else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+                run = 0;
+                break;
+            }
+        }
+        delete match;
+        //Clean da tela
 	}
 
     al_destroy_display(display);
@@ -119,6 +162,28 @@ int main(){
 
 //Funções:
 
+void drawn_pieces(Match &mat){
+    mat.get_imagespices();
+    int v[2];
+     for(int i=0 ; i<8; i++){
+        int xi = 0;
+       for(int j=0 ; j<8; j++){
+            int yi = 0;
+            if(mat.image_pices[i][j] != ""){
+                const char *c = mat.image_pices[i][j].c_str();
+                ALLEGRO_BITMAP *image = al_load_bitmap(c);
+                al_draw_bitmap(image, yi, xi, 0);
+                al_destroy_bitmap(image);
+                v[0] = i;
+                v[1] = j;
+                std::cout<<mat.bo->get_piece(v)->get_name();
+
+            }
+            yi += 30;
+        } 
+        xi += 10;
+    }
+}
 
 int* array_to_pixel(int* spot){ 
    //ALTERADO PRO NOVO MENU 
@@ -151,6 +216,7 @@ int* pixel_to_array(int* pixel){
 
     return spot;
 }
+
 
 ////CASCATA DE EXECUÇÕES
 

@@ -10,9 +10,9 @@ Pawn::Pawn(std::string color):Piece(color){
     _name= "Pawn";
      
     if(color == "White"){
-        _image = "images/W_Pawn.png";
+        _image = "src/images/W_Pawn.png";
     }else if(color == "Black"){
-        _image = "images/B_Pawn.png";
+        _image = "src/images/B_Pawn.png";
     };
 }
 

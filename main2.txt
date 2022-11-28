@@ -44,8 +44,9 @@ int main(){
 
     //inicializa imagens:
     al_init_image_addon();
-    ALLEGRO_BITMAP *fundo = al_load_bitmap("images/Menu Chess.png");
-    ALLEGRO_BITMAP *peao = al_load_bitmap("images/B_Pawn.png");
+    // ALLEGRO_BITMAP *fundo = al_load_bitmap("images/Chess_Menu.png");
+    ALLEGRO_BITMAP *peao = al_load_bitmap("src/images/W_Pawn.png");
+    ALLEGRO_BITMAP *fundo = al_load_bitmap("src/images/Chess_Menu.png");
 
 	//cria fila de eventos:
 	event_queue = al_create_event_queue();
@@ -64,90 +65,52 @@ int main(){
     int y = 10;
 	
     while(run){
-        Match *match = new Match();
-        // img plano de fundo
+        al_draw_bitmap(fundo, 0, 0, 0);
+        ALLEGRO_EVENT ev;
+        //espera por um evento e o armazena em ev
+        al_wait_for_event(event_queue, &ev);
 
-        while(match->getwinner() == ""){
-           
-            ALLEGRO_EVENT ev;
-            //espera por um evento e o armazena em ev
-            al_wait_for_event(event_queue, &ev);
-
-            //evento de fechamento de tela:
-            if(ev.type == ALLEGRO_EVENT_TIMER){  
-                
-            }
-            else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-                run = 0;
-                break;
-            }
-            //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
-            else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                
-                click[0]= ev.mouse.y;
-                click[1]= ev.mouse.x;
-                match->game(click);
-
-                printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
-            }
-            //detecta codigo da tecla pressionada
-            else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
-                switch (ev.keyboard.keycode){
-                    case ALLEGRO_KEY_ESCAPE:
-                        run = 0;
-                        break;
-                    case ALLEGRO_KEY_UP:
-                        y -= 30;
-                        break;
-                    case ALLEGRO_KEY_DOWN:
-                        y += 30;
-                        break;
-                    case ALLEGRO_KEY_LEFT:
-                        x -= 30;
-                        break;
-                    case ALLEGRO_KEY_RIGHT:
-                        x += 30;
-                        break;
-                }
-                
-            }
-            // TEM QUE FAZER O CLEAR DAS PEÇAs 
+        //evento de fechamento de tela:
+        if(ev.type == ALLEGRO_EVENT_TIMER){  
             
-            al_draw_bitmap(fundo, 0, 0, 0);
-            al_draw_bitmap(peao, x, y, 0);
-
-            //Printar peças e printar marcaçoes
-            al_draw_bitmap(fundo, 0, 0, 0);  
-            al_draw_bitmap(peao, 0, 0, 0);
-
-            al_flip_display();
-
         }
-        
-        if(match->getwinner() == "White"){
-            //img vitoria Branco
-        }else if(match->getwinner() == "Black"){
-            //img vitoria Preto
-        };
-        
-        while(1){
-            ALLEGRO_EVENT ev;
-            //espera por um evento e o armazena em ev
-            al_wait_for_event(event_queue, &ev);
-           
-            //detecta a posição do mouse
-            if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                if(/*click foi no botao*/1){
-                    printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+        else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+            run = 0;
+            break;
+        }
+        //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
+        else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+            printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+        }
+        // detecta codigo da tecla pressionada
+        else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
+            
+            switch (ev.keyboard.keycode){
+                case ALLEGRO_KEY_ESCAPE:
+                    run = 0;
                     break;
-                } 
-            }else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-                run = 0;
-                break;
+                case ALLEGRO_KEY_UP:
+                    y -= 30;
+                    break;
+                case ALLEGRO_KEY_DOWN:
+                    y += 30;
+                    break;
+                case ALLEGRO_KEY_LEFT:
+                    x -= 30;
+                    break;
+                case ALLEGRO_KEY_RIGHT:
+                    x += 30;
+                    break;
             }
+            
         }
-        delete match;
-        //Clean da tela
+        // TEM QUE FAZER O CLEAR DAS PEÇAs 
+        
+        // al_draw_bitmap(fundo, 0, 0, 0);
+        
+        al_draw_bitmap(peao, x, y, 0);
+        
+        al_flip_display();
 	}
 
     al_destroy_display(display);
@@ -227,3 +190,102 @@ int* pixel_to_array(int* pixel){
 
     // //     //destrutor partida 
     // // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    while(match->getwinner() == ""){
+            Board *bd = new Board();
+            int v[2] = {0,7};
+            Piece *p = bd->get_piece(v);
+            std::cout<<p->get_image();
+
+            al_draw_bitmap(fundo, 0, 0, 0);
+            // al_draw_bitmap(image, 0, 0, 0);
+
+            ALLEGRO_EVENT ev;
+
+            //espera por um evento e o armazena em ev
+            al_wait_for_event(event_queue, &ev);
+
+            //evento de fechamento de tela:
+            if(ev.type == ALLEGRO_EVENT_TIMER){  
+                
+            }
+            else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+                run = 0;
+                break;
+            }
+            //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
+            else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+                
+                click[0]= ev.mouse.y;
+                click[1]= ev.mouse.x;
+                match->game(click);
+
+                printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+            }
+            //detecta codigo da tecla pressionada
+            else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
+                switch (ev.keyboard.keycode){
+                    case ALLEGRO_KEY_ESCAPE:
+                        run = 0;
+                        break;
+                    case ALLEGRO_KEY_UP:
+                        y -= 30;
+                        break;
+                    case ALLEGRO_KEY_DOWN:
+                        y += 30;
+                        break;
+                    case ALLEGRO_KEY_LEFT:
+                        x -= 30;
+                        break;
+                    case ALLEGRO_KEY_RIGHT:
+                        x += 30;
+                        break;
+                }
+                
+            }
+
+            // drawn_pieces(*match);
+            al_flip_display();
+
+        }
+        
+        if(match->getwinner() == "White"){
+            //img vitoria Branco
+        }else if(match->getwinner() == "Black"){
+            //img vitoria Preto
+        };
+        
+        while(1){
+            ALLEGRO_EVENT ev;
+            //espera por um evento e o armazena em ev
+            al_wait_for_event(event_queue, &ev);
+           
+            //detecta a posição do mouse
+            if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+                if(/*click foi no botao*/1){
+                    printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+                    break;
+                } 
+            }else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
+                run = 0;
+                break;
+            }
+        }
+        delete match;
+        //Clean da tela

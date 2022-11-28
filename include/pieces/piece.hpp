@@ -28,7 +28,7 @@ using namespace std;
 class Piece {
 
     protected:
-        string _image;
+        const char *_image;
         string _name;
         string _color;
         bool _first_time = true;
@@ -42,7 +42,7 @@ class Piece {
         virtual void def_possible_movements(int* spot);
         string get_color();
         string get_name();
-        string get_image();
+        std::string get_image();
         void not_my_first_time();
         bool get_first_time();
 

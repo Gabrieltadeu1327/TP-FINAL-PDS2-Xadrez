@@ -8,9 +8,9 @@ Queen::Queen(std::string color):Piece(color){
     _name= "Queen";
 
     if(color == "White"){
-        _image = "images/W_Queen.png";
+        _image = "src/images/W_Queen.png";
     }else if(color == "Black"){
-        _image = "images/B_Queen.png";
+        _image = "src/images/B_Queen.png";
     };
 }
 

@@ -7,14 +7,15 @@ class Match{
 std::string turn = "White";
 std::string winner = "";
 std::string image_dots[8][8];
-std::string image_pices[8][8];
 bool selected = false;
 int last_spot[2];
 
-Board *bo = new Board();
+
 
 public:
-    
+    Board *bo = new Board();
+    std::string image_pices[8][8];
+
     Match();
     ~Match();
     //Recebe clicks NO TABULEIRO

@@ -17,7 +17,7 @@ string Piece::get_name(){
     return _name;
 }
 
-string Piece::get_image(){
+std::string Piece::get_image(){
     return _image;
 }
 

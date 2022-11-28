@@ -1,6 +1,6 @@
 all: main
 
-main: match
+main:
 	g++ -I include/ src/main.cpp build/*.o -lallegro -lallegro_image -lallegro_main -o main 
 
 match: board
@@ -34,6 +34,10 @@ pawn: piece
 test: board
 	mkdir test_bin
 	g++ -g -Wall -I include/ -c src/test.cpp build/board.o -o build/test.o
-clear:
-	rm -rf build
+
+cm:
 	rm -f main
+
+clear:
+	rm -f main
+	rm -rf build

@@ -9,9 +9,9 @@ Knight::Knight(string color):Piece(color){
     _name= "Knight";
     
     if(color == "White"){
-        _image = "images/W_Knight.png";
+        _image = "src/images/W_Knight.png";
     }else if(color == "Black"){
-        _image = "images/B_Knight.png";
+        _image = "src/images/B_Knight.png";
     };
 }
 

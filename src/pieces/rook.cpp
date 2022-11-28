@@ -8,9 +8,9 @@ Rook::Rook(string color):Piece(color){
     _name= "Rook";
 
     if(color == "White"){
-        _image = "images/W_Rook.png";
+        _image = "src/images/W_Rook.png";
     }else if(color == "Black"){
-        _image = "images/W_Rook.png";
+        _image = "src/images/B_Rook.png";
     };
 }
 

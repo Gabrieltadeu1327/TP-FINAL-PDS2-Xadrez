@@ -8,9 +8,9 @@ Bishop::Bishop(string color):Piece(color){
     _name = "Bishop";
     
     if(color == "White"){
-        _image = "images/W_Bishop.png";
+        _image = "src/images/W_Bishop.png";
     }else if(color == "Black"){
-        _image = "images/B_Bishop.png";
+        _image = "src/images/B_Bishop.png";
     };
 }
 

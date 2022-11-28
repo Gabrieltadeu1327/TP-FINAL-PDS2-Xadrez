@@ -1,10 +1,13 @@
 #include "../include/match.hpp"
+#include <iostream>
 
-
-Match::Match(){};
+Match::Match(){
+    // int v[2] = {0, 3};
+    // std::cout<<bo->get_image(v);
+    std::cout<<"criou match";
+};
 
 Match::~Match(){
-
     delete bo;
 }
 //retorna a matriz de imgs do tabuleiro
@@ -15,7 +18,7 @@ std::string** Match::get_imagespices(){
        for(int j=0 ; j<8; j++){
         v[0]=i; 
         v[1]=j;
-        image_pices[i][j]= bo->get_image(v);
+        image_pices[i][j] = bo->get_image(v);
         } 
     }
     return (std::string**)image_pices;

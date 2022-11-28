@@ -8,7 +8,7 @@ Board::Board(){
    for (int i= 0; i<8; i++){
         for (int j= 0; j<8; j++)
         {
-            board[i][j]= nullptr;
+            this->board[i][j]= nullptr;
         }
    }
    
@@ -45,7 +45,7 @@ Board::Board(){
 //retorna a peça de um endereço
 Piece* Board::get_piece(int* spot){
 
-    return board[*spot][*(spot +1)];
+    return this->board[*spot][*(spot +1)];
 
 }
 // Muda a posição de uma peça e declara 
