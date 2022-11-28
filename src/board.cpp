@@ -379,13 +379,14 @@ int spot[2];
 bool Board::ischeque(std::string color){
 
     int xeque = 0;
-    refresh_atc_matriz("color");
 
     if(color == "White"){
+        refresh_atc_matriz("Black");
+       
         for(int  i= 0; i< 8; i++){
             for(int  j= 0; j< 8; j++){
                 if(board[i][j] != nullptr){
-                    if(board[i][j]->get_name()== "King" && white_atc_mat[i][j]==1){
+                    if(board[i][j]->get_name()== "King" && black_atc_mat[i][j]==1){
                         xeque =1;
                     }
                 }
@@ -393,10 +394,12 @@ bool Board::ischeque(std::string color){
         }
 
     }else if(color == "Black"){
+       refresh_atc_matriz("White");
+       
         for(int  i= 0; i< 8; i++){
             for(int  j= 0; j< 8; j++){
                 if(board[i][j] != nullptr){
-                    if(board[i][j]->get_name()== "King" && black_atc_mat[i][j]==1){
+                    if(board[i][j]->get_name()== "King" && white_atc_mat[i][j]==1){
                         xeque =1;
                     }
                 }

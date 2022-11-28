@@ -11,7 +11,7 @@ Match::~Match(){
     delete bo;
 }
 //retorna a matriz de imgs do tabuleiro
-std::string** Match::get_imagespices(){
+void Match::refresh_imagespices(){
     
     int v[2];
     for(int i=0 ; i<8; i++){
@@ -21,25 +21,28 @@ std::string** Match::get_imagespices(){
         image_pices[i][j] = bo->get_image(v);
         } 
     }
-    return (std::string**)image_pices;
+
 }
 
-std::string** Match::get_imagesdots(){
-    return (std::string**)image_dots;
+void Match::refresh_imagesdots(){
+    
 };
 
 std::string Match::getwinner(){
     return winner;
 }
-void Match::game(int *spot){
+void Match::game(int spot[0]){
 
     int** mat;
 
     if(selected){
       
-        if(image_dots[*spot][(*spot+1)] != ""){
+        if(image_dots[spot[0]][(spot[0]+1)] != ""){
             bo->set_piece(last_spot,spot);
-            
+                if(bo->get_piece(spot)->get_name() == "King"){
+                    winner= turn;
+                }
+
             if(turn =="white"){
                 turn = "Black";
             }else{
@@ -53,7 +56,7 @@ void Match::game(int *spot){
             } 
         }
         selected = false; 
-        
+
     } else{
         if(bo->get_piece(spot) != nullptr){
             if(bo->get_collor(spot) == turn){
