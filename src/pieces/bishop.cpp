@@ -1,6 +1,6 @@
 //#define NDEBUG
 #include "../../include/pieces/bishop.hpp"
-#include <cassert>
+// #include <cassert>
 
 using namespace std;
 
@@ -8,9 +8,9 @@ Bishop::Bishop(string color):Piece(color){
     _name = "Bishop";
     
     if(color == "White"){
-        _image = "";
+        _image = "images/W_Bishop.png";
     }else if(color == "Black"){
-        _image = "";
+        _image = "images/B_Bishop.png";
     };
 }
 
@@ -19,7 +19,7 @@ void Bishop::def_possible_movements(int* spot){
   // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<8; i++){
         for(int j=0; j<8; j++){
-            assert( i < 0 || i >= 8 || j < 0 || j >= 8 );
+            //assert( i < 0 || i >= 8 || j < 0 || j >= 8 );
             _possibles_movements[i][j]=0;
         }
     };
@@ -34,7 +34,6 @@ void Bishop::def_possible_movements(int* spot){
                 
                 for( int i=*spot; i>0 && i<8; i+= ci){
                     for( int j= *(spot +1); j>0 && j<8; j+= cj){
-                        
                         _possibles_movements[i][j]=1;
                     }
                 }
@@ -50,28 +49,28 @@ void Bishop::def_possible_movements(int* spot){
     if(this->get_color() == "white"){
         //Possibilidades Diagonal pra DIREITA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb < 8; ed++, cb++){
-            assert(ed >= 8 && cd >= 8);
+            //assert(ed >= 8 && cd >= 8);
         _possibles_movements[ed][cb] = 1;
 
-            assert(ed >= 8 && cb >= 8);
+            //assert(ed >= 8 && cb >= 8);
             _possibles_movements[ed][cb] = 1;
         }
 
         //Possibilidades Diagonal pra ESQUERDA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb < 8; ed--, cb++){
-            assert(ed <= -1 && cb >= 8);
+            //assert(ed <= -1 && cb >= 8);
         _possibles_movements[ed][cb] = 1;
         }
 
         //Possibilidades Diagonal pra DIREITA e pra BAIXO;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb > -1; ed++, cb--){
-            assert(ed >= 8 && cb <= -1);
+            //assert(ed >= 8 && cb <= -1);
         _possibles_movements[ed][cb] = 1;
         }
 
         //Possibilidades Diagonal pra ESQUERDA e pra BAIXO;
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb > -1; ed--, cb--){
-            assert(ed <= -1 && cb <= -1);
+            //assert(ed <= -1 && cb <= -1);
         _possibles_movements[ed][cb] = 1;
         }
     }
@@ -79,7 +78,7 @@ void Bishop::def_possible_movements(int* spot){
     if(this->get_color() == "black"){
         //Possibilidades Diagonal pra DIREITA e pra CIMA;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb < 8; ed++, cb++){
-            assert(ed >= 8 && cb >= 8);
+            //assert(ed >= 8 && cb >= 8);
         _possibles_movements[ed][cb] = 1;
         }
 
@@ -90,12 +89,12 @@ void Bishop::def_possible_movements(int* spot){
 
         //Possibilidades Diagonal pra DIREITA e pra BAIXO;
         for(int ed = *spot, cb = *(spot+1); ed < 8 && cb > -1; ed++, cb--)
-            assert(ed >= 8 && cb <= -1);
+            //assert(ed >= 8 && cb <= -1);
         _possibles_movements[ed][cb] = 1;
 
         //Possibilidades Diagonal pra ESQUERDA e pra BAIXO;
         for(int ed = *spot, cb = *(spot+1); ed > -1 && cb > -1; ed--, cb--)
-            assert(ed <= -1 && cb <= -1);
+            //assert(ed <= -1 && cb <= -1);
         _possibles_movements[ed][cb] = 1;
     }
     */

@@ -31,6 +31,9 @@ queen:
 pawn: piece
 	g++ -g -Wall -I include/pieces/ -c src/pieces/pawn.cpp build/piece.o -o build/pawn.o
 
+test: board
+	mkdir test_bin
+	g++ -g -Wall -I include/ -c src/test.cpp build/board.o -o build/test.o
 clear:
 	rm -rf build
 	rm -f main

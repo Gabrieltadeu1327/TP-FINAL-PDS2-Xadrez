@@ -6,7 +6,6 @@ using namespace std;
 
 Piece::Piece(string color){
     _color = color;
-
 }
 void Piece::def_possible_movements(int* spot){}
 

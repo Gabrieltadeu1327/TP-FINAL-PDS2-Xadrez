@@ -1,6 +1,6 @@
 //#define NDEBUG
 #include "../../include/pieces/king.hpp"
-#include <cassert>
+// #include <c////assert>
 
 using namespace std;
 
@@ -8,9 +8,9 @@ King::King(string color):Piece(color){
     _name= "King";
     
     if(color == "White"){
-        _image = "";
+        _image = "images/W_King.png";
     }else if(color == "Black"){
-        _image = "";
+        _image = "images/B_King.png";
     };
 }
 
@@ -18,16 +18,16 @@ void King::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<8; i++){
-        assert(0 <= i && i >= 8);
+        ////assert(0 <= i && i >= 8);
         for(int j=0; j<8; j++){
-            assert(0 <= j && j >= 8);
+            ////assert(0 <= j && j >= 8);
             _possibles_movements[i][j]=0;
         }
     };
 
-// Primeira implementação de try/catch e assert juntos
+// Primeira implementação de try/catch e ////assert juntos
 
-try{for (int i=(*spot)-1; i< (*spot)+1; i++){
+    for (int i=(*spot)-1; i< (*spot)+1; i++){
         for(int j= *(spot+1)-1 ; j< *(spot+1)+1; j++){
             if(i>=0 && i<8 &&
                j>= 0 && j<8){
@@ -39,13 +39,7 @@ try{for (int i=(*spot)-1; i< (*spot)+1; i++){
     //Zera a casa da posição atual das peças:
     _possibles_movements[*spot][*(spot+1)]= 0;
 
-    }catch(exception& e){
-        cout << "Erro: " << e.what() << endl;
-    }
-
-
-
-
+}
 /*
     if(this->get_color() == "white"){
         //Possibilidades Cima;
@@ -130,4 +124,4 @@ try{for (int i=(*spot)-1; i< (*spot)+1; i++){
    
 
 
-}
+

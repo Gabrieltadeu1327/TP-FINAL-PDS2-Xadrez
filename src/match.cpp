@@ -43,12 +43,13 @@ void Match::game(int *spot){
                 turn = "White";
             }
         }
-        selected = false; 
+        
         for(int i=0 ; i<8; i++){
             for(int j=0 ; j<8; j++){
             image_dots[i][j]= "";
             } 
         }
+        selected = false; 
         
     } else{
         if(bo->get_piece(spot) != nullptr){
@@ -59,9 +60,9 @@ void Match::game(int *spot){
                         if(mat[i][j]== 0){
                             image_dots[i][j] = "";
                         }else if(mat[i][j]== 1){
-                            image_dots[i][j] = "";//BOTAR ENDEREÇO QUADRADO VERDE
+                            image_dots[i][j] = "images/Possible_Mov";//BOTAR ENDEREÇO QUADRADO VERDE
                         }else if(mat[i][j]== -1){
-                            image_dots[i][j] = "";//BOTAR ENDEREÇO QUADRADO VERMELHO
+                            image_dots[i][j] = "images/Impossible_Mov";//BOTAR ENDEREÇO QUADRADO VERMELHO
                         }
                     } 
                 }

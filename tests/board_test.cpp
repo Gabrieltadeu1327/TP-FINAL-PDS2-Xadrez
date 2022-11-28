@@ -1,7 +1,8 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #define CHECK_THROWS
-#include "doctest.h"
-#include "board.hpp"
+#include "../third_party/doctest.h"
+#include "../include/board.hpp"
+
 #include <iostream>
 
 TEST_CASE("Testando Matrizes") {
