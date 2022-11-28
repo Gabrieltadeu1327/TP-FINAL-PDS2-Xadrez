@@ -70,6 +70,8 @@ void Match::game(int *spot){
                     } 
                 }
                 selected = true;
+                last_spot[0] = spot[0];
+                last_spot[1] = spot[1];
             }
         }
     }

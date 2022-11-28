@@ -26,74 +26,94 @@ void Knight::def_possible_movements(int* spot){
         }
     };
     
+        for(int ci= -2; ci<3; ci++){
+            for(int cj=-2; cj<3; cj++){
+            
+                if(std::abs(ci)== std::abs(cj) || ci==0 || cj == 0){
+                    continue;
+                }
+                
+                if(spot[0] +ci>= 0 && spot[0] +ci <8 &&
+                   spot[1] +cj>= 0 && spot[1] +cj<8){
+                    _possibles_movements[spot[0]+ci][spot[1]+cj] =1;
+                }
+
+
+            }
+    }
+    
+    /*
    // if(this->get_color() == "white"){
-        for(int ed = *spot, cb = *(spot), count = 0; ed > -1 && count < 2; ed--, cb+=2, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; ed > -1 && count < 2; ed--, cb+=2, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count  = 0; ed < 8 && count < 2; ed--, cb-=2, count++){
+        for(int ed = spot[0], cb = spot[1], count  = 0; ed < 8 && count < 2; ed--, cb-=2, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; cb < 8 && count < 2;ed-=2, cb++, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; cb < 8 && count < 2;ed-=2, cb++, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; cb < 8 && count < 2;ed-=2, cb--, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; cb < 8 && count < 2;ed-=2, cb--, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; ed > -1 && count < 2; ed++, cb+=2, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; ed > -1 && count < 2; ed++, cb+=2, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count  = 0; ed < 8 && count < 2; ed++, cb-=2, count++){
+        for(int ed = spot[0], cb = spot[1], count  = 0; ed < 8 && count < 2; ed++, cb-=2, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; cb < 8 && count < 2;ed+=2, cb++, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; cb < 8 && count < 2;ed+=2, cb++, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; cb < 8 && count < 2;ed+=2, cb--, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; cb < 8 && count < 2;ed+=2, cb--, count++){
         _possibles_movements[ed][cb] = 1;
         }
  //   }
+*/
+    //Zera a casa da posição atual das peças:
+    _possibles_movements[spot[0]][*(spot+1)]= 0; 
+}
+
 
    /* if(this->get_color() == "black"){
-        for(int ed = *spot, cb = *(spot), count = 0; ed > -1 && count < 2; ed--, cb+=2, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; ed > -1 && count < 2; ed--, cb+=2, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count  = 0; ed < 8 && count < 2; ed--, cb-=2, count++){
+        for(int ed = spot[0], cb = spot[1], count  = 0; ed < 8 && count < 2; ed--, cb-=2, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; cb < 8 && count < 2;ed-=2, cb++, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; cb < 8 && count < 2;ed-=2, cb++, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; cb < 8 && count < 2;ed-=2, cb--, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; cb < 8 && count < 2;ed-=2, cb--, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; ed > -1 && count < 2; ed++, cb+=2, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; ed > -1 && count < 2; ed++, cb+=2, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count  = 0; ed < 8 && count < 2; ed++, cb-=2, count++){
+        for(int ed = spot[0], cb = spot[1], count  = 0; ed < 8 && count < 2; ed++, cb-=2, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; cb < 8 && count < 2;ed+=2, cb++, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; cb < 8 && count < 2;ed+=2, cb++, count++){
         _possibles_movements[ed][cb] = 1;
         }
 
-        for(int ed = *spot, cb = *(spot), count = 0; cb < 8 && count < 2;ed+=2, cb--, count++){
+        for(int ed = spot[0], cb = spot[1], count = 0; cb < 8 && count < 2;ed+=2, cb--, count++){
         _possibles_movements[ed][cb] = 1;
         }
     }
 */
-    //Zera a casa da posição atual das peças:
-    _possibles_movements[*spot][*(spot+1)]= 0; 
-}
+

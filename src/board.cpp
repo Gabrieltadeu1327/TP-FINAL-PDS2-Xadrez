@@ -45,7 +45,7 @@ Board::Board(){
 //retorna a peça de um endereço
 Piece* Board::get_piece(int* spot){
 
-    return this->board[*spot][*(spot +1)];
+    return this->board[spot[0]][*(spot +1)];
 
 }
 // Muda a posição de uma peça e declara 
@@ -227,36 +227,36 @@ int** Board::def_valid_moviments( int* spot){
     if(p->get_name() == "Pawn"){
         if(p->get_color()== "Black"){
             //movimento frontal
-            if(board[*spot+1][*(spot+1)] != nullptr){
-                mat[*spot+1][*(spot+1)] == 0;
+            if(board[spot[0]+1][spot[1]] != nullptr){
+                mat[spot[0]+1][spot[1]] == 0;
                 //Remoção de corte no caminho
-                mat[*spot+2][*(spot+1)] == 0;
+                mat[spot[0]+2][spot[1]] == 0;
             }
             //Veririfacção movimento diagonal
-            if(*spot !=7){
-                if(board[*spot+1][*(spot+1)+1] != nullptr){
-                mat[*spot+1][*(spot+1)] == 1;
+            if(spot[0] !=7){
+                if(board[spot[0]+1][spot[1]+1] != nullptr){
+                mat[spot[0]+1][spot[1]] == 1;
                 }
-            }if(*spot !=0){
-                if(board[*spot+1][*(spot+1)-1] != nullptr){
-                mat[*spot+1][*(spot-1)] == 1;
+            }if(spot[0] !=0){
+                if(board[spot[0]+1][spot[1]-1] != nullptr){
+                mat[spot[0]+1][*(spot-1)] == 1;
                 }
             }
         }else{
             //movimento frontal
-            if(board[*spot-1][*(spot+1)] != nullptr){
-                mat[*spot-1][*(spot+1)] == 0;
+            if(board[spot[0]-1][spot[1]] != nullptr){
+                mat[spot[0]-1][spot[1]] == 0;
                 //Remoção de corte no caminho
-                mat[*spot+2][*(spot+1)] == 0;
+                mat[spot[0]+2][spot[1]] == 0;
             }
             //Veririfacção movimento diagonal
-            if(*spot !=7){
-                if(board[*spot-1][*(spot+1)+1] != nullptr){
-                mat[*spot-1][*(spot+1)] == 1;
+            if(spot[0] !=7){
+                if(board[spot[0]-1][spot[1]+1] != nullptr){
+                mat[spot[0]-1][spot[1]] == 1;
                 }
-            }if(*spot !=0){
-                if(board[*spot-1][*(spot+1)-1] != nullptr){
-                mat[*spot-1][*(spot-1)] == 1;
+            }if(spot[0] !=0){
+                if(board[spot[0]-1][spot[1]-1] != nullptr){
+                mat[spot[0]-1][*(spot-1)] == 1;
                 }
             }
         }
@@ -275,7 +275,7 @@ int** Board::def_valid_moviments( int* spot){
                     continue;
                 }
 
-                for( int i=*spot; i>0 && i<8; i+= ci){
+                for( int i=spot[0]; i>0 && i<8; i+= ci){
                     for( int j= *(spot +1); j>0 && j<8; j+= cj){
                     
                        mat[i][j] *=sum;
@@ -409,7 +409,7 @@ bool Board::ischeque(std::string color){
 }
 
 std::string Board::get_collor(int* spot){
-    return board[*spot][*(spot+1)]->get_color();
+    return board[spot[0]][spot[1]]->get_color();
 };
 
 Board::~Board(){

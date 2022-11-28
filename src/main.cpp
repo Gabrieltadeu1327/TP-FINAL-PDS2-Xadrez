@@ -101,7 +101,7 @@ int main(){
                 click[1]= ev.mouse.x;
                 match->game(click);
 
-                printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+                printf("\n mouse clicando em: %d, %d", ev.mouse.y, ev.mouse.x); 
             }
             //detecta codigo da tecla pressionada
             else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
