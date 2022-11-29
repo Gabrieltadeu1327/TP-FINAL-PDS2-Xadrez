@@ -1,13 +1,16 @@
 /**
  * @file board.hpp
- * @authors group
- * @brief superclasse com a lógica de board
- * @version 1.0
- * @date 2022-11-24
+ * @author group
+ * @brief superclasse com a lógica do board
+ * @version 0.1
+ * @date 2022-11-28
  * @details aqui tratamos as relações que ocorrem entre as peças.
- *  Cada função aqui descrita retorna para main valores que serão
- *  utilizados durante o processamento de cada jogada feita.
- */ 
+ * Cada função aqui descrita retorna para main valores que serão
+ * utilizados durante o processamento de cada jogada feita.
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef BOARD_HPP
 #define BOARD_HPP
@@ -28,7 +31,6 @@
  *  a função que move a peça de um ponto inicial para um final, as funções de atualização e verificação de nulidade de 
  *  um ponteiro.
  */ 
-
 class Board{
 
     private:
@@ -39,7 +41,7 @@ class Board{
         int black_atc_mat[8][8];
 
     public:
-       
+    
         Board();
         ~Board();
 

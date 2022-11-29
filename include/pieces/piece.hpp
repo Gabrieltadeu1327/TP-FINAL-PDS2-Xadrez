@@ -1,16 +1,19 @@
 /**
  * @file piece.hpp
- * @authors group
+ * @author group
  * @brief superclasse com a lógica de piece
- * @version 1.0
- * @date 2022-11-24
+ * @version 0.1
+ * @date 2022-11-28
  * @details nessa superclasse ocorre a criação das váriaveis de 
- *  cada peça(imagem, nome, cor, primeiro turno).
- *  Criamos a matriz de possíveis movimentos, a ser utilizada por
- *  cada subclasse de peça. Além de criar as funções que geram a peça
- *  e captam sua imagem, nome, cor e turno. Cria também a função 
- *  virtual def_possible_movements que é reescrita pelas subclasses (polimorfismo).
- */ 
+ * cada peça(imagem, nome, cor, primeiro turno).
+ * Criamos a matriz de possíveis movimentos, a ser utilizada por
+ * cada subclasse de peça. Além de criar as funções que geram a peça
+ * e captam sua imagem, nome, cor e turno. Cria também a função 
+ * virtual def_possible_movements que é reescrita pelas subclasses (polimorfismo).
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef PIECE_HPP
 #define PIECE_HPP
@@ -24,7 +27,6 @@ using namespace std;
  * @details cria a matriz de possíveis movimentos, cria as funções de 
  *  definição dos possíveis movimentos, detecção de cor, nome da peça, imagem e turno da peça.
  */ 
-
 class Piece {
 
     protected:

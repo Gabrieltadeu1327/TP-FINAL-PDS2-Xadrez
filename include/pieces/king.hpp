@@ -1,14 +1,17 @@
 /**
  * @file king.hpp
- * @authors group
+ * @author group
  * @brief subclasse com a lógica do king
- * @version 1.0
- * @date 2022-11-24
+ * @version 0.1
+ * @date 2022-11-28
  * @details responsável por construir a subclasse king
- *  e chamar a função def_possible_movements,
- *  além de retornar uma variável booleana que avisa se há cheque
- *  ou não.
- */ 
+ * e chamar a função def_possible_movements,
+ * além de retornar uma variável booleana que avisa se há cheque
+ * ou não.
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef KING_HPP
 #define KING_HPP
@@ -24,7 +27,6 @@ using namespace std;
  *  uma matriz de possíveis movimentos recebendo seu ponto atual, retornamos a função de 
  *  cheque e  determinamos os movimentos caso o rei esteja em cheque.
  */ 
-
 class King: public Piece {
     private:
         bool xeque= false;

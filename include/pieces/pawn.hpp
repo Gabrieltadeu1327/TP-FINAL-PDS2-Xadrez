@@ -1,13 +1,16 @@
 /**
  * @file pawn.hpp
- * @authors group
+ * @author group
  * @brief subclasse com a lógica do pawn
- * @version 1.0
- * @date 2022-11-24
+ * @version 0.1
+ * @date 2022-11-28
  * @details Responsável por construir a subclasse pawn
- *  e chamar a função def_possible_movements, além de chamar
- *  a função de movimentação especial promotion.
- */ 
+ * e chamar a função def_possible_movements, além de chamar
+ * a função de movimentação especial promotion.
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef PAWN_HPP
 #define PAWN_HPP
@@ -22,7 +25,6 @@ using namespace std;
  *  recebendo seu ponto atual, realizamos a função de promoção, que promove o peão
  *  a uma peça mais forte, a rainha.
  */ 
-
 class Pawn: public Piece {
     private:
 

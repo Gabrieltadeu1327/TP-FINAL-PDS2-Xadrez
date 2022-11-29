@@ -1,12 +1,15 @@
 /**
  * @file knight.hpp
- * @authors group
+ * @author group
  * @brief subclasse com a lógica do knight
- * @version 1.0
- * @date 2022-11-24
+ * @version 0.1
+ * @date 2022-11-28
  * @details Responsável por construir a subclasse knight
- *  e chamar a função def_possible_movements.
- */ 
+ * e chamar a função def_possible_movements.
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef KNIGHT_HPP
 #define KNIGHT_HPP
@@ -20,7 +23,6 @@ using namespace std;
  *  o cavalo recebendo sua cor, determinamos uma matriz de possíveis movimentos
  *  recebendo seu ponto atual.
  */
-
 class Knight: public Piece {
 
     public:
