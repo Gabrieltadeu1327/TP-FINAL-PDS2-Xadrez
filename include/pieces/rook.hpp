@@ -1,12 +1,15 @@
 /**
  * @file rook.hpp
- * @authors group
- * @brief subclasse com a lógica do rook
- * @version 1.0
- * @date 2022-11-24
+ * @author group
+ * @brief subclasse com a lógica do rook 
+ * @version 0.1
+ * @date 2022-11-28
  * @details Responsável por construir a subclasse rook
- *  e chamar a função def_possible_movements.
- */ 
+ * e chamar a função def_possible_movements.
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #ifndef ROOK_HPP
 #define ROOK_HPP
@@ -14,6 +17,12 @@
 #include "piece.hpp"
 using namespace std;
 
+/**
+ * @brief define os possíveis movimentos
+ * @details dentro da subclasse Rook, que herda de Piece, construímos
+ *  o cavalo recebendo sua cor, determinamos uma matriz de possíveis movimentos
+ *  recebendo seu ponto atual.
+ */ 
 class Rook: public Piece {
 
     public:
