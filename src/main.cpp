@@ -14,9 +14,9 @@
 #include "../include/board.hpp"
 
 
-int* array_to_pixel(int* spot);
-int* pixel_to_array(int* pixel);
-void drawn_pieces(Match &mat);
+void array_to_pixel(int* spot, int *pixel);
+void pixel_to_array(int* pixel, int*spot);
+void drawn_board(Match &mat);
 
 const int SC_W = 600;
 const int SC_H = 700;
@@ -27,7 +27,6 @@ Rook *r = new Rook("Black");
 
 using namespace std;
 int main(){
-    std::cout<<"run";
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
     ALLEGRO_TIMER *timer = NULL;
@@ -52,6 +51,7 @@ int main(){
     //inicializa imagens:
     al_init_image_addon();
     ALLEGRO_BITMAP *fundo = al_load_bitmap("src/images/Chess_Menu.png");
+    ALLEGRO_BITMAP *image = al_load_bitmap("src/images/B_Queen.png");
 
 	//cria fila de eventos:
 	event_queue = al_create_event_queue();
@@ -63,7 +63,6 @@ int main(){
     al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	
 	int run = 1;
-    int click[2];
     //inicia o temporizador
     
     al_start_timer(timer);
@@ -74,34 +73,38 @@ int main(){
         
         Match *match = new Match();
 
-        while(match->getwinner() == ""){
-            // const char *c = match->image_pices[0][5].c_str();
-            // ALLEGRO_BITMAP *image = al_load_bitmap(c);
-
-            al_draw_bitmap(fundo, 0, 0, 0);
-            drawn_pieces(*match);
-            // al_draw_bitmap(image, 0, 0, 0);
+        while(match->getwinner() == "" && run == 1){
+            match->refresh_imagespices();
+            match->refresh_imagesdots();
             ALLEGRO_EVENT ev;
 
             //espera por um evento e o armazena em ev
             al_wait_for_event(event_queue, &ev);
 
             //evento de fechamento de tela:
-            if(ev.type == ALLEGRO_EVENT_TIMER){  
-                
+            if(ev.type == ALLEGRO_EVENT_TIMER){
+                al_draw_bitmap(fundo, 0, 0, 0);
+                // int sp[2];
+                // int place[2] = {140, 300};
+                // pixel_to_array(place, sp);
+                // array_to_pixel(sp, place);
+                // al_draw_bitmap(image, place[0], place[1], 0);
+                drawn_board(*match);
+                al_flip_display();
             }
             else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-                run = 0;
+                run == 0;
                 break;
             }
             //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
             else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+                int click[2] = {ev.mouse.x, ev.mouse.y};
+                int sp[2];
+                pixel_to_array(click, sp);
+    
+                match->game(sp);
                 
-                click[0]= ev.mouse.y;
-                click[1]= ev.mouse.x;
-                match->game(click);
-
-                printf("\n mouse clicando em: %d, %d", ev.mouse.y, ev.mouse.x); 
+                printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
             }
             //detecta codigo da tecla pressionada
             else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -126,7 +129,7 @@ int main(){
             }
 
             // drawn_pieces(*match);
-            al_flip_display();
+
 
         }
         
@@ -134,7 +137,9 @@ int main(){
             //img vitoria Branco
         }else if(match->getwinner() == "Black"){
             //img vitoria Preto
-        };
+        }else if(run == 0){
+            break;
+        }
         
         while(1){
             ALLEGRO_EVENT ev;
@@ -155,66 +160,70 @@ int main(){
         delete match;
         //Clean da tela
 	}
-
-    al_destroy_display(display);
     al_destroy_event_queue(event_queue);
 }
 
 //Funções:
 
-void drawn_pieces(Match &mat){
-    mat.get_imagespices();
-    int v[2];
+void drawn_board(Match &mat){
+    mat.refresh_imagespices();
      for(int i=0 ; i<8; i++){
-        int xi = 0;
        for(int j=0 ; j<8; j++){
-            int yi = 0;
+        
+            //Se houver uma string de endereço na matriz ele printa a imagem
             if(mat.image_pices[i][j] != ""){
                 const char *c = mat.image_pices[i][j].c_str();
                 ALLEGRO_BITMAP *image = al_load_bitmap(c);
-                al_draw_bitmap(image, yi, xi, 0);
+                
+                //define a posição das peças no tabuleiro:
+                int place[2];
+                int sp[2] = {i, j};
+                array_to_pixel(sp, place);
+                
+                //desenha imagem no local correto
+                al_draw_bitmap(image, place[0], place[1], 0);
                 al_destroy_bitmap(image);
-                v[0] = i;
-                v[1] = j;
-                std::cout<<mat.bo->get_piece(v)->get_name();
-
             }
-            yi += 30;
+        
+            if(mat.image_dots[i][j] != ""){
+                const char *c = mat.image_dots[i][j].c_str();
+                ALLEGRO_BITMAP *image = al_load_bitmap(c);
+                
+                //define a posição das peças no tabuleiro:
+                int place[2];
+                int sp[2] = {i, j};
+                array_to_pixel(sp, place);
+                
+                //desenha imagem no local correto
+                al_draw_bitmap(image, place[0], place[1], 0);
+                al_destroy_bitmap(image);
+            }
         } 
-        xi += 10;
     }
 }
 
-int* array_to_pixel(int* spot){ 
-   //ALTERADO PRO NOVO MENU 
-    int *pixel;
-    //para passar pra próxima casa (+68/69px)
-    //eixo x
-        // if(*(spot) % 2 == 0) 
-            *pixel = 26 + (*(spot) * 69);
-        // else
-        //     *pixel = 27 + (*(spot) * 68);
-    //eixo y
-        // if(*(spot+1) % 2 == 0)
-            *(pixel+1) = 127 + (*(spot+1) * 69);
-        // else
-        //     *(pixel+1) = 228 + (*(spot+1) * 68);
-
-    return pixel;
+void array_to_pixel(int* spot, int *pixel){ 
+    *pixel = 26 + (*(spot + 1) * 69); 
+    *(pixel+1) = 127 + (*(spot) * 69);
+      
 }
 
-int* pixel_to_array(int* pixel){
-    //ALTERADO PRO NOVO MENU
-    int *spot;
+void pixel_to_array(int* pixel, int* spot){
+    if(*pixel >= 420 && *pixel <= 530 &&
+        *(pixel+1)>= 40 &&  *(pixel+1)<= 85 ){
+        throw "Give up pressionado";
+    }
+
+    if(*pixel >= 420 && *pixel <= 530 &&
+        *(pixel+1)>= 40 &&  *(pixel+1)<= 85){
+        throw "Fora do tabuleiro";
+    }
     //eixo x
     *pixel -= 26; //tira 26 pq as casas começam a partir do pixel 26
-    *spot = (*pixel/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
-
+    *(spot + 1) = (*pixel/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
     //eixo y
     *(pixel+1) -= 127; //tira 26 pq as casas começam a partir do pixel 26
-    *(spot+1) = (*(pixel+1)/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
-
-    return spot;
+    *spot = (*(pixel+1)/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
 }
 
 

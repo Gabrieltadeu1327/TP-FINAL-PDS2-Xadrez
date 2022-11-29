@@ -45,7 +45,7 @@ class Board{
 
         Piece* get_piece(int* spot);
 
-        int** def_valid_moviments(int* spot); 
+        void def_valid_moviments(int* spot, int mat[8][8]); 
 
         void set_piece(int* atual_spot, int* spot);
 

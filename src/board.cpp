@@ -120,18 +120,22 @@ std::string Board::get_image(int* spot){
 }
 
 //Restrinje os movimentos validos
-int** Board::def_valid_moviments( int* spot){
+void Board::def_valid_moviments( int* spot, int mat[8][8]){
 
     Piece* p = get_piece(spot);
     if(p == nullptr){
- 
-        throw std::invalid_argument("ponteiro nulo");
-        return nullptr; 
+        throw std::invalid_argument("ponteiro nulo"); 
     }
-
-    int** mat;
-    mat= (int**)(p->_possibles_movements);
- 
+    
+    p->def_possible_movements(spot);
+    
+    for(int i= 0; i< 8; i++){
+        for(int j= 0; j< 8; j++){
+            mat[i][j] = p->_possibles_movements[i][j];
+        }  
+    }
+   
+    std::cout<< "passou primeira verificação\n";
 
     //eliminando casos de mesma cor   
     for(int i= 0; i< 8; i++){
@@ -143,7 +147,7 @@ int** Board::def_valid_moviments( int* spot){
             }    
         }  
     }
-
+    std::cout<< "passou for\n";
     // Como cavalo n move para os lados, ele está ok 
     if(p->get_name()== "Knight"){
     
@@ -225,6 +229,9 @@ int** Board::def_valid_moviments( int* spot){
     }else 
     //Pião possui padrao de movimento dependente e movimentos especiais
     if(p->get_name() == "Pawn"){
+        
+        std::cout<< "entou peao\n";
+        
         if(p->get_color()== "Black"){
             //movimento frontal
             if(board[spot[0]+1][spot[1]] != nullptr){
@@ -263,7 +270,7 @@ int** Board::def_valid_moviments( int* spot){
 
     // Remoção das falhas nos caminhos ( rainha, Bispo, torre) 
     }else{
- 
+        std::cout<<"entou ultima verificação\n";
         int sum;
 
         for(int ci= -1; ci<2; ci++){
@@ -301,13 +308,12 @@ int** Board::def_valid_moviments( int* spot){
             }    
         }  
     }
-
-    return mat;
+;
 }
 
 void Board::refresh_atc_matriz(string cor){
 
-int** piece_mov; 
+int piece_mov[8][8]; 
 int spot[2];
 
     if(cor == "White"){
@@ -327,7 +333,7 @@ int spot[2];
             if(board[i][j] != nullptr){
                 if((board[i][j])->get_color()== "White"){
                     
-                        piece_mov = def_valid_moviments(spot);
+                        def_valid_moviments(spot, piece_mov);
 
                         for(int z= 0; z< 8; z++){
                         for(int y= 0; y< 8; y++){
@@ -358,7 +364,7 @@ int spot[2];
             if(board[i][j] != nullptr){
                 if((board[i][j])->get_color()== "Black" ){
                    
-                    piece_mov = def_valid_moviments(spot);
+                    def_valid_moviments(spot, piece_mov);
 
                     for(int z= 0; z< 8; z++){
                     for(int y= 0; y< 8; y++){
@@ -375,6 +381,7 @@ int spot[2];
     }
    
 };
+
 // Retrona 1 se é cheque mate
 bool Board::ischeque(std::string color){
 

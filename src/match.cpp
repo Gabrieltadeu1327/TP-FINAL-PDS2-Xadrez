@@ -1,11 +1,7 @@
 #include "../include/match.hpp"
 #include <iostream>
 
-Match::Match(){
-    // int v[2] = {0, 3};
-    // std::cout<<bo->get_image(v);
-    std::cout<<"criou match";
-};
+Match::Match(){};
 
 Match::~Match(){
     delete bo;
@@ -33,7 +29,7 @@ std::string Match::getwinner(){
 }
 void Match::game(int spot[0]){
 
-    int** mat;
+    int mat[8][8];
 
     if(selected){
       
@@ -60,7 +56,15 @@ void Match::game(int spot[0]){
     } else{
         if(bo->get_piece(spot) != nullptr){
             if(bo->get_collor(spot) == turn){
-                mat = bo->def_valid_moviments(spot);
+                bo->def_valid_moviments(spot, mat);
+                std::cout<< "Passou de valid moviments\n";
+                for(int i=0; i<8; i++){
+                    for(int j=0; j<8; j++){
+                        std::cout<<  mat[i][j];
+                    }
+                    std::cout<<"\n";
+                }
+
                 for(int i=0; i<8; i++){
                    for(int j=0; j<8; j++){
                         if(mat[i][j]== 0){
