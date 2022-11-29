@@ -29,6 +29,15 @@ class Knight: public Piece {
 
         Knight(string color);
         ~Knight(){};
+
+        /**
+         * @brief define matriz de possíveis movimentos para o cavalo (preto ou branco)
+         * 
+         * @param spot ponto atual da peça, necessário para determinar seus possíveis
+         * movimentos futuros
+         * 
+         * @return void 
+         */
         void def_possible_movements(int*spot) override;
         
 };

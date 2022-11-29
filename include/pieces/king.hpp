@@ -34,6 +34,15 @@ class King: public Piece {
     public:
         King(string color);
         ~King(){};
+
+        /**
+         * @brief define matriz de possíveis movimentos para o rei (preto ou branco)
+         * 
+         * @param spot ponto atual da peça, necessário para determinar seus possíveis
+         * movimentos futuros
+         * 
+         * @return void 
+         */
         void def_possible_movements(int* spot) override;
         // bool is_xeque();
         // void set_xeque(bool cheque);

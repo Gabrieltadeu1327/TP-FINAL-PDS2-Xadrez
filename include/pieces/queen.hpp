@@ -29,6 +29,15 @@ class Queen: public Piece {
 
         Queen(string color);
         ~Queen(){};
+
+        /**
+         * @brief define matriz de possíveis movimentos para a rainha (preto ou branco)
+         * 
+         * @param spot ponto atual da peça, necessário para determinar seus possíveis
+         * movimentos futuros
+         * 
+         * @return void 
+         */
         void def_possible_movements(int*spot) override;
 
 };

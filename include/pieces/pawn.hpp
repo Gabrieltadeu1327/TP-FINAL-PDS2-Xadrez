@@ -31,6 +31,15 @@ class Pawn: public Piece {
     public:
         Pawn(string color);
         ~Pawn(){};
+
+        /**
+         * @brief define matriz de possíveis movimentos para o pião (preto ou branco)
+         * 
+         * @param spot ponto atual da peça, necessário para determinar seus possíveis
+         * movimentos futuros
+         * 
+         * @return void 
+         */
         void def_possible_movements(int*spot) override;
 
 };
