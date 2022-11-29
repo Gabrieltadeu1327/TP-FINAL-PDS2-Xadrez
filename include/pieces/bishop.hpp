@@ -30,6 +30,13 @@ class Bishop: public Piece {
 
         Bishop(string color);
         ~Bishop(){};
+
+        /**
+         * @brief define uma matriz de possíveis movimentos
+         * 
+         * @param spot é o ponto atual da peça, necessário para sabermos
+         * seus possíveis futuros movimentos.
+         */
         void def_possible_movements(int* spot) override;
 
 };
