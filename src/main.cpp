@@ -98,7 +98,7 @@ int main(){
             }
             //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
             else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                int click[2] = {ev.mouse.x, ev.mouse.y};
+                int click[2] = {ev.mouse.y, ev.mouse.x};
                 int sp[2];
                 pixel_to_array(click, sp);
     
