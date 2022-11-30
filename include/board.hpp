@@ -1,10 +1,10 @@
 /**
  * @file board.hpp
  * @author group
- * @brief superclasse com a lógica do board
+ * @brief Superclasse com a lógica do board.
  * @version 0.1
  * @date 2022-11-28
- * @details aqui tratamos as relações que ocorrem entre as peças.
+ * @details Aqui tratamos as relações que ocorrem entre as peças.
  * Cada função aqui descrita retorna para main valores que serão
  * utilizados durante o processamento de cada jogada feita.
  * 
@@ -25,7 +25,7 @@
 #include "pieces/rook.hpp"
 
 /**
- * @brief cria a matriz do tabuleiro, as matrizes de ataque, as funções a serem chamadas na main
+ * @brief Cria a matriz do tabuleiro, as matrizes de ataque, as funções a serem chamadas na main.
  * @details criação do tabuleiro 8x8, da matriz de ataque de peças brancas 8x8 e pretas 8x8, 
  *  criação da função que recebe a posição da peça, da função que apresenta no tabuleiro os movimentos possíveis,
  *  a função que move a peça de um ponto inicial para um final, as funções de atualização e verificação de nulidade de 
@@ -46,7 +46,7 @@ class Board{
         ~Board();
 
         /**
-         * @brief Envia um poteiro correspondente ao ponto da peça
+         * @brief Envia um poteiro correspondente ao ponto da peça.
          * @details O ponteiro gerado é utilizado em outras funções,
          * como get_color.
          * 
@@ -56,7 +56,7 @@ class Board{
         Piece* get_piece(int* spot);
 
         /**
-         * @brief Define movimentos válidos
+         * @brief Define movimentos válidos.
          * @details Além de definir os possíveis movimentos,
          * a função define os movimentos válidos, excluindo da matriz
          * possíveis movimentos inválidos.
@@ -67,7 +67,7 @@ class Board{
         void def_valid_moviments(int* spot, int mat[8][8]); 
 
         /**
-         * @brief Muda a posição da peça e trata movimentos especiais
+         * @brief Muda a posição da peça e trata movimentos especiais.
          * @details Função que altera a posição da peça, tirando ela do seu 
          * ponto inicial, levando para o ponto final. Além de cuidar das movimentações
          * especiais, como promotion e roque.
@@ -78,8 +78,8 @@ class Board{
         void set_piece(int* atual_spot, int* spot);
 
         /**
-         * @brief retorna o endereço da imagem da peça
-         * @details acessa o endereço de memória da imagem da peça
+         * @brief Retorna o endereço da imagem da peça.
+         * @details Acessa o endereço de memória da imagem da peça
          * retornando assim, o endereço para que consigamos ter as imagens na interface.
          * 
          * @param spot ponto da peça.
@@ -88,7 +88,7 @@ class Board{
         std::string get_image(int* spot);
 
         /**
-         * @brief Descobre a cor da peça
+         * @brief Descobre a cor da peça.
          * @details Acessa a peça e retorna sua cor.
          * 
          * @param spot ponto da peça.
@@ -97,7 +97,7 @@ class Board{
         std::string get_collor(int* spot);
         
         /**
-         * @brief Atualiza a matriz de ataque
+         * @brief Atualiza a matriz de ataque.
          * @details Recebendo a cor da peça, é possível determinar sua matriz 
          * de ataque. 
          * 
@@ -106,7 +106,7 @@ class Board{
         void refresh_atc_matriz(string cor);
 
         /**
-         * @brief Determina se o rei está em cheque
+         * @brief Determina se o rei está em cheque.
          * @details Podemos determinar se o rei está em posição de cheque
          * ou não.
          * 

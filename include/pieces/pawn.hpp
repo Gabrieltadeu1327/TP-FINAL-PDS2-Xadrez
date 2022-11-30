@@ -1,7 +1,7 @@
 /**
  * @file pawn.hpp
  * @author group
- * @brief subclasse com a lógica do pawn
+ * @brief Subclasse com a lógica do pawn.
  * @version 0.1
  * @date 2022-11-28
  * @details Responsável por construir a subclasse pawn
@@ -19,8 +19,8 @@
 using namespace std;
 
 /**
- * @brief define os possíveis movimentos e promoção
- * @details dentro da subclasse Pawn, que herda de Piece, construímos
+ * @brief Define os possíveis movimentos e promoção.
+ * @details Dentro da subclasse Pawn, que herda de Piece, construímos
  *  o peão recebendo sua cor, determinamos uma matriz de possíveis movimentos
  *  recebendo seu ponto atual, realizamos a função de promoção, que promove o peão
  *  a uma peça mais forte, a rainha.
@@ -33,7 +33,9 @@ class Pawn: public Piece {
         ~Pawn(){};
 
         /**
-         * @brief define matriz de possíveis movimentos para o pião (preto ou branco)
+         * @brief Define matriz de possíveis movimentos para o pião (preto ou branco).
+         * @details Recebendo a posição atual do peão, definimos a matriz de possíveis movimentos,
+         * note que ainda não fizemos a verificação de validez do movimento.
          * 
          * @param spot ponto atual da peça, necessário para determinar seus possíveis
          * movimentos futuros
