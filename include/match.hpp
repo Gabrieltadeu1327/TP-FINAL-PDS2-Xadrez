@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <string>
+#include <exception>
 #include "board.hpp"
 
 /**
@@ -42,9 +43,15 @@ public:
     std::string getwinner();
     void setwinner(std::string winner);
     void refreshwinner();
+    std::string get_turn();
     void p_gaveup();
 
 };
 
-
+class InvalidSpotExeption: public exception{
+    const char* _message;
+    public:
+    InvalidSpotExeption();
+    const char* what() const noexcept;
+};
 

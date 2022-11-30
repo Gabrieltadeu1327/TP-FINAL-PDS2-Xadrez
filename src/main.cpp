@@ -81,9 +81,19 @@ int main(){
             //espera por um evento e o armazena em ev
             al_wait_for_event(event_queue, &ev);
 
-            //evento de fechamento de tela:
+            //evento de passo no relógio
             if(ev.type == ALLEGRO_EVENT_TIMER){
                 al_draw_bitmap(fundo, 0, 0, 0);
+                if(match->get_turn() == "White"){
+                    ALLEGRO_BITMAP *image = al_load_bitmap("src/images/White's_Turn.png");
+                    al_draw_bitmap(image, 0, 0, 0);
+                    al_destroy_bitmap(image);
+                }
+                if(match->get_turn() == "Black"){
+                    ALLEGRO_BITMAP *image = al_load_bitmap("src/images/Black's_Turn.png");
+                    al_draw_bitmap(image, 0, 0, 0);
+                    al_destroy_bitmap(image);
+                }
                 // int sp[2];
                 // int place[2] = {140, 300};
                 // pixel_to_array(place, sp);
@@ -92,20 +102,25 @@ int main(){
                 drawn_board(*match);
                 al_flip_display();
             }
+            
             else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
                 run == 0;
                 break;
             }
             //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
             else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                int click[2] = {ev.mouse.y, ev.mouse.x};
+                int click[2] = {ev.mouse.x, ev.mouse.y};
                 int sp[2];
-                pixel_to_array(click, sp);
-    
-                match->game(sp);
-                
+                try{
+                    pixel_to_array(click, sp);
+                }
+                catch(InvalidSpotExeption &e){
+                    cout<<e.what();
+                    match->p_gaveup();
+                }
                 printf("\n mouse clicando em: %d, %d\n", ev.mouse.x, ev.mouse.y); 
                 std::cout<<"Spot eviado: "<<sp[0] << " "<<sp[1]<<std::endl;
+                match->game(sp);
 
             }
             //detecta codigo da tecla pressionada
@@ -130,15 +145,17 @@ int main(){
                 
             }
 
-            // drawn_pieces(*match);
-
 
         }
         
         if(match->getwinner() == "White"){
-            //img vitoria Branco
+            ALLEGRO_BITMAP *image = al_load_bitmap("src/images/White's_Victory.png");
+            al_draw_bitmap(image, 0, 0, 0);
+            al_destroy_bitmap(image);
         }else if(match->getwinner() == "Black"){
-            //img vitoria Preto
+            ALLEGRO_BITMAP *image = al_load_bitmap("src/images/Black's_Victory.png");
+            al_draw_bitmap(image, 0, 0, 0);
+            al_destroy_bitmap(image);
         }else if(run == 0){
             break;
         }
@@ -171,7 +188,6 @@ void drawn_board(Match &mat){
     mat.refresh_imagespices();
      for(int i=0 ; i<8; i++){
        for(int j=0 ; j<8; j++){
-        
             //Se houver uma string de endereço na matriz ele printa a imagem
             if(mat.image_pices[i][j] != ""){
                 const char *c = mat.image_pices[i][j].c_str();
@@ -186,9 +202,10 @@ void drawn_board(Match &mat){
                 al_draw_bitmap(image, place[0], place[1], 0);
                 al_destroy_bitmap(image);
             }
-        
+
             if(mat.image_dots[i][j] != ""){
                 const char *c = mat.image_dots[i][j].c_str();
+                
                 ALLEGRO_BITMAP *image = al_load_bitmap(c);
                 
                 //define a posição das peças no tabuleiro:
@@ -200,6 +217,8 @@ void drawn_board(Match &mat){
                 al_draw_bitmap(image, place[0], place[1], 0);
                 al_destroy_bitmap(image);
             }
+        
+        
         } 
     }
 }
@@ -213,12 +232,12 @@ void array_to_pixel(int* spot, int *pixel){
 void pixel_to_array(int* pixel, int* spot){
     if(*pixel >= 420 && *pixel <= 530 &&
         *(pixel+1)>= 40 &&  *(pixel+1)<= 85 ){
-        throw "Give up pressionado";
+        throw InvalidSpotExeption();
     }
 
     if(*pixel >= 420 && *pixel <= 530 &&
         *(pixel+1)>= 40 &&  *(pixel+1)<= 85){
-        throw "Fora do tabuleiro";
+        throw InvalidSpotExeption();
     }
     //eixo x
     *pixel -= 26; //tira 26 pq as casas começam a partir do pixel 26

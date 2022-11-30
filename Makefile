@@ -1,6 +1,6 @@
 all: main
 
-main:
+main: 
 	g++ -I include/ src/main.cpp build/*.o -lallegro -lallegro_image -lallegro_main -o main 
 
 match: board

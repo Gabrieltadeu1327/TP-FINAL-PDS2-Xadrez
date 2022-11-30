@@ -25,10 +25,9 @@ void King::def_possible_movements(int* spot){
         }
     };
 
-// Primeira implementação de try/catch e ////assert juntos
 
-    for (int i=(spot[0])-1; i< (spot[0])+1; i++){
-        for(int j= spot[1]-1 ; j< spot[1]+1; j++){
+    for (int i=(spot[0])-1; i<= (spot[0])+1; i++){
+        for(int j= spot[1]-1 ; j<= spot[1]+1; j++){
             if(i>=0 && i<8 &&
                j>= 0 && j<8){
                     _possibles_movements[i][j]=1;

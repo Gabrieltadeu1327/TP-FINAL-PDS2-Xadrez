@@ -50,7 +50,7 @@ Piece* Board::get_piece(int* spot){
 }
 // Muda a posição de uma peça e declara 
 void Board::set_piece(int* atual_spot, int* f_spot){
-
+    std::cout<<"Entrou set piece\n";
     //Mudança Torre Roque
     int* rook_spot = atual_spot;
     int* rook_nspot = f_spot;
@@ -79,22 +79,21 @@ void Board::set_piece(int* atual_spot, int* f_spot){
     }
     board[*f_spot][*(f_spot +1)] = get_piece(atual_spot);
     board[*atual_spot][*(atual_spot+1)] = nullptr;
-
+    cout<<"Mudou a posição\n";
 
     //Promoção
-    if(get_piece(atual_spot)->get_name() == "Pawn" && 
-       get_piece(atual_spot)->get_color() == "White" && 
+    if(get_piece(f_spot)->get_name() == "Pawn" && 
+       get_piece(f_spot)->get_color() == "White" && 
        *f_spot == 0 ){
         
-
         if(get_piece(f_spot) !=nullptr){
             free(get_piece(f_spot));
         }
-        board[*f_spot][*(f_spot+1)] = new Queen("white");
+        board[*f_spot][*(f_spot+1)] = new Queen("White");
      
     }else 
-    if(get_piece(atual_spot)->get_name() == "Pawn" && 
-       get_piece(atual_spot)->get_color() == "Black" && 
+    if(get_piece(f_spot)->get_name() == "Pawn" && 
+       get_piece(f_spot)->get_color() == "Black" && 
        *f_spot == 7 ){
      
         if(get_piece(f_spot) !=nullptr){
@@ -103,9 +102,7 @@ void Board::set_piece(int* atual_spot, int* f_spot){
         board[*f_spot][*(f_spot+1)] = new Queen("Black");
         
     }
-    
-
-
+    cout<<"Passou setpices\n";
 }
 
 //envia a img de um spot
@@ -126,7 +123,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
     if(p == nullptr){
         throw std::invalid_argument("ponteiro nulo"); 
     }
-    
+    cout<<"entoru valid movimnets\n";
     p->def_possible_movements(spot);
     
     for(int i= 0; i< 8; i++){
@@ -156,11 +153,12 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
     // Rei não possui caminhos com falhas mas n pode se colocar em xeque  
     if(p->get_name()== "King"){ 
 
+        cout << "Entrou rei\n";
         // Implementação roque
         if(p->get_first_time()== true){
         
             if(p->get_color() == "White" ){
-                
+                cout<<"Entrou roque\n";
                 if(board[7][7] !=nullptr){
                     if(board[7][7]->get_name()=="Rook" &&
                     board[7][7]->get_first_time()==true &&
@@ -207,7 +205,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
             }
         }
         //Garante que o rei nao vai ficar em cheque ao se movimentar        
-        for(int i= 0; i< 8; i++){
+        /*for(int i= 0; i< 8; i++){
             for(int j= 0; j< 8; j++){
                 
                 if(p->get_color() == "Black"){
@@ -224,79 +222,88 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
                         } 
                 }           
             }  
-        }    
+        }  */  
 
     }else 
     //Pião possui padrao de movimento dependente e movimentos especiais
     if(p->get_name() == "Pawn"){
         
-        std::cout<< "entou peao\n";
+        std::cout<< "entou peao"<< p->get_color()<<"\n";
         
         if(p->get_color()== "Black"){
+            cout<<"entrou if black peao\n";
             //movimento frontal
             if(board[spot[0]+1][spot[1]] != nullptr){
-                mat[spot[0]+1][spot[1]] == 0;
+               cout<<"Entrou if peao\n";
+                mat[spot[0]+1][spot[1]] = 0;
                 //Remoção de corte no caminho
-                mat[spot[0]+2][spot[1]] == 0;
+                if(p->get_first_time()){
+                    mat[spot[0]+2][spot[1]] = 0;
+                }
             }
             //Veririfacção movimento diagonal
-            if(spot[0] !=7){
-                if(board[spot[0]+1][spot[1]+1] != nullptr){
-                mat[spot[0]+1][spot[1]] == 1;
+            if(spot[1] !=7){
+                if(board[spot[0]+1][spot[1]+1] == nullptr){
+                    mat[spot[0]+1][spot[1]+1] = 0;
                 }
-            }if(spot[0] !=0){
-                if(board[spot[0]+1][spot[1]-1] != nullptr){
-                mat[spot[0]+1][*(spot-1)] == 1;
+            }if(spot[1] !=0){
+                if(board[spot[0]+1][spot[1]-1] == nullptr){
+                mat[spot[0]+1][spot[1]-1] = 0;
                 }
             }
         }else{
             //movimento frontal
             if(board[spot[0]-1][spot[1]] != nullptr){
-                mat[spot[0]-1][spot[1]] == 0;
+                mat[spot[0]-1][spot[1]] = 0;
                 //Remoção de corte no caminho
-                mat[spot[0]+2][spot[1]] == 0;
+                if(p->get_first_time()){
+                    mat[spot[0]-2][spot[1]] = 0;
+                }
+                
             }
             //Veririfacção movimento diagonal
-            if(spot[0] !=7){
-                if(board[spot[0]-1][spot[1]+1] != nullptr){
-                mat[spot[0]-1][spot[1]] == 1;
+            if(spot[1] !=7){
+                if(board[spot[0]-1][spot[1]+1] == nullptr){
+                mat[spot[0]-1][spot[1]+1] = 0;
                 }
-            }if(spot[0] !=0){
-                if(board[spot[0]-1][spot[1]-1] != nullptr){
-                mat[spot[0]-1][*(spot-1)] == 1;
+            }if(spot[1] !=0){
+                if(board[spot[0]-1][spot[1]-1] == nullptr){
+                mat[spot[0]-1][spot[1]-1] = 0;
                 }
             }
         }
-
+        
     // Remoção das falhas nos caminhos ( rainha, Bispo, torre) 
     }else{
         std::cout<<"entou ultima verificação\n";
         int sum;
+        bool first;
 
         for(int ci= -1; ci<2; ci++){
             for(int cj=-1; cj<2; cj++){
             
             sum=1;
+            first = true;
 
                 if(ci ==0 && cj ==0){
                     continue;
                 }
-
-                for( int i=spot[0]; i>0 && i<8; i+= ci){
-                    for( int j= *(spot +1); j>0 && j<8; j+= cj){
-                    
+                std::cout<<"cout externo\n";
+                for( int i=spot[0], j= spot[1]; i>=0 && i<8 && j>=0 && j<8; i+= ci, j+= cj){
+                  //  cout<< ci<< " "<< cj<<"\n";
                        mat[i][j] *=sum;
-                        if(board[i][j] != nullptr){
+                        if(board[i][j] != nullptr && first == false){
                             if((board[i][j])->get_color() != p->get_color() || 
                                 mat[i][j]==0){
                                 sum=0;
                             }
                         }
-                    }
+                    first= false;
                 }
 
             }
        }
+    cout<<"Saiu verificaçao\n";
     }  
    // atribuicao -1 para casas que podem ser comidas
     for(int i= 0; i< 8; i++){

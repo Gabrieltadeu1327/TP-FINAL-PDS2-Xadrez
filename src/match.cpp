@@ -32,14 +32,15 @@ void Match::game(int spot[0]){
     int mat[8][8];
 
     if(selected){
-      
-        if(image_dots[spot[0]][(spot[0]+1)] != ""){
+      cout<<"Entrou selected\n";
+        if(image_dots[spot[0]][spot[1]] != ""){
             bo->set_piece(last_spot,spot);
+            std::cout<<"Passsou setpiece\n";    
                 if(bo->get_piece(spot)->get_name() == "King"){
                     winner= turn;
                 }
 
-            if(turn =="white"){
+            if(turn =="White"){
                 turn = "Black";
             }else{
                 turn = "White";
@@ -71,9 +72,9 @@ void Match::game(int spot[0]){
                         if(mat[i][j]== 0){
                             image_dots[i][j] = "";
                         }else if(mat[i][j]== 1){
-                            image_dots[i][j] = "images/Possible_Mov";//BOTAR ENDEREÇO QUADRADO VERDE
+                            image_dots[i][j] = "src/images/Possible_Mov.png";//BOTAR ENDEREÇO QUADRADO VERDE
                         }else if(mat[i][j]== -1){
-                            image_dots[i][j] = "images/Impossible_Mov";//BOTAR ENDEREÇO QUADRADO VERMELHO
+                            image_dots[i][j] = "src/images/Impossible_Mov.png";//BOTAR ENDEREÇO QUADRADO VERMELHO
                         }
                     } 
                 }
@@ -86,5 +87,21 @@ void Match::game(int spot[0]){
 
 }
 
+std::string Match::get_turn(){
+    return turn;
+}
 
 
+InvalidSpotExeption::InvalidSpotExeption(){
+    _message = "Spot passado é inválido";
+}
+
+const char* InvalidSpotExeption::what() const noexcept{
+    return _message;
+}
+
+
+void Match::p_gaveup(){
+    if(turn == "White") winner = "Black";
+    if(turn== "Black") winner = "White";
+}

@@ -32,11 +32,10 @@ void Queen::def_possible_movements(int* spot){
                     continue;
                 }
                 
-                for( int i= spot[0]; i>=0 && i<8; i+= ci){
-                    for( int j= spot[1]; j>=0 && j<8; j+= cj){
+                for(int i=spot[0], j= spot[1]; i>=0 && i<8 && j>=0 && j<8; i+= ci, j+= cj){
                         
                         _possibles_movements[i][j]=1;
-                    }
+                    
                 }
 
 
