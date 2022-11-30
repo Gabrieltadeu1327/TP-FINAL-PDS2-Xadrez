@@ -1,7 +1,7 @@
 /**
  * @file rook.hpp
  * @author group
- * @brief subclasse com a lógica do rook 
+ * @brief Subclasse com a lógica do rook. 
  * @version 0.1
  * @date 2022-11-28
  * @details Responsável por construir a subclasse rook
@@ -18,8 +18,8 @@
 using namespace std;
 
 /**
- * @brief define os possíveis movimentos
- * @details dentro da subclasse Rook, que herda de Piece, construímos
+ * @brief Define os possíveis movimentos.
+ * @details Dentro da subclasse Rook, que herda de Piece, construímos
  *  o cavalo recebendo sua cor, determinamos uma matriz de possíveis movimentos
  *  recebendo seu ponto atual.
  */ 
@@ -31,7 +31,9 @@ class Rook: public Piece {
         ~Rook(){};
 
         /**
-         * @brief define matriz de possíveis movimentos para a torre (preto ou branco)
+         * @brief Define matriz de possíveis movimentos para a torre (preto ou branco).
+         * @details Recebendo a posição atual da torre, definimos a matriz de possíveis movimentos,
+         * note que ainda não fizemos a verificação de validez do movimento.
          * 
          * @param spot ponto atual da peça, necessário para determinar seus possíveis
          * movimentos futuros

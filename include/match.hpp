@@ -1,10 +1,10 @@
 /**
  * @file match.hpp
  * @author group
- * @brief superclasse com a lógica da match
+ * @brief Superclasse com a lógica da match.
  * @version 0.1
  * @date 2022-11-28
- * @details aqui é onde atualizamos a interface da partida, recebendo interações
+ * @details Aqui é onde atualizamos a interface da partida, recebendo interações
  * com o tabuleiro e determinamos um vencedor.
  * 
  * @copyright Copyright (c) 2022

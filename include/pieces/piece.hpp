@@ -1,15 +1,15 @@
 /**
  * @file piece.hpp
  * @author group
- * @brief superclasse com a lógica de piece
+ * @brief Superclasse com a lógica de piece.
  * @version 0.1
  * @date 2022-11-28
- * @details nessa superclasse ocorre a criação das váriaveis de 
- * cada peça(imagem, nome, cor, primeiro turno).
- * Criamos a matriz de possíveis movimentos, a ser utilizada por
- * cada subclasse de peça. Além de criar as funções que geram a peça
- * e captam sua imagem, nome, cor e turno. Cria também a função 
- * virtual def_possible_movements que é reescrita pelas subclasses (polimorfismo).
+ * @details Nessa superclasse ocorre a criação das váriaveis de 
+ *  cada peça(imagem, nome, cor, primeiro turno).
+ *  Criamos a matriz de possíveis movimentos, a ser utilizada por
+ *  cada subclasse de peça. Além de criar as funções que geram a peça
+ *  e captam sua imagem, nome, cor e turno. Cria também a função 
+ *  virtual def_possible_movements que é reescrita pelas subclasses (polimorfismo).
  * 
  * @copyright Copyright (c) 2022
  * 
@@ -23,8 +23,8 @@
 using namespace std;
 
 /**
- * @brief cria as variáveis e funções a serem usadas em todas subclasses
- * @details cria a matriz de possíveis movimentos, cria as funções de 
+ * @brief Cria as variáveis e funções a serem usadas em todas subclasses.
+ * @details Cria a matriz de possíveis movimentos, cria as funções de 
  *  definição dos possíveis movimentos, detecção de cor, nome da peça, imagem e turno da peça.
  */ 
 class Piece {
@@ -43,11 +43,13 @@ class Piece {
         ~Piece(){};
 
         /**
-         * @brief protótipo de uma função virtual que definirá os possíveis movimentos
-         * das peças do jogo.
+         * @brief Protótipo de uma função virtual que definirá os possíveis movimentos
+         *  das peças do jogo.
+         * @details Recebendo a posição atual da peça, definimos a matriz de possíveis movimentos,
+         *  note que ainda não fizemos a verificação de validez do movimento. Aqui a função é apenas virtual.
          * 
          * @param spot ponto atual da peça, necessário para determinar seus possíveis
-         * movimentos futuros.
+         *  movimentos futuros.
          * 
          * @return void
          */
@@ -55,7 +57,8 @@ class Piece {
 
 
         /**
-         * @brief Retorna a cor da peça selecionado pelo player
+         * @brief Retorna a cor da peça selecionado pelo player.
+         * @details Função que detecta cor da peça e retorna ela. 
          * 
          * @return string 
          */
@@ -63,7 +66,8 @@ class Piece {
 
 
         /**
-         * @brief Retorna o nome da peça selecionada pelo player
+         * @brief Retorna o nome da peça selecionada pelo player.
+         * @details Função que detecta nome da peça e retorna ela.
          * 
          * @return string 
          */
@@ -71,7 +75,8 @@ class Piece {
 
 
         /**
-         * @brief Retorna um texto com o enderço da imagem de determinada peça
+         * @brief Retorna um texto com o endereço da imagem de determinada peça.
+         * @details Função que detecta endereço de imagem da peça na memória e retorna ela.
          * 
          * @return string 
          */
@@ -79,8 +84,9 @@ class Piece {
         
 
         /**
-         * @brief Retorna se o player ja efetuou alguma jogada (usada na implementação
-         * da movimentação do peão)
+         * @brief Seta se o player já efetuou jogada.
+         * @details Detectando se a peça já foi usada, podemos descobrir se ela pode executar 
+         *  movimentações especiais como roque e andar duas casas com peão.
          * 
          * @return void
          */
@@ -88,7 +94,7 @@ class Piece {
 
         /**
          * @brief Retorna se o player já efetou alguma jogada (usada na implementação
-         * da movimentação do peão)
+         *  da movimentação do peão).
          * 
          * @return true se é primeira jogada
          * @return false se não é primeira jogada

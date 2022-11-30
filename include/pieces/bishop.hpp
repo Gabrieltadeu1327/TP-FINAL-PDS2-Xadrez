@@ -1,10 +1,10 @@
 /**
  * @file bishop.hpp
  * @author group
- * @brief subclasse com a lógica do bishop
+ * @brief Subclasse com a lógica do bishop.
  * @version 0.1
  * @date 2022-11-28
- * @details responsável por construir a subclasse bishop
+ * @details Responsável por construir a subclasse bishop
  * e chamar a função def_possible_movements.
  * 
  * @copyright Copyright (c) 2022
@@ -19,8 +19,8 @@
 using namespace std;
 
 /**
- * @brief define os possíveis movimentos 
- * @details dentro da subclasse Bishop, que herda de Piece, construímos
+ * @brief Define os possíveis movimentos. 
+ * @details Dentro da subclasse Bishop, que herda de Piece, construímos
  *  o bispo recebendo sua cor, determinamos uma matriz de possíveis movimentos
  *  recebendo seu ponto atual.
  */ 
@@ -32,12 +32,14 @@ class Bishop: public Piece {
         ~Bishop(){};
 
         /**
-         * @brief define matriz de possíveis movimentos para o rei (preto ou branco)
+         * @brief Define matriz de possíveis movimentos para o bispo (preto ou branco).
+         * @details Recebendo a posição atual do bispo, definimos a matriz de possíveis movimentos,
+         *  note que ainda não fizemos a verificação de validez do movimento.
          * 
-         * @param spot ponto atual da peça, necessário para determinar seus possíveis
-         * movimentos futuros
+         *  @param spot ponto atual da peça, necessário para determinar seus possíveis
+         *  movimentos futuros.
          * 
-         * @return void 
+         * @return void. 
          */
         void def_possible_movements(int* spot) override;
 
