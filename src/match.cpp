@@ -57,6 +57,7 @@ void Match::game(int spot[0]){
         if(bo->get_piece(spot) != nullptr){
             if(bo->get_collor(spot) == turn){
                 bo->def_valid_moviments(spot, mat);
+                
                 std::cout<< "Passou de valid moviments\n";
                 for(int i=0; i<8; i++){
                     for(int j=0; j<8; j++){

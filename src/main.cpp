@@ -104,7 +104,9 @@ int main(){
     
                 match->game(sp);
                 
-                printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
+                printf("\n mouse clicando em: %d, %d\n", ev.mouse.x, ev.mouse.y); 
+                std::cout<<"Spot eviado: "<<sp[0] << " "<<sp[1]<<std::endl;
+
             }
             //detecta codigo da tecla pressionada
             else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
