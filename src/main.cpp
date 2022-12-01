@@ -39,7 +39,7 @@ int main(){
 	
 	//cria uma tela:
 	display = al_create_display(SC_W, SC_H);
-
+    al_set_window_title(display, "Xess");
 	
     //cria um temporizador que incrementa uma unidade a cada 1.0/FPS segundos:
     timer = al_create_timer(1.0/FPS);
@@ -66,45 +66,52 @@ int main(){
     //inicia o temporizador
     
     al_start_timer(timer);
-    int x = 10;
-    int y = 10;
+    int meme = 0;
 
     while(run){
         
         Match *match = new Match();
-
-        while(match->getwinner() == "" && run == 1){
-            match->refresh_imagespices();
-            match->refresh_imagesdots();
+        while(run){
             ALLEGRO_EVENT ev;
-
             //espera por um evento e o armazena em ev
             al_wait_for_event(event_queue, &ev);
+            
+            if(match->getwinner() != ""){
+                   std::cout<<"Matou 1while\n";
+                    break;
+            }
+
+            match->refresh_imagespices();
+            match->refresh_imagesdots();
 
             //evento de passo no relógio
             if(ev.type == ALLEGRO_EVENT_TIMER){
-                al_draw_bitmap(fundo, 0, 0, 0);
-                if(match->get_turn() == "White"){
-                    ALLEGRO_BITMAP *image = al_load_bitmap("src/images/White's_Turn.png");
-                    al_draw_bitmap(image, 0, 0, 0);
-                    al_destroy_bitmap(image);
-                }
-                if(match->get_turn() == "Black"){
-                    ALLEGRO_BITMAP *image = al_load_bitmap("src/images/Black's_Turn.png");
-                    al_draw_bitmap(image, 0, 0, 0);
-                    al_destroy_bitmap(image);
-                }
-                // int sp[2];
-                // int place[2] = {140, 300};
-                // pixel_to_array(place, sp);
-                // array_to_pixel(sp, place);
-                // al_draw_bitmap(image, place[0], place[1], 0);
-                drawn_board(*match);
+                if(meme == 1){
+                    ALLEGRO_BITMAP *im = al_load_bitmap("src/images/Poootter.png");
+                    al_draw_bitmap(im, 0, 0, 0);
+                    al_destroy_bitmap(im);
+                }else{
+                    al_draw_bitmap(fundo, 0, 0, 0);
+                    if(match->get_turn() == "White"){
+                        ALLEGRO_BITMAP *image = al_load_bitmap("src/images/White's_Turn.png");
+                        al_draw_bitmap(image, 0, 0, 0);
+                        al_destroy_bitmap(image);
+                    }
+                    if(match->get_turn() == "Black"){
+                        ALLEGRO_BITMAP *image = al_load_bitmap("src/images/Black's_Turn.png");
+                        al_draw_bitmap(image, 0, 0, 0);
+                        al_destroy_bitmap(image);
+                    }
+                
+                    drawn_board(*match);
+                }    
+                
                 al_flip_display();
+                
             }
             
             else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
-                run == 0;
+                run = 0;
                 break;
             }
             //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
@@ -117,9 +124,11 @@ int main(){
                 catch(InvalidSpotExeption &e){
                     cout<<e.what();
                     match->p_gaveup();
+                    break;
                 }
                 printf("\n mouse clicando em: %d, %d\n", ev.mouse.x, ev.mouse.y); 
                 std::cout<<"Spot eviado: "<<sp[0] << " "<<sp[1]<<std::endl;
+               
                 match->game(sp);
 
             }
@@ -129,17 +138,12 @@ int main(){
                     case ALLEGRO_KEY_ESCAPE:
                         run = 0;
                         break;
-                    case ALLEGRO_KEY_UP:
-                        y -= 30;
-                        break;
-                    case ALLEGRO_KEY_DOWN:
-                        y += 30;
-                        break;
-                    case ALLEGRO_KEY_LEFT:
-                        x -= 30;
-                        break;
-                    case ALLEGRO_KEY_RIGHT:
-                        x += 30;
+                    case ALLEGRO_KEY_P:
+                        if(meme == 0){
+                            meme = 1;
+                        }else{
+                            meme = 0;
+                        }
                         break;
                 }
                 
@@ -147,36 +151,47 @@ int main(){
 
 
         }
+    
+        std::cout<<"abriu img\n";
         
+        if(run == 0){
+            break;
+        }
         if(match->getwinner() == "White"){
             ALLEGRO_BITMAP *image = al_load_bitmap("src/images/White's_Victory.png");
             al_draw_bitmap(image, 0, 0, 0);
             al_destroy_bitmap(image);
-        }else if(match->getwinner() == "Black"){
+            al_flip_display();
+        }
+        if(match->getwinner() == "Black"){
             ALLEGRO_BITMAP *image = al_load_bitmap("src/images/Black's_Victory.png");
             al_draw_bitmap(image, 0, 0, 0);
             al_destroy_bitmap(image);
-        }else if(run == 0){
-            break;
+            al_flip_display();
         }
-        
+
         while(1){
+            std::cout<<"entrou segundo while\n";
             ALLEGRO_EVENT ev;
             //espera por um evento e o armazena em ev
             al_wait_for_event(event_queue, &ev);
+            if(ev.type == ALLEGRO_EVENT_TIMER){
+                
+            }
            
             //detecta a posição do mouse
             if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                if(/*click foi no botao*/1){
-                    printf("\n mouse clicando em: %d, %d", ev.mouse.x, ev.mouse.y); 
-                    break;
-                } 
+                break;
+
             }else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE){
                 run = 0;
                 break;
             }
         }
-        delete match;
+        
+        std::cout<<"delet match\n";
+
+        // delete match;
         //Clean da tela
 	}
     al_destroy_event_queue(event_queue);

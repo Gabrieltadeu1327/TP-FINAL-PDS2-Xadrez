@@ -36,13 +36,11 @@ public:
     Match();
     ~Match();
     //Recebe clicks NO TABULEIRO
-    void game(int *spot);
+    void game(int spot[2]);
 
     void refresh_imagespices();
     void refresh_imagesdots();
     std::string getwinner();
-    void setwinner(std::string winner);
-    void refreshwinner();
     std::string get_turn();
     void p_gaveup();
 

@@ -52,8 +52,13 @@ Piece* Board::get_piece(int* spot){
 void Board::set_piece(int* atual_spot, int* f_spot){
     std::cout<<"Entrou set piece\n";
     //Mudança Torre Roque
-    int* rook_spot = atual_spot;
-    int* rook_nspot = f_spot;
+    int rook_spot[2]; 
+    rook_spot[0] = atual_spot[0];
+    rook_spot[1] = atual_spot[1];
+   
+    int rook_nspot[2]; 
+    rook_nspot[0] = f_spot[0];
+    rook_nspot[1] = f_spot[1];
     
     if(get_piece(atual_spot)->get_name() == "King" &&
        *(f_spot+1) - *(atual_spot+1) > 1 ){
@@ -165,7 +170,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
                     board[7][6]==nullptr &&
                     board[7][5]==nullptr ){
 
-                        mat[7][6]==1;
+                        mat[7][6]=1;
                     }
                 }
 
@@ -176,7 +181,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
                     board[7][2]==nullptr &&
                     board[7][3]==nullptr ){
 
-                        mat[7][2]==1;
+                        mat[7][2]=1;
                     }
                 }
 
@@ -189,7 +194,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
                     board[0][2]==nullptr &&
                     board[0][3]==nullptr ){
 
-                        mat[0][2]==1;
+                        mat[0][2]=1;
                     }
                 }
 
@@ -199,7 +204,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
                     board[0][6]==nullptr &&
                     board[0][5]==nullptr ){
 
-                        mat[0][6]==1;
+                        mat[0][6]=1;
                     }
                 }
             }
@@ -222,7 +227,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
                         } 
                 }           
             }  
-        }  */  
+        }   */
 
     }else 
     //Pião possui padrao de movimento dependente e movimentos especiais
