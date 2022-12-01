@@ -36,7 +36,7 @@ public:
     Match();
     ~Match();
     //Recebe clicks NO TABULEIRO
-    void game(int *spot);
+    void game(int spot[2]);
 
     void refresh_imagespices();
     void refresh_imagesdots();

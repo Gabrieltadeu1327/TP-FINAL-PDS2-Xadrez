@@ -7,8 +7,7 @@ Match::~Match(){
     delete bo;
 }
 //retorna a matriz de imgs do tabuleiro
-void Match::refresh_imagespices(){
-    
+void Match::refresh_imagespices(){    
     int v[2];
     for(int i=0 ; i<8; i++){
        for(int j=0 ; j<8; j++){
@@ -27,18 +26,27 @@ void Match::refresh_imagesdots(){
 std::string Match::getwinner(){
     return winner;
 }
-void Match::game(int spot[0]){
+void Match::game(int spot[2]){
 
     int mat[8][8];
+    bool isnull=true;
 
     if(selected){
       cout<<"Entrou selected\n";
         if(image_dots[spot[0]][spot[1]] != ""){
+            
+            if(bo->get_piece(spot) != nullptr){
+                if(bo->get_piece(spot)->get_name() == "King"){
+                    cout<<"setou winner\n";
+                   //  bo->set_piece(last_spot,spot);
+                     winner= turn;
+                }
+            }    
+
             bo->set_piece(last_spot,spot);
             std::cout<<"Passsou setpiece\n";    
-                if(bo->get_piece(spot)->get_name() == "King"){
-                    winner= turn;
-                }
+                
+          //  cout<< bo->get_piece(spot)->get_name()<<"\n"; 
 
             if(turn =="White"){
                 turn = "Black";
@@ -73,12 +81,19 @@ void Match::game(int spot[0]){
                             image_dots[i][j] = "";
                         }else if(mat[i][j]== 1){
                             image_dots[i][j] = "src/images/Possible_Mov.png";//BOTAR ENDEREÇO QUADRADO VERDE
+                            isnull=false;
+
                         }else if(mat[i][j]== -1){
                             image_dots[i][j] = "src/images/Impossible_Mov.png";//BOTAR ENDEREÇO QUADRADO VERMELHO
+
+                            isnull=false;                        
                         }
                     } 
                 }
-                selected = true;
+
+                if(!isnull){
+                   selected = true;   
+                }                               
                 last_spot[0] = spot[0];
                 last_spot[1] = spot[1];
             }
@@ -91,6 +106,10 @@ std::string Match::get_turn(){
     return turn;
 }
 
+void Match::p_gaveup(){
+    if(turn == "White") winner = "Black";
+    if(turn== "Black") winner = "White";
+}
 
 InvalidSpotExeption::InvalidSpotExeption(){
     _message = "Spot passado é inválido";
@@ -101,7 +120,3 @@ const char* InvalidSpotExeption::what() const noexcept{
 }
 
 
-void Match::p_gaveup(){
-    if(turn == "White") winner = "Black";
-    if(turn== "Black") winner = "White";
-}
