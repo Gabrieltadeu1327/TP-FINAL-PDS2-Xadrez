@@ -28,8 +28,6 @@ using namespace std;
  *  cheque e  determinamos os movimentos caso o rei esteja em cheque.
  */ 
 class King: public Piece {
-    private:
-        bool xeque= false;
 
     public:
         King(string color);
@@ -46,9 +44,6 @@ class King: public Piece {
          * @return void 
          */
         void def_possible_movements(int* spot) override;
-        // bool is_xeque();
-        // void set_xeque(bool cheque);
-
 };
 
 #endif

@@ -41,8 +41,6 @@ public:
     void refresh_imagespices();
     void refresh_imagesdots();
     std::string getwinner();
-    void setwinner(std::string winner);
-    void refreshwinner();
     std::string get_turn();
     void p_gaveup();
 
