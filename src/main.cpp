@@ -132,7 +132,7 @@ int main(){
                 match->game(sp);
 
             }
-            //detecta codigo da tecla pressionada
+            //detecta codigo da tecla pressionado
             else if(ev.type == ALLEGRO_EVENT_KEY_DOWN){
                 switch (ev.keyboard.keycode){
                     case ALLEGRO_KEY_ESCAPE:
