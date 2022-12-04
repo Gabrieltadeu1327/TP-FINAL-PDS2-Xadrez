@@ -43,9 +43,8 @@ class Piece {
         ~Piece(){};
 
         /**
-         * @brief Protótipo de uma função virtual que definirá os possíveis movimentos
-         *  das peças do jogo.
-         * @details Recebendo a posição atual da peça, definimos a matriz de possíveis movimentos,
+         * @brief Função virtual que definirá os possíveis movimentos das peças do jogo.
+         * @details Recebendo a posição atual da peça, atualizamos a matriz de possíveis movimentos _possibles_movements,
          *  note que ainda não fizemos a verificação de validez do movimento. Aqui a função é apenas virtual.
          * 
          * @param spot ponto atual da peça, necessário para determinar seus possíveis
@@ -60,7 +59,7 @@ class Piece {
          * @brief Retorna a cor da peça selecionado pelo player.
          * @details Função que detecta cor da peça e retorna ela. 
          * 
-         * @return string 
+         * @return string, podendo ser 'Black' ou 'White'.
          */
         string get_color();
 
@@ -69,7 +68,7 @@ class Piece {
          * @brief Retorna o nome da peça selecionada pelo player.
          * @details Função que detecta nome da peça e retorna ela.
          * 
-         * @return string 
+         * @return string, podendo ser 'Bishop', 'Hook', 'King', 'Queen', 'Pawn', 'Knight'.
          */
         string get_name();
 
@@ -78,15 +77,14 @@ class Piece {
          * @brief Retorna um texto com o endereço da imagem de determinada peça.
          * @details Função que detecta endereço de imagem da peça na memória e retorna ela.
          * 
-         * @return string 
+         * @return string do caminho da imagem na pasta do projeto. 
          */
         string get_image();
         
 
         /**
          * @brief Seta se o player já efetuou jogada.
-         * @details Detectando se a peça já foi usada, podemos descobrir se ela pode executar 
-         *  movimentações especiais como roque e andar duas casas com peão.
+         * @details Verifica se a peça foi usada, caso positivo, seta a variável _first_time como false.
          * 
          * @return void
          */
@@ -95,6 +93,9 @@ class Piece {
         /**
          * @brief Retorna se o player já efetou alguma jogada (usada na implementação
          *  da movimentação do peão).
+         * @details Detectando se a peça já foi usada, podemos descobrir se ela pode executar 
+         *  movimentações especiais como roque e andar duas casas com peão. Ocorre o retorno da váriavel
+         *  _first_time.
          * 
          * @return true se é primeira jogada
          * @return false se não é primeira jogada

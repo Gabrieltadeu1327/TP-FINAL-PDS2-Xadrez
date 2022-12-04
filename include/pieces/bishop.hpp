@@ -32,14 +32,16 @@ class Bishop: public Piece {
         ~Bishop(){};
 
         /**
-         * @brief Define matriz de possíveis movimentos para o bispo (preto ou branco).
-         * @details Recebendo a posição atual do bispo, definimos a matriz de possíveis movimentos,
-         *  note que ainda não fizemos a verificação de validez do movimento.
+         * @brief Função sobrescreve a função, da classe mãe, que define possíveis movimentos para o bispo (preto ou branco).
+         * @details Recebendo a posição atual do bispo, a função altera a matriz de possíveis movimentos, 
+         *  declarada na classe 'piece', colocando '1' para movimento possível e '0' para movimento impossível,
+         *  note que ainda não existe a verificação de validez do movimento.
+         *  Ocorre sobrescrição da função virtual declarada em piece. 
          * 
-         *  @param spot ponto atual da peça, necessário para determinar seus possíveis
+         *  @param spot ponto inteiro atual da peça, necessário para determinar seus possíveis
          *  movimentos futuros.
          * 
-         * @return void. 
+         * @return void.
          */
         void def_possible_movements(int* spot) override;
 

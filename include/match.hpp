@@ -17,7 +17,10 @@
 #include "board.hpp"
 
 /**
- * @brief 
+ * @brief É a partida, literalmente, recebe as interações no tabuleiro e dá andamento ao jogo.
+ * @details A classe é capaz de atualizar a imagem do tabuleiro, à medida que o usuário
+ *  dá clicks na tela. A classe também seta o turno, casos de desistência e casos onde 
+ *  existe vitória. 
  * 
  */
 class Match{
