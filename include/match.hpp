@@ -89,13 +89,19 @@ public:
      * 
      */
     void p_gaveup();
-
 };
 
-class InvalidSpotExeption: public exception{
+class ButtonSpotExeption: public exception{
     const char* _message;
     public:
-    InvalidSpotExeption();
+    ButtonSpotExeption();
+    const char* what() const noexcept;
+};
+
+class VoidMovimentExeption: public exception{
+    const char* _message;
+    public:
+    VoidMovimentExeption();
     const char* what() const noexcept;
 };
 

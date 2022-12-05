@@ -1,6 +1,7 @@
 
 #include "../include/board.hpp"
 #include <stdexcept>
+#include <cassert>
 
 Board::Board(){
    
@@ -12,7 +13,7 @@ Board::Board(){
         }
    }
    
-   //Declara as peças
+   //Declara as peças,
     board[0][0] = new Rook("Black");
     board[0][1] = new Knight("Black");
     board[0][2] = new Bishop("Black");
@@ -50,6 +51,9 @@ Piece* Board::get_piece(int* spot){
 }
 // Muda a posição de uma peça e declara 
 void Board::set_piece(int* atual_spot, int* f_spot){
+    if(this->board[*(atual_spot)][*(atual_spot+1)] == nullptr){
+        throw invalid_argument("não há peças aki");
+    }
     std::cout<<"Entrou set piece\n";
     //Mudança Torre Roque
     int rook_spot[2]; 
@@ -123,7 +127,10 @@ std::string Board::get_image(int* spot){
 
 //Restrinje os movimentos validos
 void Board::def_valid_moviments( int* spot, int mat[8][8]){
-
+  
+    assert(spot[0]>=0 && spot[0]<8 &&
+           spot[1]>=0 && spot[1]<8);
+    
     Piece* p = get_piece(spot);
     if(p == nullptr){
         throw std::invalid_argument("ponteiro nulo"); 
@@ -322,7 +329,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
     }
 ;
 }
-
+/*
 void Board::refresh_atc_matriz(string cor){
 
 int piece_mov[8][8]; 
@@ -393,7 +400,7 @@ int spot[2];
     }
    
 };
-
+/*
 // Retrona 1 se é cheque mate
 bool Board::ischeque(std::string color){
 
@@ -428,7 +435,7 @@ bool Board::ischeque(std::string color){
 
     }
     return xeque;
-}
+}*/
 
 std::string Board::get_collor(int* spot){
     return board[spot[0]][spot[1]]->get_color();
@@ -443,7 +450,7 @@ Board::~Board(){
                 }
             }
         }
-    delete board;
-    delete white_atc_mat;
-    delete black_atc_mat;
+    delete[] board;
+    delete[] white_atc_mat;
+    delete[] black_atc_mat;
 }

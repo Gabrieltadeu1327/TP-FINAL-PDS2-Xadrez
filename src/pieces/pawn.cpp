@@ -1,6 +1,5 @@
-//#define NDEBUG
+
 #include "../../include/pieces/pawn.hpp"
-//#include <c//assert>
 #include<string>
 
 
@@ -10,9 +9,9 @@ Pawn::Pawn(std::string color):Piece(color){
     _name= "Pawn";
      
     if(color == "White"){
-        _image = "src/images/W_Pawn.png";
+        _image = "images/W_Pawn.png";
     }else if(color == "Black"){
-        _image = "src/images/B_Pawn.png";
+        _image = "images/B_Pawn.png";
     };
 }
 
@@ -21,9 +20,7 @@ void Pawn::def_possible_movements(int* spot){
 
     // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<8; i++){
-        //assert(0 <= i && i >= 9);
         for(int j=0; j<8; j++){
-            //assert(0 <= j && j >= 9);
             _possibles_movements[i][j]=0;
         }
     };

@@ -1,5 +1,7 @@
 #include "../include/match.hpp"
+
 #include <iostream>
+#include <cassert>
 
 Match::Match(){};
 
@@ -28,6 +30,9 @@ std::string Match::getwinner(){
 }
 void Match::game(int spot[2]){
 
+    assert(spot[0]>=0 && spot[0]<8 &&
+           spot[1]>=0 && spot[1]<8);
+    
     int mat[8][8];
     bool isnull=true;
 
@@ -80,22 +85,26 @@ void Match::game(int spot[2]){
                         if(mat[i][j]== 0){
                             image_dots[i][j] = "";
                         }else if(mat[i][j]== 1){
-                            image_dots[i][j] = "src/images/Possible_Mov.png";//BOTAR ENDEREÇO QUADRADO VERDE
+                            image_dots[i][j] = "images/Possible_Mov.png";//BOTAR ENDEREÇO QUADRADO VERDE
                             isnull=false;
 
                         }else if(mat[i][j]== -1){
-                            image_dots[i][j] = "src/images/Impossible_Mov.png";//BOTAR ENDEREÇO QUADRADO VERMELHO
+                            image_dots[i][j] = "images/Impossible_Mov.png";//BOTAR ENDEREÇO QUADRADO VERMELHO
 
                             isnull=false;                        
                         }
                     } 
                 }
-
-                if(!isnull){
-                   selected = true;   
-                }                               
+                
                 last_spot[0] = spot[0];
                 last_spot[1] = spot[1];
+                
+                if(!isnull){
+                   selected = true;   
+                }else{
+                   throw VoidMovimentExeption();
+                }                             
+
             }
         }
     }
@@ -108,14 +117,21 @@ std::string Match::get_turn(){
 
 void Match::p_gaveup(){
     if(turn == "White") winner = "Black";
-    if(turn== "Black") winner = "White";
+    if(turn == "Black") winner = "White";
 }
 
-InvalidSpotExeption::InvalidSpotExeption(){
+ButtonSpotExeption::ButtonSpotExeption(){
     _message = "Spot passado é inválido";
 }
 
-const char* InvalidSpotExeption::what() const noexcept{
+const char* ButtonSpotExeption::what() const noexcept{
+    return _message;
+}
+
+VoidMovimentExeption::VoidMovimentExeption(){
+    _message= "Matriz de movimentos validos é vazia";
+}
+const char* VoidMovimentExeption::what() const noexcept{
     return _message;
 }
 

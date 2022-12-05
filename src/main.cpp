@@ -14,8 +14,8 @@
 #include "../include/board.hpp"
 
 
-void array_to_pixel(int* spot, int *pixel);
-void pixel_to_array(int* pixel, int*spot);
+void array_to_pixel(int* spot, int pixel[0]);
+void pixel_to_array(int* pixel, int* spot);
 void drawn_board(Match &mat);
 
 const int SC_W = 600;
@@ -50,8 +50,8 @@ int main(){
 
     //inicializa imagens:
     al_init_image_addon();
-    ALLEGRO_BITMAP *fundo = al_load_bitmap("src/images/Chess_Menu.png");
-    ALLEGRO_BITMAP *image = al_load_bitmap("src/images/B_Queen.png");
+    ALLEGRO_BITMAP *fundo = al_load_bitmap("images/Chess_Menu.png");
+    ALLEGRO_BITMAP *image = al_load_bitmap("images/B_Queen.png");
 
 	//cria fila de eventos:
 	event_queue = al_create_event_queue();
@@ -87,18 +87,18 @@ int main(){
             //evento de passo no relógio
             if(ev.type == ALLEGRO_EVENT_TIMER){
                 if(meme == 1){
-                    ALLEGRO_BITMAP *im = al_load_bitmap("src/images/Poootter.png");
+                    ALLEGRO_BITMAP *im = al_load_bitmap("images/Poootter.png");
                     al_draw_bitmap(im, 0, 0, 0);
                     al_destroy_bitmap(im);
                 }else{
                     al_draw_bitmap(fundo, 0, 0, 0);
                     if(match->get_turn() == "White"){
-                        ALLEGRO_BITMAP *image = al_load_bitmap("src/images/White's_Turn.png");
+                        ALLEGRO_BITMAP *image = al_load_bitmap("images/White's_Turn.png");
                         al_draw_bitmap(image, 0, 0, 0);
                         al_destroy_bitmap(image);
                     }
                     if(match->get_turn() == "Black"){
-                        ALLEGRO_BITMAP *image = al_load_bitmap("src/images/Black's_Turn.png");
+                        ALLEGRO_BITMAP *image = al_load_bitmap("images/Black's_Turn.png");
                         al_draw_bitmap(image, 0, 0, 0);
                         al_destroy_bitmap(image);
                     }
@@ -118,18 +118,30 @@ int main(){
             else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
                 int click[2] = {ev.mouse.x, ev.mouse.y};
                 int sp[2];
-                try{
-                    pixel_to_array(click, sp);
-                }
-                catch(InvalidSpotExeption &e){
-                    cout<<e.what();
-                    match->p_gaveup();
-                    break;
-                }
+                    try{
+                        pixel_to_array(click, sp);
+                    }
+                    catch(ButtonSpotExeption &e){
+                        cout<<e.what();
+                        match->p_gaveup();
+                        break;
+                    }catch(invalid_argument &e){
+                        cout<< e.what()<<"\n";
+                        break;
+                    }
                 printf("\n mouse clicando em: %d, %d\n", ev.mouse.x, ev.mouse.y); 
                 std::cout<<"Spot eviado: "<<sp[0] << " "<<sp[1]<<std::endl;
-               
-                match->game(sp);
+                    try{
+                        match->game(sp);
+                    
+                    }catch(VoidMovimentExeption &e){
+                        cout<< e.what()<<"\n";
+                        break;
+                    }catch(exception &e){
+                        cout<< e.what()<<"\n";
+                        break;
+                    }
+                        
 
             }
             //detecta codigo da tecla pressionado
@@ -158,13 +170,13 @@ int main(){
             break;
         }
         if(match->getwinner() == "White"){
-            ALLEGRO_BITMAP *image = al_load_bitmap("src/images/White's_Victory.png");
+            ALLEGRO_BITMAP *image = al_load_bitmap("images/White's_Victory.png");
             al_draw_bitmap(image, 0, 0, 0);
             al_destroy_bitmap(image);
             al_flip_display();
         }
         if(match->getwinner() == "Black"){
-            ALLEGRO_BITMAP *image = al_load_bitmap("src/images/Black's_Victory.png");
+            ALLEGRO_BITMAP *image = al_load_bitmap("images/Black's_Victory.png");
             al_draw_bitmap(image, 0, 0, 0);
             al_destroy_bitmap(image);
             al_flip_display();
@@ -192,7 +204,6 @@ int main(){
         std::cout<<"delet match\n";
 
         // delete match;
-        //Clean da tela
 	}
     al_destroy_event_queue(event_queue);
 }
@@ -238,66 +249,38 @@ void drawn_board(Match &mat){
     }
 }
 
-void array_to_pixel(int* spot, int *pixel){ 
-    *pixel = 26 + (*(spot + 1) * 69); 
-    *(pixel+1) = 127 + (*(spot) * 69);
+void array_to_pixel(int* spot, int pixel[0]){ 
+    pixel[0] = 26 + (*(spot + 1) * 69); 
+    pixel[1] = 127 + (*(spot) * 69);
       
 }
 
 void pixel_to_array(int* pixel, int* spot){
-    if(*pixel >= 420 && *pixel <= 530 &&
-        *(pixel+1)>= 40 &&  *(pixel+1)<= 85 ){
-        throw InvalidSpotExeption();
-    }
+    
+    if(pixel[0] >= 27 && pixel[0] <= 575 &&
+       pixel[1] >= 127 && pixel[1]<= 675 ){
+            std::cout<<"entrou pixel to array\n";
+            //eixo x
+            pixel[0] -= 26; //tira 26 pq as casas começam a partir do pixel 26
+            *(spot + 1) = (pixel[0]/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
+            //eixo y
+            pixel[1] -= 127; //tira 26 pq as casas começam a partir do pixel 26
+            *spot = (pixel[1]/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
+            
+    }else{
+        
+        if(pixel[0] >= 420 && pixel[0] <= 530 &&
+        pixel[1]>= 40 &&  pixel[1]<= 85 ){
+            throw ButtonSpotExeption();
+        }else{
+             throw invalid_argument("Fora do tabuleiro");
+        }
 
-    if(*pixel >= 420 && *pixel <= 530 &&
-        *(pixel+1)>= 40 &&  *(pixel+1)<= 85){
-        throw InvalidSpotExeption();
     }
-    //eixo x
-    *pixel -= 26; //tira 26 pq as casas começam a partir do pixel 26
-    *(spot + 1) = (*pixel/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
-    //eixo y
-    *(pixel+1) -= 127; //tira 26 pq as casas começam a partir do pixel 26
-    *spot = (*(pixel+1)/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
+    //se x27 y127
+    //sd x575 y127
+    //id x575 y677
+    //ie x28 y675
+    
 }
 
-
-////CASCATA DE EXECUÇÕES
-
-    //Abrir jogo
-
-    // bool start=false, start=false;
-
-    // //Jogo roda em looping infinito ate o o programa ser manualmente fechado
-    // for(;;){
-        
-    //     //Construtor partida
-        
-    //     while(start== false){
-    //         if(/*clicou no botao start*/){
-    //             start== true;
-    //         }
-    //     }start ==false;
-       
-    //     //Partida.game()
-
-    // //     //Funcao da partida que ouve se há vencendor
-    // //     while(winner()==NULL){
-    // //     }
-    // //     if(winner()== "White"){
-    // //         //Tela vitoria Branco
-            
-    // //     }else if(winner() == "Black"){
-    // //         //Tela vitoria preto
-    // //     }
-        
-    // //     while(reset== false){
-    // //         if(/*clicou no botao reset*/){
-    // //             reset== true;
-    // //         }
-    // //     }reset ==false;
-    // //     //Apagar tela de vitoria 
-
-    // //     //destrutor partida 
-    // // };

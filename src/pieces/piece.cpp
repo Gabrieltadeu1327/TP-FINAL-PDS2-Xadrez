@@ -5,9 +5,11 @@
 using namespace std;
 
 Piece::Piece(string color){
+    if(color != "White" && color != "Black"){
+        throw invalid_argument("Entrada de cor inválida");
+    }
     _color = color;
 }
-void Piece::def_possible_movements(int* spot){}
 
 string Piece::get_color(){
     return _color;

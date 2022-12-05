@@ -52,7 +52,7 @@ class Piece {
          * 
          * @return void
          */
-        virtual void def_possible_movements(int* spot);
+        virtual void def_possible_movements(int* spot)=0;
 
 
         /**
