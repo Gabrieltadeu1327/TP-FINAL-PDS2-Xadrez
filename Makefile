@@ -1,7 +1,7 @@
 all: main
 
-main: 
-	g++ src/main.cpp build/*.o -lallegro -lallegro_image -lallegro_main -o main 
+main: clear match
+	g++ src/main.cpp build/*.o build/pieces/*.o -lallegro -lallegro_image -lallegro_main -o build/main 
 
 match: board
 	g++  -c src/match.cpp -o build/match.o
@@ -11,29 +11,34 @@ board: piece bishop king knight pawn queen rook
 
 piece:
 	mkdir build/
-	g++  -c src/pieces/piece.cpp -o build/piece.o
+	mkdir build/pieces/
+	mkdir build/tests/
+	g++  -c src/pieces/piece.cpp -o build/pieces/piece.o
 
 bishop:
-	g++  -c src/pieces/bishop.cpp -o build/bishop.o
+	g++  -c src/pieces/bishop.cpp -o build/pieces/bishop.o
 
 king:
-	g++  -c src/pieces/king.cpp -o build/king.o
+	g++  -c src/pieces/king.cpp -o build/pieces/king.o
 
 knight:
-	g++ -c src/pieces/knight.cpp -o build/knight.o
+	g++ -c src/pieces/knight.cpp -o build/pieces/knight.o
 
 rook:
-	g++  -c src/pieces/rook.cpp -o build/rook.o
+	g++  -c src/pieces/rook.cpp -o build/pieces/rook.o
 
 queen:
-	g++  -c src/pieces/queen.cpp -o build/queen.o
+	g++  -c src/pieces/queen.cpp -o build/pieces/queen.o
 
 pawn: piece
-	g++  -c src/pieces/pawn.cpp -o build/pawn.o
+	g++  -c src/pieces/pawn.cpp -o build/pieces/pawn.o
 
-test:
+tests:
 	
-	g++ -I third_party/ build/*.o tests/board_test.cpp -o test
+	g++ -I third_party/ build/board.o build/pieces/*.o tests/board_test.cpp -o build/tests/board_test
+	g++ -I third_party/ build/board.o build/pieces/*.o tests/pieces_test.cpp -o build/tests/pieces_test
+	
+.PHONY: tests all main 
 
 cm:
 	rm -f main

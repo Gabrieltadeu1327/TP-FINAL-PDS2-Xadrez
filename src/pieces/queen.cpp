@@ -27,11 +27,8 @@ void Queen::def_possible_movements(int* spot){
                 if(ci ==0 && cj ==0){
                     continue;
                 }
-                
                 for(int i=spot[0], j= spot[1]; i>=0 && i<8 && j>=0 && j<8; i+= ci, j+= cj){
-                        
                         _possibles_movements[i][j]=1;
-                    
                 }
 
 

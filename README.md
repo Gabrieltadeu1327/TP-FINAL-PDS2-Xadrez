@@ -7,20 +7,25 @@
 ## Resumo
   O xadrez é um jogo de tabuleiro, sendo também considerado como esporte. É disputado entre dois jogadores, utilizando-se de um tabuleiro e 16 peças, sendo representadas por peões, torres, cavalos, bispos, um rei e uma rainha. O objetivo é conquistar o rei de seu adversário.
 
-  O jogo deve ser jogado em um mesmo computador
+  Os participantes irão jogar em um mesmo computador.
 ## Pré-requisitos
   Para jogar é preciso ter um compilador de C++ e a biblioteca Allegro instalada.
 
-  Segue um vídeo com as intruções para baixá-la:
-[clique aqui](https://youtu.be/7gGZj2YkWEU)
+  Segue um link para página da biblioteca onde é ensinado a instalar nos diversos Sistemas operacionais:
+[clique aqui](https://liballeg.org/download.html)
+
+## Compilação
+  O makefile já está pronto para uso! Basta dar o comando make e deixá-lo fazer a mágica. Dessa foma, ele criará o arquivo executável na pasta build.
+
+  Caso precise compilar novamente e apagar os arquivos criados anteriormente, o comando make clear pode ser usado, porém, naturalmente, quando se chama o comando make ele apaga as dependências criadas anteriormente.
 
 ## Funcionalidades
   As regras do xadrez tradicional também são válidas aqui, inclusive os movimentos especiais como Roque e promoção do peão.
 
 ## Como Usar
-  Quando for iniciar uma partida, chame um amigo e cliquem em "New Game" no conto superior direito
+  Abra o jogo após compilar com o comando ./build/main
 
-  Para mover um peça, basta clicar sobre ela, e em seguida, clicar sobre uma das posições válidas que irão ser mostradas na tela;
+  Para mover um peça, basta clicar sobre ela, e em seguida, clicar sobre uma das posições válidas que serão mostradas na tela;
 
   Case deseje desistir, clique no botão "Give up" no canto superior direito
 
