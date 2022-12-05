@@ -109,7 +109,7 @@ class Board{
          * @details Determina se o rei, de uma certa cor recebida, 
          *  está em posição de cheque ou não.
          * 
-         * @param color cor da rei a ser verificado. 
+         * @param color cor do rei a ser verificado. 
          * @return true sim, cheque.
          * @return false não, sem cheque.
          */
