@@ -10,7 +10,7 @@ Match::~Match(){
 void Match::refresh_imagespices(){    
     int v[2];
     for(int i=0 ; i<8; i++){
-       for(int j=0 ; j<8; j++){
+        for(int j=0 ; j<8; j++){
         v[0]=i; 
         v[1]=j;
         image_pices[i][j] = bo->get_image(v);
