@@ -1,0 +1,8 @@
+digraph "Board"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="{Board\n||+ Board()\l+ ~Board()\l+ get_piece()\l+ def_valid_moviments()\l+ set_piece()\l+ get_image()\l+ get_collor()\l}",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Cria a matriz do tabuleiro, as matrizes de ataque, as funções a serem chamadas na main."];
+}

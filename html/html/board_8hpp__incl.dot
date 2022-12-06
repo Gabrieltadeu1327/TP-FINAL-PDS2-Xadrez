@@ -1,0 +1,32 @@
+digraph "include/board.hpp"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="include/board.hpp",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Superclasse com a lógica do board."];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="string",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="pieces/piece.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$piece_8hpp.html",tooltip="Superclasse com a lógica de piece."];
+  Node3 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="iostream",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="pieces/bishop.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$bishop_8hpp.html",tooltip="Subclasse com a lógica do bishop."];
+  Node5 -> Node3 [color="steelblue1",style="solid"];
+  Node1 -> Node6 [color="steelblue1",style="solid"];
+  Node6 [label="pieces/pawn.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$pawn_8hpp.html",tooltip="Subclasse com a lógica do pawn."];
+  Node6 -> Node3 [color="steelblue1",style="solid"];
+  Node1 -> Node7 [color="steelblue1",style="solid"];
+  Node7 [label="pieces/knight.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$knight_8hpp.html",tooltip="Subclasse com a lógica do knight."];
+  Node7 -> Node3 [color="steelblue1",style="solid"];
+  Node1 -> Node8 [color="steelblue1",style="solid"];
+  Node8 [label="pieces/king.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$king_8hpp.html",tooltip="Subclasse com a lógica do king."];
+  Node8 -> Node3 [color="steelblue1",style="solid"];
+  Node1 -> Node9 [color="steelblue1",style="solid"];
+  Node9 [label="pieces/queen.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$queen_8hpp.html",tooltip="Sublasse com a lógica da queen."];
+  Node9 -> Node3 [color="steelblue1",style="solid"];
+  Node1 -> Node10 [color="steelblue1",style="solid"];
+  Node10 [label="pieces/rook.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$rook_8hpp.html",tooltip="Subclasse com a lógica do rook."];
+  Node10 -> Node3 [color="steelblue1",style="solid"];
+}
