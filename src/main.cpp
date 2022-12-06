@@ -152,8 +152,7 @@ int main(){
                         movtype = 1;
                         continue;
                     }
-                printf("\n mouse clicando em: %d, %d\n", ev.mouse.x, ev.mouse.y); 
-                std::cout<<"Spot eviado: "<<sp[0] << " "<<sp[1]<<std::endl;
+                
                     try{
                         match->game(sp);
                     
