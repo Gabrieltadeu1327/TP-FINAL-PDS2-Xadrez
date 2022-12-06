@@ -36,10 +36,6 @@ class Board{
     private:
         Piece* board[8][8];
 
-//Matrizes de ataque
-        int white_atc_mat[8][8];
-        int black_atc_mat[8][8];
-
     public:
     
         Board();
@@ -95,26 +91,6 @@ class Board{
          */
         std::string get_collor(int* spot);
         
-        /**
-         * @brief Atualiza a matriz de ataque.
-         * @details Recebendo a cor da matriz a ser atualizada, assim é possível
-         *  determinar sua matriz de ataque. 
-         * 
-         * @param cor cor da matriz. 
-         */
-        void refresh_atc_matriz(string cor);
-
-        /**
-         * @brief Determina se o rei está em cheque.
-         * @details Determina se o rei, de uma certa cor recebida, 
-         *  está em posição de cheque ou não.
-         * 
-         * @param color cor do rei a ser verificado. 
-         * @return true sim, cheque.
-         * @return false não, sem cheque.
-         */
-        bool ischeque(std::string color);
-
 };
 
 #endif

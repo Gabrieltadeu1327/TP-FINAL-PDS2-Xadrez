@@ -39,10 +39,10 @@ void Pawn::def_possible_movements(int* spot){
     if(this->get_color() == "Black" && _first_time == false){
         _possibles_movements[spot[0]+1][spot[1]] = 1;
          if(spot[1] <7){
-            _possibles_movements[spot[0]+1][spot[1] - 1] = 1;
+            _possibles_movements[spot[0]+1][spot[1] + 1] = 1;
         }
         if(spot[1] >0){
-            _possibles_movements[spot[0] +1][spot[1] + 1] = 1;
+            _possibles_movements[spot[0] +1][spot[1] - 1] = 1;
         }
 
     }
@@ -50,19 +50,19 @@ void Pawn::def_possible_movements(int* spot){
         _possibles_movements[spot[0]-1][spot[1]] = 1;
         _possibles_movements[spot[0]-2][spot[1]] = 1;
          if(spot[1] <7){
-            _possibles_movements[spot[0]-1][spot[1] - 1] = 1;
+            _possibles_movements[spot[0]-1][spot[1] + 1] = 1;
         }
         if(spot[1] >0){
-            _possibles_movements[spot[0] -1][spot[1] +1] = 1;
+            _possibles_movements[spot[0] -1][spot[1] -1] = 1;
         }
     }
     if(this->get_color() == "White" && _first_time == false){
         _possibles_movements[spot[0]-1][spot[1]] = 1;
         if(spot[1] <7){
-            _possibles_movements[spot[0]-1][spot[1] - 1] = 1;
+            _possibles_movements[spot[0]-1][spot[1] + 1] = 1;
         }
         if(spot[1] >0){
-            _possibles_movements[spot[0] -1][spot[1] + 1] = 1;
+            _possibles_movements[spot[0] -1][spot[1] - 1] = 1;
         }
     }
 

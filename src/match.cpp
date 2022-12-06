@@ -21,10 +21,6 @@ void Match::refresh_imagespices(){
 
 }
 
-void Match::refresh_imagesdots(){
-    
-};
-
 std::string Match::getwinner(){
     return winner;
 }
@@ -37,27 +33,30 @@ void Match::game(int spot[2]){
     bool isnull=true;
 
     if(selected){
-      cout<<"Entrou selected\n";
         if(image_dots[spot[0]][spot[1]] != ""){
             
             if(bo->get_piece(spot) != nullptr){
                 if(bo->get_piece(spot)->get_name() == "King"){
-                    cout<<"setou winner\n";
-                   //  bo->set_piece(last_spot,spot);
                      winner= turn;
                 }
             }    
 
-            bo->set_piece(last_spot,spot);
-            std::cout<<"Passsou setpiece\n";    
-                
-          //  cout<< bo->get_piece(spot)->get_name()<<"\n"; 
+            bo->set_piece(last_spot,spot);    
 
             if(turn =="White"){
                 turn = "Black";
             }else{
                 turn = "White";
             }
+        }else{
+            for(int i=0 ; i<8; i++){
+                for(int j=0 ; j<8; j++){
+                    image_dots[i][j]= "";
+                } 
+            }
+            
+            selected = false;  
+            throw MovNotValidExeption();
         }
         
         for(int i=0 ; i<8; i++){
@@ -72,14 +71,6 @@ void Match::game(int spot[2]){
             if(bo->get_collor(spot) == turn){
                 bo->def_valid_moviments(spot, mat);
                 
-                std::cout<< "Passou de valid moviments\n";
-                for(int i=0; i<8; i++){
-                    for(int j=0; j<8; j++){
-                        std::cout<<  mat[i][j];
-                    }
-                    std::cout<<"\n";
-                }
-
                 for(int i=0; i<8; i++){
                    for(int j=0; j<8; j++){
                         if(mat[i][j]== 0){
@@ -102,10 +93,15 @@ void Match::game(int spot[2]){
                 if(!isnull){
                    selected = true;   
                 }else{
+                    
                    throw VoidMovimentExeption();
                 }                             
 
+            }else{
+                throw NotTurnExeption();
             }
+        }else{
+            throw VoidSpotExeption();
         }
     }
 
@@ -134,5 +130,21 @@ VoidMovimentExeption::VoidMovimentExeption(){
 const char* VoidMovimentExeption::what() const noexcept{
     return _message;
 }
-
-
+NotTurnExeption::NotTurnExeption(){
+    _message = "Não é a vez da peça clicada";
+}
+const char* NotTurnExeption::what() const noexcept{
+    return _message;
+}
+VoidSpotExeption::VoidSpotExeption(){
+    _message = "O local clicado não possui peças";
+}
+const char* VoidSpotExeption::what() const noexcept{
+    return _message;
+}
+MovNotValidExeption::MovNotValidExeption(){
+    _message = "A peça não pode se movimentar para o local clicado";
+}
+const char* MovNotValidExeption::what() const noexcept{
+    return _message;
+}

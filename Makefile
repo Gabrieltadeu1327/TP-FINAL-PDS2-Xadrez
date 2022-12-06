@@ -34,7 +34,6 @@ pawn: piece
 	g++  -c src/pieces/pawn.cpp -o build/pieces/pawn.o
 
 tests:
-	
 	g++ -I third_party/ build/board.o build/pieces/*.o tests/board_test.cpp -o build/tests/board_test
 	g++ -I third_party/ build/board.o build/pieces/*.o tests/pieces_test.cpp -o build/tests/pieces_test
 	

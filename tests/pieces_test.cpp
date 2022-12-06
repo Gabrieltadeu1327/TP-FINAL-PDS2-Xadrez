@@ -18,6 +18,23 @@ bool MatrizIgual(int mat1[8][8], int mat2[8][8]){
 
 std::string str = "White";
 
+TEST_CASE("Movimento Peão") {
+    Pawn *r = new Pawn(str);
+    int spot[2] = {6, 0};
+    int mat_test[8][8]={{0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0},
+                        {1,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0},
+                        {0,0,0,0,0,0,0,0}};
+    r->def_possible_movements(spot);
+    
+    CHECK_EQ(true, MatrizIgual(mat_test, r->_possibles_movements));
+
+}
+
 TEST_CASE("Movimento Torre") {
     Rook *r = new Rook(str);
     int spot[2] = {4, 3};

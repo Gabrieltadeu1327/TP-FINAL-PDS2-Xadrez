@@ -15,7 +15,7 @@ Bishop::Bishop(string color):Piece(color){
 
 void Bishop::def_possible_movements(int* spot){
 
-    std::cout<< "entrou no bispo\n";
+ 
   // Rezeta a Matriz de movimentos possiveis
     for (int i=0; i<8; i++){
         for(int j=0; j<8; j++){
@@ -39,7 +39,7 @@ void Bishop::def_possible_movements(int* spot){
             }
     }
 
- std::cout<<"saiu bispo\n";
+
 
     //Zera a casa da posição atual das peças:
     _possibles_movements[spot[0]][spot[1]]= 0; 

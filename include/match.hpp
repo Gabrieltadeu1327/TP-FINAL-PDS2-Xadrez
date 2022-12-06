@@ -59,12 +59,6 @@ public:
     void refresh_imagespices();
 
     /**
-     * @brief 
-     * 
-     */
-    void refresh_imagesdots();
-
-    /**
      * @brief Retorna o vencedor do jogo.
      * @details Caso exista um 'winner', a função getwinner, deve retornar uma string
      *  que diga qual cor venceu o jogo, sendo o jogador 'Black' ou 'White'.
@@ -102,6 +96,27 @@ class VoidMovimentExeption: public exception{
     const char* _message;
     public:
     VoidMovimentExeption();
+    const char* what() const noexcept;
+};
+
+class NotTurnExeption: public exception{
+    const char* _message;
+    public:
+    NotTurnExeption();
+    const char* what() const noexcept;
+};
+
+class VoidSpotExeption: public exception{
+    const char* _message;
+    public:
+    VoidSpotExeption();
+    const char* what() const noexcept;
+};
+
+class MovNotValidExeption: public exception{
+    const char* _message;
+    public:
+    MovNotValidExeption();
     const char* what() const noexcept;
 };
 

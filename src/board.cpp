@@ -54,7 +54,7 @@ void Board::set_piece(int* atual_spot, int* f_spot){
     if(this->board[*(atual_spot)][*(atual_spot+1)] == nullptr){
         throw invalid_argument("não há peças aki");
     }
-    std::cout<<"Entrou set piece\n";
+
     //Mudança Torre Roque
     int rook_spot[2]; 
     rook_spot[0] = atual_spot[0];
@@ -88,7 +88,7 @@ void Board::set_piece(int* atual_spot, int* f_spot){
     }
     board[*f_spot][*(f_spot +1)] = get_piece(atual_spot);
     board[*atual_spot][*(atual_spot+1)] = nullptr;
-    cout<<"Mudou a posição\n";
+
 
     //Promoção
     if(get_piece(f_spot)->get_name() == "Pawn" && 
@@ -111,7 +111,7 @@ void Board::set_piece(int* atual_spot, int* f_spot){
         board[*f_spot][*(f_spot+1)] = new Queen("Black");
         
     }
-    cout<<"Passou setpices\n";
+
 }
 
 //envia a img de um spot
@@ -135,7 +135,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
     if(p == nullptr){
         throw std::invalid_argument("ponteiro nulo"); 
     }
-    cout<<"entoru valid movimnets\n";
+ 
     p->def_possible_movements(spot);
     
     for(int i= 0; i< 8; i++){
@@ -144,7 +144,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
         }  
     }
    
-    std::cout<< "passou primeira verificação\n";
+  
 
     //eliminando casos de mesma cor   
     for(int i= 0; i< 8; i++){
@@ -156,7 +156,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
             }    
         }  
     }
-    std::cout<< "passou for\n";
+ 
     // Como cavalo n move para os lados, ele está ok 
     if(p->get_name()== "Knight"){
     
@@ -165,12 +165,12 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
     // Rei não possui caminhos com falhas mas n pode se colocar em xeque  
     if(p->get_name()== "King"){ 
 
-        cout << "Entrou rei\n";
+
         // Implementação roque
         if(p->get_first_time()== true){
         
             if(p->get_color() == "White" ){
-                cout<<"Entrou roque\n";
+          
                 if(board[7][7] !=nullptr){
                     if(board[7][7]->get_name()=="Rook" &&
                     board[7][7]->get_first_time()==true &&
@@ -216,37 +216,18 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
                 }
             }
         }
-        //Garante que o rei nao vai ficar em cheque ao se movimentar        
-        /*for(int i= 0; i< 8; i++){
-            for(int j= 0; j< 8; j++){
-                
-                if(p->get_color() == "Black"){
-                        if(mat[i][j]== 1 && 
-                        white_atc_mat[i][j] != 0){
-                        
-                        mat[i][j]=0;
-                        }
-                }else{
-                        if(mat[i][j]== 1 && 
-                        black_atc_mat[i][j] != 0){
-                
-                        mat[i][j]=0;
-                        } 
-                }           
-            }  
-        }   */
 
     }else 
     //Pião possui padrao de movimento dependente e movimentos especiais
     if(p->get_name() == "Pawn"){
         
-        std::cout<< "entou peao"<< p->get_color()<<"\n";
+
         
         if(p->get_color()== "Black"){
-            cout<<"entrou if black peao\n";
+
             //movimento frontal
             if(board[spot[0]+1][spot[1]] != nullptr){
-               cout<<"Entrou if peao\n";
+ 
                 mat[spot[0]+1][spot[1]] = 0;
                 //Remoção de corte no caminho
                 if(p->get_first_time()){
@@ -287,7 +268,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
         
     // Remoção das falhas nos caminhos ( rainha, Bispo, torre) 
     }else{
-        std::cout<<"entou ultima verificação\n";
+
         int sum;
         bool first;
 
@@ -300,9 +281,9 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
                 if(ci ==0 && cj ==0){
                     continue;
                 }
-                std::cout<<"cout externo\n";
+
                 for( int i=spot[0], j= spot[1]; i>=0 && i<8 && j>=0 && j<8; i+= ci, j+= cj){
-                  //  cout<< ci<< " "<< cj<<"\n";
+
                        mat[i][j] *=sum;
                         if(board[i][j] != nullptr && first == false){
                             if((board[i][j])->get_color() != p->get_color() || 
@@ -315,7 +296,7 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
 
             }
        }
-    cout<<"Saiu verificaçao\n";
+
     }  
    // atribuicao -1 para casas que podem ser comidas
     for(int i= 0; i< 8; i++){
@@ -329,113 +310,6 @@ void Board::def_valid_moviments( int* spot, int mat[8][8]){
     }
 ;
 }
-/*
-void Board::refresh_atc_matriz(string cor){
-
-int piece_mov[8][8]; 
-int spot[2];
-
-    if(cor == "White"){
-        //Zerando a matriz
-        for(int i= 0; i< 8; i++){
-        for(int j= 0; j< 8; j++){
-         
-         white_atc_mat[i][j]=0;
-        }  
-        }
-        
-        for(int i= 0; i< 8; i++){
-          for(int j= 0; j< 8; j++){
-            spot[0]= i;
-            spot[1]= j; 
-            
-            if(board[i][j] != nullptr){
-                if((board[i][j])->get_color()== "White"){
-                    
-                        def_valid_moviments(spot, piece_mov);
-
-                        for(int z= 0; z< 8; z++){
-                        for(int y= 0; y< 8; y++){
-                            white_atc_mat[z][y] += std::abs( piece_mov[z][y]);
-                        } 
-                        }
-                }    
-
-            }
-                
-          }  
-        }
-    
-    }else{
-        //zerando a matriz
-        for(int i= 0; i< 8; i++){
-        for(int j= 0; j< 8; j++){
-         
-         black_atc_mat[i][j]=0;
-        }  
-        };
-        
-        for(int i= 0; i< 8; i++){
-        for(int j= 0; j< 8; j++){
-            spot[0]= i;
-            spot[1]= j; 
-            
-            if(board[i][j] != nullptr){
-                if((board[i][j])->get_color()== "Black" ){
-                   
-                    def_valid_moviments(spot, piece_mov);
-
-                    for(int z= 0; z< 8; z++){
-                    for(int y= 0; y< 8; y++){
-                         black_atc_mat[z][y] += std::abs(piece_mov[z][y]);
-                    }  
-                    }
-                }
-
-            }    
-        }  
-        }    
-
-
-    }
-   
-};
-/*
-// Retrona 1 se é cheque mate
-bool Board::ischeque(std::string color){
-
-    int xeque = 0;
-
-    if(color == "White"){
-        refresh_atc_matriz("Black");
-       
-        for(int  i= 0; i< 8; i++){
-            for(int  j= 0; j< 8; j++){
-                if(board[i][j] != nullptr){
-                    if(board[i][j]->get_name()== "King" && black_atc_mat[i][j]==1){
-                        xeque =1;
-                    }
-                }
-            }
-        }
-
-    }else if(color == "Black"){
-       refresh_atc_matriz("White");
-       
-        for(int  i= 0; i< 8; i++){
-            for(int  j= 0; j< 8; j++){
-                if(board[i][j] != nullptr){
-                    if(board[i][j]->get_name()== "King" && white_atc_mat[i][j]==1){
-                        xeque =1;
-                    }
-                }
-            }
-        }
-
-
-    }
-    return xeque;
-}*/
 
 std::string Board::get_collor(int* spot){
     return board[spot[0]][spot[1]]->get_color();
@@ -450,7 +324,5 @@ Board::~Board(){
                 }
             }
         }
-    delete[] board;
-    delete[] white_atc_mat;
-    delete[] black_atc_mat;
+    free(board);
 }

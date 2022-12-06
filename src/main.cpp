@@ -5,8 +5,6 @@
 #include <allegro5/allegro_image.h>
 #include <stdio.h>
 #include <iostream>
-#include <thread>    
-#include <chrono>
 
 #include "../include/match.hpp"
 #include "../include/pieces/rook.hpp"
@@ -63,11 +61,11 @@ int main(){
     al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	
 	int run = 1;
-    //inicia o temporizador
-    
-    al_start_timer(timer);
     int meme = 0;
+    int movtype = 0;
 
+    //inicia o temporizador
+    al_start_timer(timer);
     while(run){
         
         Match *match = new Match();
@@ -77,12 +75,10 @@ int main(){
             al_wait_for_event(event_queue, &ev);
             
             if(match->getwinner() != ""){
-                   std::cout<<"Matou 1while\n";
                     break;
             }
 
             match->refresh_imagespices();
-            match->refresh_imagesdots();
 
             //evento de passo no relógio
             if(ev.type == ALLEGRO_EVENT_TIMER){
@@ -92,6 +88,29 @@ int main(){
                     al_destroy_bitmap(im);
                 }else{
                     al_draw_bitmap(fundo, 0, 0, 0);
+                    ALLEGRO_BITMAP *mov;
+                    switch (movtype){
+                    case 1:
+                        mov = al_load_bitmap("images/Invalid Movement.png");
+                        al_draw_bitmap(mov, 0, 0, 0);
+                        al_destroy_bitmap(mov);
+                        break;
+                    case 2:
+                        mov = al_load_bitmap("images/Movement Canceled.png");
+                        al_draw_bitmap(mov, 0, 0, 0);
+                        al_destroy_bitmap(mov);
+                        break;
+                    case 3:
+                        mov = al_load_bitmap("images/Blocked Piece.png");
+                        al_draw_bitmap(mov, 0, 0, 0);
+                        al_destroy_bitmap(mov);
+                        break;
+                    default:
+                    break;
+                    }
+                    
+
+
                     if(match->get_turn() == "White"){
                         ALLEGRO_BITMAP *image = al_load_bitmap("images/White's_Turn.png");
                         al_draw_bitmap(image, 0, 0, 0);
@@ -116,30 +135,42 @@ int main(){
             }
             //detecta a posição do mouse:::::IMPORTANTISSIMO:::::::
             else if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+                if(movtype != 0){
+                    movtype = 0;
+                }
                 int click[2] = {ev.mouse.x, ev.mouse.y};
                 int sp[2];
                     try{
                         pixel_to_array(click, sp);
                     }
-                    catch(ButtonSpotExeption &e){
+                    catch(ButtonSpotExeption &e){//quando clica no botao
                         cout<<e.what();
                         match->p_gaveup();
                         break;
-                    }catch(invalid_argument &e){
+                    }catch(invalid_argument &e){// quando clica fora do tabuleiro
                         cout<< e.what()<<"\n";
-                        break;
+                        movtype = 1;
+                        continue;
                     }
                 printf("\n mouse clicando em: %d, %d\n", ev.mouse.x, ev.mouse.y); 
                 std::cout<<"Spot eviado: "<<sp[0] << " "<<sp[1]<<std::endl;
                     try{
                         match->game(sp);
                     
-                    }catch(VoidMovimentExeption &e){
+                    }catch(VoidSpotExeption &e){
                         cout<< e.what()<<"\n";
-                        break;
-                    }catch(exception &e){
+                        continue;
+                    }catch(VoidMovimentExeption &e){//quando a matriz de movimentos validos é nula
                         cout<< e.what()<<"\n";
-                        break;
+                        movtype = 3;
+                        continue;
+                    }catch(MovNotValidExeption &e){//quando clica em um spot que nao pode ser movido, um espaço nulo ou em uma peça de cor diferente
+                        movtype = 2;
+                        cout<< e.what()<<"\n";
+                        continue;
+                    }catch(NotTurnExeption &e){//quando clica em um spot que nao pode ser movido, um espaço nulo ou em uma peça de cor diferente
+                        cout<< e.what()<<"\n";
+                        continue;
                     }
                         
 
@@ -164,7 +195,7 @@ int main(){
 
         }
     
-        std::cout<<"abriu img\n";
+       
         
         if(run == 0){
             break;
@@ -183,7 +214,7 @@ int main(){
         }
 
         while(1){
-            std::cout<<"entrou segundo while\n";
+     
             ALLEGRO_EVENT ev;
             //espera por um evento e o armazena em ev
             al_wait_for_event(event_queue, &ev);
@@ -201,7 +232,7 @@ int main(){
             }
         }
         
-        std::cout<<"delet match\n";
+   
 
         // delete match;
 	}
@@ -259,7 +290,7 @@ void pixel_to_array(int* pixel, int* spot){
     
     if(pixel[0] >= 27 && pixel[0] <= 575 &&
        pixel[1] >= 127 && pixel[1]<= 675 ){
-            std::cout<<"entrou pixel to array\n";
+       
             //eixo x
             pixel[0] -= 26; //tira 26 pq as casas começam a partir do pixel 26
             *(spot + 1) = (pixel[0]/69); //a cada 68 pixels, pula uma casa (pega só parte inteira da divisão)
