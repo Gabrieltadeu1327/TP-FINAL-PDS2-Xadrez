@@ -2,7 +2,8 @@
 
   Esse repositório tem por finalidade criar um jogo de **xadrez** em C++, para apresentação de um trabalho em grupo de "Programação e Desenvolvimento de Software II", da UFMG.
 
-![image](https://user-images.githubusercontent.com/100977386/205654835-cc64fdb3-4316-4e50-aee6-285493603d7e.png)
+
+![Screenshot from 2022-12-05 22-30-01](https://user-images.githubusercontent.com/100977386/205787241-6948474c-3fff-48ed-9103-e61182a2ac8c.png)
 
 ## Resumo
   O xadrez é um jogo de tabuleiro, sendo também considerado como esporte. É disputado entre dois jogadores, utilizando-se de um tabuleiro e 16 peças, sendo representadas por peões, torres, cavalos, bispos, um rei e uma rainha. O objetivo é conquistar o rei de seu adversário.
@@ -34,6 +35,8 @@
   Abra o jogo após compilar com o comando ./build/main
 
   Para mover um peça, basta clicar sobre ela, e em seguida, clicar sobre uma das posições válidas que serão mostradas na tela;
+  
+## Diagrama de Classes
 
 
 ## Participantes
