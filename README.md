@@ -36,8 +36,13 @@
 
   Para mover um peça, basta clicar sobre ela, e em seguida, clicar sobre uma das posições válidas que serão mostradas na tela;
   
+## Stories
+
+![stories1](https://user-images.githubusercontent.com/100977386/205797204-801a2ac7-4e13-4269-a094-89e70d80524b.png)
+
 ## Diagrama de Classes
 
+![diagrama 21](https://user-images.githubusercontent.com/100977386/205796969-0c932131-b34b-425a-83a1-48262f37629f.png)
 
 ## Participantes
 * [Artur Gonçalves](https://github.com/arturgsz)
