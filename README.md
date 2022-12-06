@@ -42,7 +42,8 @@
 
 ## Diagrama de Classes
 
-![diagrama 21](https://user-images.githubusercontent.com/100977386/205796969-0c932131-b34b-425a-83a1-48262f37629f.png)
+![Diagram Chess PDS2](https://user-images.githubusercontent.com/100977386/205932826-31b8665a-24c2-46c9-8154-7c1c560c7fb7.png)
+
 
 ## Participantes
 * [Artur Gonçalves](https://github.com/arturgsz)
