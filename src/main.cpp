@@ -109,8 +109,6 @@ int main(){
                     break;
                     }
                     
-
-
                     if(match->get_turn() == "White"){
                         ALLEGRO_BITMAP *image = al_load_bitmap("images/White's_Turn.png");
                         al_draw_bitmap(image, 0, 0, 0);
@@ -147,7 +145,7 @@ int main(){
                         cout<<e.what();
                         match->p_gaveup();
                         break;
-                    }catch(invalid_argument &e){// quando clica fora do tabuleiro
+                    }catch(OutOfTableExeption &e){// quando clica fora do tabuleiro
                         cout<< e.what()<<"\n";
                         movtype = 1;
                         continue;
@@ -170,8 +168,7 @@ int main(){
                     }catch(NotTurnExeption &e){//quando clica em um spot que nao pode ser movido, um espaço nulo ou em uma peça de cor diferente
                         cout<< e.what()<<"\n";
                         continue;
-                    }
-                        
+                    }           
 
             }
             //detecta codigo da tecla pressionado
@@ -303,7 +300,7 @@ void pixel_to_array(int* pixel, int* spot){
         pixel[1]>= 40 &&  pixel[1]<= 85 ){
             throw ButtonSpotExeption();
         }else{
-             throw invalid_argument("Fora do tabuleiro");
+            throw OutOfTableExeption();
         }
 
     }

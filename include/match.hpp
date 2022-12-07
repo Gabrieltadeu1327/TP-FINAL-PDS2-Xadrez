@@ -120,3 +120,9 @@ class MovNotValidExeption: public exception{
     const char* what() const noexcept;
 };
 
+class OutOfTableExeption: public exception{
+    const char* _message;
+    public:
+    OutOfTableExeption();
+    const char* what() const noexcept;
+};

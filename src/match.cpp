@@ -26,8 +26,11 @@ std::string Match::getwinner(){
 }
 void Match::game(int spot[2]){
 
-    assert(spot[0]>=0 && spot[0]<8 &&
-           spot[1]>=0 && spot[1]<8);
+    if(spot[0]<0 || spot[0]>=8 ||
+       spot[1]<0 || spot[1]>=8){
+        throw invalid_argument("Parametro fora de alcance");
+    }
+       
     
     int mat[8][8];
     bool isnull=true;
@@ -146,5 +149,11 @@ MovNotValidExeption::MovNotValidExeption(){
     _message = "A peça não pode se movimentar para o local clicado";
 }
 const char* MovNotValidExeption::what() const noexcept{
+    return _message;
+}
+OutOfTableExeption::OutOfTableExeption(){
+    _message = "Posição está fora do tabuleiro";
+}
+const char* OutOfTableExeption::what() const noexcept{
     return _message;
 }

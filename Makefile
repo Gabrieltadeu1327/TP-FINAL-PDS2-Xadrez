@@ -36,6 +36,7 @@ pawn: piece
 tests:
 	g++ -I third_party/ build/board.o build/pieces/*.o tests/board_test.cpp -o build/tests/board_test
 	g++ -I third_party/ build/board.o build/pieces/*.o tests/pieces_test.cpp -o build/tests/pieces_test
+	g++ -I third_party/ build/*.o build/pieces/*.o tests/match_test.cpp -o build/tests/match_test
 	
 .PHONY: tests all main 
 
