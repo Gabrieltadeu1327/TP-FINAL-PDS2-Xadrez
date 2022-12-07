@@ -105,6 +105,16 @@ int main(){
                         al_draw_bitmap(mov, 0, 0, 0);
                         al_destroy_bitmap(mov);
                         break;
+                    case 4:
+                        mov = al_load_bitmap("images/Not this piece's turn.png");
+                        al_draw_bitmap(mov, 0, 0, 0);
+                        al_destroy_bitmap(mov);
+                        break;
+                    case 5:
+                        mov = al_load_bitmap("images/Empty Spot.png");
+                        al_draw_bitmap(mov, 0, 0, 0);
+                        al_destroy_bitmap(mov);
+                        break;
                     default:
                     break;
                     }
@@ -154,18 +164,20 @@ int main(){
                     try{
                         match->game(sp);
                     
-                    }catch(VoidSpotExeption &e){
+                    }catch(VoidSpotExeption &e){// Clicou no vazio
+                        movtype = 5;
                         cout<< e.what()<<"\n";
                         continue;
                     }catch(VoidMovimentExeption &e){//quando a matriz de movimentos validos é nula
                         cout<< e.what()<<"\n";
                         movtype = 3;
                         continue;
-                    }catch(MovNotValidExeption &e){//quando clica em um spot que nao pode ser movido, um espaço nulo ou em uma peça de cor diferente
+                    }catch(MovNotValidExeption &e){// Clicou em um lugar que nao pode mecher
                         movtype = 2;
                         cout<< e.what()<<"\n";
                         continue;
-                    }catch(NotTurnExeption &e){//quando clica em um spot que nao pode ser movido, um espaço nulo ou em uma peça de cor diferente
+                    }catch(NotTurnExeption &e){// clicou na peça da vez do oponente
+                        movtype = 4;
                         cout<< e.what()<<"\n";
                         continue;
                     }           

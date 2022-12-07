@@ -24,6 +24,7 @@ void Match::refresh_imagespices(){
 std::string Match::getwinner(){
     return winner;
 }
+//da continuiade ao jogo
 void Match::game(int spot[2]){
 
     if(spot[0]<0 || spot[0]>=8 ||
@@ -34,7 +35,7 @@ void Match::game(int spot[2]){
     
     int mat[8][8];
     bool isnull=true;
-
+    //um click pode ser para selecionar um peça ou para mover a peça para algum lugar
     if(selected){
         if(image_dots[spot[0]][spot[1]] != ""){
             
@@ -45,7 +46,7 @@ void Match::game(int spot[2]){
             }    
 
             bo->set_piece(last_spot,spot);    
-
+            //muda a vez
             if(turn =="White"){
                 turn = "Black";
             }else{
@@ -61,7 +62,7 @@ void Match::game(int spot[2]){
             selected = false;  
             throw MovNotValidExeption();
         }
-        
+        //rezeta image dots
         for(int i=0 ; i<8; i++){
             for(int j=0 ; j<8; j++){
             image_dots[i][j]= "";
@@ -73,6 +74,7 @@ void Match::game(int spot[2]){
         if(bo->get_piece(spot) != nullptr){
             if(bo->get_collor(spot) == turn){
                 bo->def_valid_moviments(spot, mat);
+                // determiana se um movimento é valido ou nao
                 
                 for(int i=0; i<8; i++){
                    for(int j=0; j<8; j++){
@@ -113,12 +115,13 @@ void Match::game(int spot[2]){
 std::string Match::get_turn(){
     return turn;
 }
-
+//muda o winner contarrio ao give up
 void Match::p_gaveup(){
     if(turn == "White") winner = "Black";
     if(turn == "Black") winner = "White";
 }
 
+//execessoes de todos os tipos
 ButtonSpotExeption::ButtonSpotExeption(){
     _message = "Spot passado é inválido";
 }
