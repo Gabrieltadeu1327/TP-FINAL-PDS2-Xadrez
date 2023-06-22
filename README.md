@@ -1,7 +1,7 @@
  ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
  ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
  ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-<h1 align="center"> TP-FINAL-PDS2-Xadrez </h1>
+<h1 align="center"> TP-FINAL-PDS2- Jogo do Mario </h1>
 
   Esse repositório tem por finalidade criar um jogo de **xadrez** em C++, para apresentação de um trabalho em grupo de "Programação e Desenvolvimento de Software II", da UFMG.
 
