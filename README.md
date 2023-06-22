@@ -3,15 +3,20 @@
  ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 <h1 align="center"> TP-FINAL-PDS2-Xadrez </h1>
 
-  Esse repositório tem por finalidade criar um jogo de **xadrez** em C++, para apresentação de um trabalho em grupo de "Programação e Desenvolvimento de Software II", da UFMG.
+
+  Esse repositório tem por finalidade criar um jogo de plataforma inspirado no jogo  **Mario** em C++, para apresentação de um trabalho em grupo de "Programação e Desenvolvimento de Software II", da UFMG.
 
 
 ![Screenshot from 2022-12-05 22-30-01](https://user-images.githubusercontent.com/100977386/205787241-6948474c-3fff-48ed-9103-e61182a2ac8c.png)
 
 ## Resumo
-  O xadrez é um jogo de tabuleiro, sendo também considerado como esporte. É disputado entre dois jogadores, utilizando-se de um tabuleiro e 16 peças, sendo representadas por peões, torres, cavalos, bispos, um rei e uma rainha. O objetivo é conquistar o rei de seu adversário.
+   Mario é um jogo de plataformaa cujo o objetivo principal é fazer com que o personagem principal, Mario, chegue até o castelo e salve a Princesa Peach. Para isso, ele deverá passar por diversos obstáculos, como subir em plataformas, e enfrentar alguns inimigos. Ao longo do game, Mario pode adquirir alguns poderes, como aumentar de tamanho e ficar mais rápido, através do power-up mas o mesmo também poderar fazer com que o jogador fique apenas com uma vida restante, uma vez que ele inicia o jogo com 3 vidas. Ao longo de sua jornada, o jogador também irá acumular pontos e moedas que podem  ser recolhidos ao longo do jogo.
 
-  Os participantes irão jogar em um mesmo computador.
+   
+    
+ 
+
+  
 ## Pré-requisitos
   Para jogar é preciso ter um compilador de C++ e a biblioteca Allegro instalada.
 
